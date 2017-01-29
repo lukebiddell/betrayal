@@ -53,7 +53,7 @@ public class Main{
 		m.gamePane = new GamePanel();
 		JFrame window = new JFrame("Test");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(400,400);
+		window.setSize(950,600);
         window.add(m.gamePane);
         
         window.addKeyListener(m.gamePane.keyboard);

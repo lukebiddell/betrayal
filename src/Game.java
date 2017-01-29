@@ -26,7 +26,20 @@ public class Game{
 	private Viewport viewport;
 	
 	
+	public Random rand;
+	
+	public double maxSpawnTime;
+	public double minSpawnTime;
+	public double timeUntilSpawn;
+	
 	public int score = 0;
+	
+	public void spawnEntity(Entity e){
+		entitiesWaiting.add(e);
+	}
+	public void spawnMonster(Monster e){
+		monstersWaiting.add(e);
+	}
 	
 	public Game(KeyboardInput keyboard, MouseInput mouse){
 		isRunning = true;
@@ -43,18 +56,19 @@ public class Game{
 		roomH = 3.0;
 		
 		viewport = new Viewport(this, player);
-		viewport.ppu = 100.0;
+		viewport.ppu = 180.0;
 		
-		Monster.spawn(this);
-		Monster.spawn(this);
-		Monster.spawn(this);
+		
+		rand = new Random();
+		maxSpawnTime = 4.3;
+		minSpawnTime = 1.1;
 	}
 	
 	public void update(double delta, int w, int h){
 		keyboard.poll();
 		mouse.poll();
 		
-		player.update(delta);
+		player.update(delta, this);
 		
 		viewport.screenW = w;
 		viewport.screenH = h;
@@ -63,8 +77,11 @@ public class Game{
 		if(keyboard.keyDown(KeyEvent.VK_UP)) viewport.ppu+=15.0*delta;
 		if(keyboard.keyDown(KeyEvent.VK_DOWN)) viewport.ppu-=15.0*delta;
 		
-		if(mouse.isPressedOnce(0)){
-			player.weapon.use(this, player, viewport.toGameCoord(mouse.getPos()));
+		if(mouse.isPressed(0) && player.hp>0){
+			player.weapon[0].use(viewport.toGameCoord(mouse.getPos()));
+		}
+		if(mouse.isPressed(1) && player.hp>0){
+			player.weapon[1].use(viewport.toGameCoord(mouse.getPos()));
 		}
 		
 		monsters.addAll(monstersWaiting);
@@ -72,11 +89,21 @@ public class Game{
 		entities.addAll(entitiesWaiting);
 		entitiesWaiting = new LinkedList<Entity>();
 		
+		int l = player.weapon.length;
+		for(int i=0;i<l;i++)player.weapon[i].update(delta);
+		
 		ListIterator<Monster> mit = monsters.listIterator(0);
-		while(mit.hasNext())mit.next().update(delta);
+		while(mit.hasNext()){Monster m = mit.next(); m.update(delta, this); if(m.disposable()) mit.remove();}
 		ListIterator<Entity> eit = entities.listIterator(0);
 		while(eit.hasNext()){Entity e = eit.next(); e.update(delta, this); if(e.disposable()) eit.remove();}
 		
+		
+		if(timeUntilSpawn <= 0)
+		{
+			timeUntilSpawn = minSpawnTime + rand.nextDouble()*(maxSpawnTime - minSpawnTime);
+			spawnMonster(new Monster(this));
+		}
+		else timeUntilSpawn -= delta;
 	}
 	
 	public void render(Graphics2D g){
@@ -96,5 +123,10 @@ public class Game{
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
 		g.drawString(Integer.toString(score), 30, 30);
+		
+		g.setColor(Color.BLACK);
+		g.fillRect(30,60,100,10);
+		g.setColor(Color.RED);
+		g.fillRect(30,60,(int)(100 * player.hp / player.maxHp),10);
 	}
 }

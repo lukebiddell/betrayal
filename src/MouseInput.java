@@ -110,5 +110,6 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     }
     
     public void mouseDragged(MouseEvent e) {
+    	pos = e.getPoint();
     }
 }

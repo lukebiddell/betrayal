@@ -45,7 +45,7 @@ public class CircleSector{
 		final double dy = c.center.y - center.y;
 		final double dsq = dx*dx+dy*dy;
 		if(dsq >= rsq + Rsq + 2*R*r)return false;
-		if(dsq <= rsq)return true;
+		if(dsq <= rsq || Math.abs(arcLen) >= 2*Math.PI)return true;
 		double hitrng = 0;
 		if(dsq <= rsq + Rsq) hitrng = Math.asin(r/Math.sqrt(dsq));
 		else hitrng = Math.acos((Rsq-rsq+dsq)/(2*Math.sqrt(dsq)*R));
