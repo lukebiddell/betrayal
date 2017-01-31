@@ -26,7 +26,7 @@ public abstract class Projectile extends Entity{
 		this.lifetime = lifetime;
 		this.breaksOnContact = breaksOnContact;
 		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
-		this.knockbackDir = new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp);
+		this.knockbackDir = (knockbackAmp > 0)?(new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp)):(new Point2D.Double(0,0));
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ public class Gun extends Weapon{
 		bulletspeed = 4.2;
 		bulletsize = 0.02;
 		immunity = 0.15;
-		knockbackLen = 0.001;
+		knockbackLen = 0.04;
 	}
 	
 	@Override

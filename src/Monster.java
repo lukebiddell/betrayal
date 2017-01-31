@@ -44,7 +44,7 @@ public class Monster extends Entity{
 			hp -= p.damage;
 			
 			//apply knockback
-			addBehaviour(new Knockback(p.getKnockback(), pos, 0.25));
+			addBehaviour(new Knockback(p.getKnockback(), 0.1));
 			
 			//make it immune to this object
 			immunities.put(p, new Double(p.immunityTime));
