@@ -9,6 +9,10 @@ public class LinearMotion implements Behaviour{
 		dir = new Point2D.Double((towards.x-pos.x)*speed/r, (towards.y-pos.y)*speed/r);
 	}
 	
+	public boolean disposable(){
+		return false;
+	}
+	
 	public void update(Game game, Point2D.Double pos, double delta){
 		pos.x += dir.x*delta;
 		pos.y += dir.y*delta;

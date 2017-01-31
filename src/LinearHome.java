@@ -10,6 +10,10 @@ public class LinearHome implements Behaviour{
 		this.towards = towards;
 	}
 	
+	public boolean disposable(){
+		return false;
+	}
+	
 	public void update(Game game, Point2D.Double pos, double delta){
 		
 		final double r = Math.sqrt((pos.x - towards.x)*(pos.x - towards.x) + (pos.y - towards.y)*(pos.y - towards.y));

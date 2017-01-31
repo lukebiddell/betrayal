@@ -6,7 +6,8 @@ import java.util.LinkedList;
 public abstract class Projectile extends Entity{
 	public boolean isDisposable = false;
 	public double damage;
-	public Point2D.Double knockback;
+	public Point2D.Double knockbackDir;
+	public double knockbackAmp;
 	//the monsters hit will be immune to this projectile for this amount of time
 	public double immunityTime;
 	public CircleSector hitbox;
@@ -19,18 +20,23 @@ public abstract class Projectile extends Entity{
 		super();
 		this.damage = damage;
 		this.hitbox = hitbox;
-		this.knockback = knockback;
 		this.immunityTime = immunityTime;
 		this.player = player;
 		this.hasLifetime = hasLifetime;
 		this.lifetime = lifetime;
 		this.breaksOnContact = breaksOnContact;
+		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
+		this.knockbackDir = new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp);
 	}
 	
 	@Override
 	public Point2D.Double getPos(){return hitbox.center;}
 	
 	public double getSize(){return hitbox.getRadius();}
+	
+	public Point2D.Double getKnockback(){
+		return new Point2D.Double(knockbackDir.x * knockbackAmp, knockbackDir.y * knockbackAmp);
+	}
 	
 	@Override
 	public boolean disposable(){

@@ -19,6 +19,10 @@ public class Gravitate implements Behaviour{
 		v0 = new Point2D.Double(0,0);
 		v = new Point2D.Double(0,0);
 	}
+	
+	public boolean disposable(){
+		return false;
+	}
 
 	public void update(Game game, Point2D.Double pos, double delta){
 		acc0.x = acc.x;

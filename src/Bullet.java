@@ -3,8 +3,9 @@ import java.awt.geom.Point2D;
 
 public class Bullet extends Projectile{
 	
-	public Bullet(Player player, Point2D.Double pos, Point2D.Double to, double size, double damage, double speed, double immunity){
-		super(damage, new CircleSector(size, new Point2D.Double(pos.x, pos.y)), new Point2D.Double(0,0), immunity, player, false, 0, true);
+	public Bullet(Player player, Point2D.Double pos, Point2D.Double to, double size, double damage, double speed, double immunity, double knockbackLen){
+		super(damage, new CircleSector(size, new Point2D.Double(pos.x, pos.y)), new Point2D.Double((to.x-pos.x),(to.y-pos.y)), immunity, player, false, 0, true);
+		knockbackAmp = knockbackLen;
 		addBehaviour(new LinearMotion(speed, to, pos));
 	}
 	

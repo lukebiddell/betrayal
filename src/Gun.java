@@ -7,6 +7,7 @@ public class Gun extends Weapon{
 	public double bulletspeed;
 	public double bulletsize;
 	public double immunity;
+	public double knockbackLen;
 	
 	public Gun(Game game, Player p){
 		super(0.1, p);
@@ -17,6 +18,7 @@ public class Gun extends Weapon{
 		bulletspeed = 4.2;
 		bulletsize = 0.02;
 		immunity = 0.15;
+		knockbackLen = 0.001;
 	}
 	
 	@Override
@@ -24,6 +26,6 @@ public class Gun extends Weapon{
 		if(!usable())return;
 		super.use(pos);
 		
-		game.spawnEntity(new Bullet(p, p.pos, pos, bulletsize, bulletdamage, bulletspeed, immunity));
+		game.spawnEntity(new Bullet(p, p.pos, pos, bulletsize, bulletdamage, bulletspeed, immunity, knockbackLen));
 	}
 }

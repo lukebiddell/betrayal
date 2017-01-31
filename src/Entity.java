@@ -18,7 +18,7 @@ public abstract class Entity implements Comparable<Entity>{
 	
 	public void update(double delta, Game game){
 		ListIterator<Behaviour> bit = behaviour.listIterator(0);
-		while(bit.hasNext())bit.next().update(game, getPos(), delta);
+		while(bit.hasNext()){Behaviour b = bit.next(); b.update(game, getPos(), delta); if(b.disposable()) bit.remove();}
 	}
 	
 	public abstract void draw(Graphics2D g, Viewport viewport);

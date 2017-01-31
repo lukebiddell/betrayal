@@ -40,7 +40,13 @@ public class Monster extends Entity{
 	
 	public void hit(Projectile p){
 		if(!immunities.containsKey(p)){
+			//decrease damage
 			hp -= p.damage;
+			
+			//apply knockback
+			addBehaviour(new Knockback(p.getKnockback(), pos, 0.25));
+			
+			//make it immune to this object
 			immunities.put(p, new Double(p.immunityTime));
 		}
 		lastHitBy = p;
