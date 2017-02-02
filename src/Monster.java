@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Monster extends Entity{
 	public Point2D.Double pos;
@@ -35,7 +36,10 @@ public class Monster extends Entity{
 		lastHitBy = null;
 		immunities = new TreeMap<Projectile, Double>();
 		
-		addBehaviour(new LinearHome(0.18, game.player.pos));
+		try{
+			addBehaviour(new LinearHome(0.18, game.players.getFirst().getPos()));
+		}
+		catch(NoSuchElementException e){}
 	}
 	
 	public void hit(Projectile p){
