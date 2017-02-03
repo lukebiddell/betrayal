@@ -56,14 +56,12 @@ public class Game{
 		roomW = 5.0;
 		roomH = 3.0;
 		
-		Player player = new Player(this, keyboard, mouse, viewport);
-		
-		viewport = new Viewport(this, player);
+		viewport = new Viewport(this);
 		viewport.ppu = 180.0;
 		
-		players.add(player);
+		players.add(new Player(this, keyboard, mouse, viewport));
 		
-		
+		viewport.p = players.getFirst();
 		
 		rand = new Random();
 		maxSpawnTime = 4.3;

@@ -13,7 +13,7 @@ public class Viewport{
 	public Game game;
 	public Player p;
 	
-	public Viewport(Game game, Player p){
+	public Viewport(Game game){
 		pos = new Point2D.Double(0,0);
 		w = 0;
 		h = 0;
