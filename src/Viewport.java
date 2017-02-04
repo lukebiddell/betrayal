@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 public class Viewport{
 	private Point2D.Double pos;
@@ -49,6 +52,22 @@ public class Viewport{
 		g.setColor(col);
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
 		g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
+	}
+	
+	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g){
+		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
+		g.drawImage(a.ss.img,
+			coord.x, coord.y, coord.x + scaleToScreen(2*r) - 1, coord.y + scaleToScreen(2*r) - 1,
+			a.ss.offsetW + a.ss.spriteW * a.frame, a.ss.offsetH + a.ss.spriteH * a.set, a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1, a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1,
+			null);
+	}
+	
+	public void drawSprite(Rectangle2D.Double dest, Animation a, Graphics2D g){
+		Point coord = toScreenCoord(new Point2D.Double(dest.x, dest.y));
+		g.drawImage(a.ss.img,
+			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
+			a.ss.offsetW + a.ss.spriteW * a.frame, a.ss.offsetH + a.ss.spriteH * a.set, a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1, a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1,
+			null);
 	}
 	
 	public int scaleToScreen(double val){return (int)(val*ppu);}

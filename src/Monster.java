@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.event.KeyEvent;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.List;
 import java.util.LinkedList;
@@ -23,6 +25,8 @@ public class Monster extends Entity{
 	
 	private Random random;
 	
+	public Animation anim;
+	
 	public Monster(Game game){
 		super();
 		random = new Random();
@@ -35,6 +39,8 @@ public class Monster extends Entity{
 		hitbox = new Circle(size, pos);
 		lastHitBy = null;
 		immunities = new TreeMap<Projectile, Double>();
+		
+		anim = new Animation(game.getSprite(Game.SPRITESHEET.MONSTER),0,0,0.5,Animation.AnimationMode.LOOP);
 		
 		try{
 			addBehaviour(new LinearHome(0.18, game.players.getFirst().getPos()));
@@ -85,12 +91,14 @@ public class Monster extends Entity{
 		}
 		Iterator<Projectile> imtoremit = imtorem.iterator();
 		while(imtoremit.hasNext())immunities.remove(imtoremit.next());
+		
+		anim.update(delta);
 	}
 	
 	public void draw(Graphics2D g, Viewport viewport){
 		double hpBarH = 0.08;
 	
-		viewport.drawCircle(pos, size, (Color.WHITE), g);
+		viewport.drawCircleSprite(pos, size, anim, g);
 		Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-size, pos.y-size));
 		
 		g.setColor(Color.BLACK);

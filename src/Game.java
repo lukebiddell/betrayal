@@ -1,8 +1,13 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.event.KeyEvent;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.List;
 import java.util.LinkedList;
@@ -24,6 +29,38 @@ public class Game{
 	public LinkedList<Entity> entitiesWaiting;
 	
 	private Viewport viewport;
+	
+	public enum SPRITESHEET {
+		MONSTER(0);
+		private final int value;
+		public int val(){return value;}
+		
+		public Spritesheet getSpritesheet(){
+			switch(this){
+				case MONSTER:
+					int[] cir = new int[1];
+					cir[0] = 3;
+					try{
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+					} catch (IOException e) {
+						System.err.println(e.getMessage());
+						System.exit(1);
+					}
+			}
+			return null;
+		}
+
+		private SPRITESHEET(int value) {
+		    this.value = value;
+		}
+	}
+	private Spritesheet[] sprites;
+	public Spritesheet getSprite(SPRITESHEET s){
+		if(sprites[s.val()]==null){
+			sprites[s.val()] = s.getSpritesheet();
+		}
+		return sprites[s.val()];
+	}
 	
 	
 	public Random rand;
@@ -63,6 +100,10 @@ public class Game{
 		
 		viewport.p = players.getFirst();
 		
+		int l = SPRITESHEET.values().length;
+		sprites = new Spritesheet[l];
+		for(int i=0;i<l;i++)sprites[i] = null;
+		
 		rand = new Random();
 		maxSpawnTime = 4.3;
 		minSpawnTime = 1.1;
@@ -99,6 +140,7 @@ public class Game{
 	}
 	
 	public void render(Graphics2D g){
+	
 		g.setColor(Color.BLACK);
 		g.fillRect(0,0,viewport.screenW,viewport.screenH);
 		
