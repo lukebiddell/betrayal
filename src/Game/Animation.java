@@ -27,7 +27,13 @@ public class Animation{
 	}
 	
 	public void setSet(int set){
-		this.set = set;
+		if(this.set != set){
+			this.set = set;
+			frame = 0;
+		}
+	}
+	
+	public void restart(){
 		frame = 0;
 	}
 	

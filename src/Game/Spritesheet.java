@@ -26,6 +26,4 @@ public class Spritesheet{
 		this.spriteRow = spriteRow;
 		this.colsInRow = colsInRow;
 	}
-	
-	//add update method that advances the animation
 }
