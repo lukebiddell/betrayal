@@ -1,6 +1,5 @@
 package Levels;
 
-import java.awt.Point;
 
 public class CardboardBox extends Prop {
 

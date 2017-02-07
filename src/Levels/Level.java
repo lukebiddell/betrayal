@@ -14,11 +14,13 @@ public abstract class Level {
 	private int backgroundImageH;
 	
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
-	private ArrayList<Wave> propList = new ArrayList<Wave>();
+	private ArrayList<Prop> propList = new ArrayList<Prop>();
 
 	public Level() {
 		this.roomW = 20;
 		this.roomH = 16;
+		//this.propList.add(new CardboardBox());
+		//CardboardBox cb = new CardboardBox();
 	}
 	
 	public Level(double roomW, double roomH) {

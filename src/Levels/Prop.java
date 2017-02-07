@@ -151,5 +151,15 @@ public abstract class Prop {
 	protected void setHitboxRight(double hitboxRight) {
 		this.hitboxRight = hitboxRight;
 	}
+	
+	/**
+	 * @param hitboxRight the hitboxRight to set
+	 */
+	protected void setHitboxCoords(double hitboxTop, double hitboxBottom, double hitboxLeft, double hitboxRight) {
+		this.hitboxTop = hitboxTop;
+		this.hitboxBottom = hitboxBottom;
+		this.hitboxLeft = hitboxLeft;
+		this.hitboxRight = hitboxRight;
+	}
 
 }
