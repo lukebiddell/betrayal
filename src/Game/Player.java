@@ -7,6 +7,8 @@ import java.util.ListIterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+import Game.Animation.AnimationMode;
+
 public class Player extends Entity{
 	public KeyboardInput keyboard;
 	public MouseInput mouse;
@@ -22,6 +24,7 @@ public class Player extends Entity{
 	public double hp;
 	public double immunityTime;
 	public double maxImmunityTime;
+	public Animation anim;
 	
 	public Weapon[] weapon;
 	
@@ -32,7 +35,7 @@ public class Player extends Entity{
 		this.viewport = viewport;
 		this.keyboard = keyboard;
 		pos = new Point2D.Double(1.0,1.0);
-		size = 0.35;
+		size = 0.28;
 		speed = 1.0;
 		weapon = new Weapon[2];
 		weapon[0] = new Sword(game, this);
@@ -42,6 +45,7 @@ public class Player extends Entity{
 		hp = maxHp;
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
+		anim = new Animation(game.getSprite(Game.SPRITESHEET.PLAYER), 0, 0, 0.1 , Animation.AnimationMode.LOOP);
 	}
 	
 	@Override
@@ -52,10 +56,15 @@ public class Player extends Entity{
 		
 		if(hp>0){
 			//adjust speed so it's the same in all directions
-			if(game.keyboard.keyDown(KeyEvent.VK_W))pos.y = Math.max(pos.y - speed*delta, size);
-			if(game.keyboard.keyDown(KeyEvent.VK_A))pos.x = Math.max(pos.x - speed*delta, size);
-			if(game.keyboard.keyDown(KeyEvent.VK_S))pos.y = Math.min(pos.y + speed*delta, game.roomH-size);
-			if(game.keyboard.keyDown(KeyEvent.VK_D))pos.x = Math.min(pos.x + speed*delta, game.roomW-size);
+			if(game.keyboard.keyDown(KeyEvent.VK_W)){pos.y = Math.max(pos.y - speed*delta, size);}
+			if(game.keyboard.keyDown(KeyEvent.VK_A)){pos.x = Math.max(pos.x - speed*delta, size); anim.setSet(1);}
+			if(game.keyboard.keyDown(KeyEvent.VK_S)){pos.y = Math.min(pos.y + speed*delta, game.roomH-size);}
+			if(game.keyboard.keyDown(KeyEvent.VK_D)){pos.x = Math.min(pos.x + speed*delta, game.roomW-size); anim.setSet(0);}
+			
+			if(!game.keyboard.keyDown(KeyEvent.VK_W)&&!game.keyboard.keyDown(KeyEvent.VK_A)&&!game.keyboard.keyDown(KeyEvent.VK_S)&&!game.keyboard.keyDown(KeyEvent.VK_D))
+				{anim.setSet(2);}
+			
+			
 			
 			
 			if(mouse.isPressed(0) && hp>0){
@@ -76,12 +85,14 @@ public class Player extends Entity{
 				Monster m = mit.next(); 
 				if(hitbox.intersects(m.hitbox)){if(immunityTime<=0){hp -= 10; immunityTime = maxImmunityTime;}}
 			}
+			anim.update(delta);
 		}
 	}
 	
 	@Override
 	public void draw(Graphics2D g, Viewport viewport){
-		viewport.drawCircle(pos, size, ((hp>0)?Color.RED:Color.BLUE), g);
+		
+		viewport.drawCircleSprite(pos, size, anim, g);
 	}
 	
 	@Override

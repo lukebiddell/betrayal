@@ -31,8 +31,13 @@ public class Game{
 	
 	private Viewport viewport;
 	
+	Animation arena;
+	
 	public enum SPRITESHEET {
-		MONSTER(0);
+		MONSTER(0),
+		PLAYER(1),
+		ARENA(2);
+		
 		private final int value;
 		public int val(){return value;}
 		
@@ -42,11 +47,40 @@ public class Game{
 					int[] cir = new int[1];
 					cir[0] = 3;
 					try{
-						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
 					} catch (IOException e) {
 						System.err.println(e.getMessage());
 						System.exit(1);
 					}
+				
+				case PLAYER:
+
+					int[] cir2 = new int[3];
+					cir2[0] = 6;
+					cir2[1]=6;
+					cir2[2]=1;
+					try{
+						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/player.png")),0,0,104,150,6,3, cir2);
+					} catch (IOException e) {
+						System.err.println(e.getMessage());
+						System.exit(1);
+					}
+					
+				case ARENA:
+
+					int[] cir3 = new int[1];
+					cir3[0]=1;
+					
+					try{
+						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/arena.png")),0,0,1366,768,1,1, cir3);
+					} catch (IOException e) {
+						System.err.println(e.getMessage());
+						System.exit(1);
+					}
+					
 			}
 			return null;
 		}
@@ -97,13 +131,19 @@ public class Game{
 		viewport = new Viewport(this);
 		viewport.ppu = 180.0;
 		
-		players.add(new Player(this, keyboard, mouse, viewport));
+		System.out.println("Here");
+		int l = SPRITESHEET.values().length;
+		System.err.println(l);
+		sprites = new Spritesheet[l];
+		for(int i=0;i<l;i++)
+			sprites[i] = null;
+
 		
+		players.add(new Player(this, keyboard, mouse, viewport));
+
 		viewport.p = players.getFirst();
 		
-		int l = SPRITESHEET.values().length;
-		sprites = new Spritesheet[l];
-		for(int i=0;i<l;i++)sprites[i] = null;
+		arena= new Animation(getSprite(SPRITESHEET.ARENA),0,0,1,Animation.AnimationMode.LOOP);
 		
 		rand = new Random();
 		maxSpawnTime = 4.3;
@@ -145,9 +185,11 @@ public class Game{
 		g.setColor(Color.BLACK);
 		g.fillRect(0,0,viewport.screenW,viewport.screenH);
 		
-		g.setColor(Color.GREEN);
-		Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
-		g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
+		//g.setColor(Color.GREEN);
+	//Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
+		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
+		
+		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
 		ListIterator<Player> pit = players.listIterator(0);
 		while(pit.hasNext())pit.next().draw(g, viewport);
