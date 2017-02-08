@@ -2,16 +2,16 @@ package Game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
-import Audio.AudioPlayer;
+import Audio.BGMPlayer;
 
 public class Main{
 	public GamePanel gamePane;
-	public AudioPlayer bgm;
+	public BGMPlayer bgm;
 	public void gameLoop()
 	{
 		//adds music to the game
-		bgm = new AudioPlayer("/Music/BGM_Havok.mp3");
-		bgm.play();
+//		bgm = new BGMPlayer("/Music/BGM_Asian_Gravedrum.wav");
+//		bgm.play();
 		
 	   long lastLoopTime = System.nanoTime();
 	   final int TARGET_FPS = 60;
