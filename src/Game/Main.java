@@ -2,15 +2,15 @@ package Game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
-import Audio.BGMPlayer;
+import Audio.BGM;
 
 public class Main{
 	public GamePanel gamePane;
-	public BGMPlayer bgm;
+	public BGM bgm;
 	public void gameLoop()
 	{
 		//adds music to the game
-//		bgm = new BGMPlayer("/Music/BGM_Asian_Gravedrum.wav");
+//		bgm = new BGM("/Music/BGM_Asian_Gravedrum.wav");
 //		bgm.play();
 		
 	   long lastLoopTime = System.nanoTime();

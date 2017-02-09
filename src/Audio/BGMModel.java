@@ -29,7 +29,15 @@ public class BGMModel extends Observable
 		return bgm.getValue();
 	}
 	
+	public boolean getMuteStatus(){
+		return bgm.getMuteStatus();
+	}
 
+	public void setMuteStatus(boolean mute){
+		bgm.setMuteStatus(mute);
+		setChanged();
+		notifyObservers();
+	}
 	
 	/**
 	 Change the year of Easter day

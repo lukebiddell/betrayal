@@ -1,5 +1,7 @@
 package Audio;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -37,8 +39,12 @@ public class BGMComponent extends JPanel
 		//make listeners listen to controls
 		slider.addChangeListener(listen);
 		
+		MuteButton mute = new MuteButton(model);
+		
 		//place views and controls on panel
+
 		add(slider);
 		add(est);
+		add(mute);
 	}
 }

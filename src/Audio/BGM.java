@@ -15,11 +15,12 @@ import javax.sound.sampled.FloatControl;
 
 public class BGM
 {
-	
+	private boolean mute;
 	private int value;
 	private Clip clip;
 	public FloatControl volume;
 	public BooleanControl muteControl;
+
 	
 	/**
 	 * Read the audio file and opens the clip
@@ -34,9 +35,7 @@ public class BGM
 		      
 			AudioInputStream ais =
 				AudioSystem.getAudioInputStream(
-					getClass().getResourceAsStream(
-						s
-					)
+					getClass().getResourceAsStream(s)
 				);
 			AudioFormat baseFormat = ais.getFormat();
 			AudioFormat decodeFormat = new AudioFormat(
@@ -89,6 +88,14 @@ public class BGM
 			
 	}
 	
+	public boolean getMuteStatus(){
+		return mute;
+	}
+	
+	public void setMuteStatus(boolean isMute){
+		this.mute = isMute;
+	}
+	
 	/**
 	 * updates the audio volume 
 	 */
@@ -96,6 +103,8 @@ public class BGM
 		double dB1 = (double)value / 100;
 		float gain1 = (float)(Math.log(dB1)/Math.log(10.0)*20.0);
 		volume.setValue(gain1);
+//		System.out.println("muting..");
+		muteControl.setValue(mute);
 	}
 	
 	/**
@@ -112,6 +121,7 @@ public class BGM
 		while(clip.isActive()){
 			double test = (double)value/100;
 			System.out.println("dB :" + test + " <-> " + "Volume :" + value);
+			System.out.println(mute);
 			update();
 		}
 

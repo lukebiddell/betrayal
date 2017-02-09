@@ -24,14 +24,18 @@ public class BGMView extends JLabel implements Observer
 		super();
 		this.model = model;
 		
+		boolean mute = model.getMuteStatus();
 		int value = model.getValue();
 		setText("Volume : " + value + "%");
+
 	}
 	
 	public void update(Observable obs, Object obj)
 	{
+		boolean mute = model.getMuteStatus();
 		int value = model.getValue();
 		setText("Volume : " + value + "%");
+
 	}
 
 }
