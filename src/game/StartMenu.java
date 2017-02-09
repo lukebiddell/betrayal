@@ -50,13 +50,16 @@ public class StartMenu
 		//Add Buttons to JPanel
 		JButton findGame = new JButton("Find Game");
 		findGame.setSize(buttonWidth * 2, buttonHeight);
-		findGame.setLocation(buttonX + 150, buttonY + 125);  
+		findGame.setLocation(buttonX + 150, buttonY + 125); 
 		findGame.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				}
+				// TODO Auto-generated method stub
+				
+			}
 		});
+
 		JButton options = new JButton("Options");
 		options.setSize(buttonWidth, buttonHeight);
 		options.setLocation(buttonX + 20, buttonY + 300);

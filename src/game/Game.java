@@ -48,8 +48,9 @@ public class Game{
 					cir[0] = 3;
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("C:/Users/owner/workspace/b4/Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
 					} catch (IOException e) {
+						System.err.println(e.getStackTrace());
 						System.err.println(e.getMessage());
 						System.exit(1);
 					}
@@ -62,8 +63,9 @@ public class Game{
 					cir2[2]=1;
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/player.png")),0,0,104,150,6,3, cir2);
+						return new Spritesheet(ImageIO.read(new File("C:/Users/owner/workspace/b4/Resources/Images/player.png")),0,0,104,150,6,3, cir2);
 					} catch (IOException e) {
+						System.err.println(e.getStackTrace());
 						System.err.println(e.getMessage());
 						System.exit(1);
 					}
@@ -75,7 +77,7 @@ public class Game{
 					
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("/../Resources/Images/arena.png")),0,0,1366,768,1,1, cir3);
+						return new Spritesheet(ImageIO.read(new File("C:/Users/owner/workspace/b4/Resources/Images/arena.png")),0,0,1366,768,1,1, cir3);
 					} catch (IOException e) {
 						System.err.println(e.getMessage());
 						System.exit(1);
