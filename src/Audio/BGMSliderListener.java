@@ -10,12 +10,12 @@ import javax.swing.JSlider;
  */
 //Respond to the user moving a slider.
 
-public class SliderListener implements ChangeListener
+public class BGMSliderListener implements ChangeListener
 {
 	private BGMModel model;
 	private JSlider slider;
 	
-	public SliderListener(BGMModel model, JSlider slider)
+	public BGMSliderListener(BGMModel model, JSlider slider)
 	{
 		this.model = model;
 		this.slider = slider;

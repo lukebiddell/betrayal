@@ -3,23 +3,17 @@ package Audio;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-/**
- * 
- * @author Farrah Aina Mohd Zulkifli
- *
- */
-
-public class BGMComponent extends JPanel
-{
-	public BGMComponent(BGM bgm, int min, int max, int initial)
+public class SFXComponent extends JPanel {
+	
+	public SFXComponent(SFX sfx, int min, int max, int initial)
 	{
 		super();
 		
 		//model
-		BGMModel model = new BGMModel(bgm);
+		SFXModel model = new SFXModel(sfx);
 		
 		//view
-		BGMView est = new BGMView(model);
+		SFXView est = new SFXView(model);
 		
 		//make view observe model
 		model.addObserver(est);
@@ -32,12 +26,12 @@ public class BGMComponent extends JPanel
 		slider.setLabelTable(slider.createStandardLabels((max - min) / 4));
 		
 		//create listener
-		BGMSliderListener listen = new BGMSliderListener(model, slider);
+		SFXSliderListener listen = new SFXSliderListener(model, slider);
 		
 		//make listeners listen to controls
 		slider.addChangeListener(listen);
 		
-		BGMMuteButton mute = new BGMMuteButton(model);
+		SFXMuteButton mute = new SFXMuteButton(model);
 		
 		//place views and controls on panel
 
@@ -45,4 +39,5 @@ public class BGMComponent extends JPanel
 		add(est);
 		add(mute);
 	}
+
 }

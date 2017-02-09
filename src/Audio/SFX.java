@@ -10,9 +10,16 @@ import javax.swing.JFrame;
 
 public class SFX{
 
-	Clip clip;
+	private boolean mute;
+	private int value;
+	private Clip clip;
+	public FloatControl volume;
+	public BooleanControl muteControl;
 	
-	public SFX(String s){
+	public SFX(int value, String s){
+		
+		this.value = value;
+		
 		try {
 		      
 			AudioInputStream ais =
@@ -35,8 +42,8 @@ public class SFX{
 			clip = AudioSystem.getClip();
 			clip.open(dais);
 			
-	//		volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);			
-	//		muteControl = (BooleanControl)clip.getControl(BooleanControl.Type.MUTE);
+			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);			
+			muteControl = (BooleanControl)clip.getControl(BooleanControl.Type.MUTE);
 			
 		}
 		catch(Exception e) {
@@ -45,11 +52,63 @@ public class SFX{
 		}
 	}
 	
+	public String toString()
+	{
+		return "Volume : " + this.value + "%";
+	}
+	
+	/**
+	 * 
+	 * @return	The audio volume 
+	 */
+	public int getValue()
+	{
+		return value;
+	}
+	
+	/**
+	 * 
+	 * @param value	The audio volume from slider	
+	 */
+	public void setValue(int value)
+	{
+		this.value = value;
+			
+	}
+	
+	public boolean getMuteStatus(){
+		return mute;
+	}
+	
+	public void setMuteStatus(boolean isMute){
+		this.mute = isMute;
+	}
+	
+	/**
+	 * updates the audio volume 
+	 */
+	private void update(){
+		double dB1 = (double)value / 100;
+		float gain1 = (float)(Math.log(dB1)/Math.log(10.0)*20.0);
+		volume.setValue(gain1);
+//		System.out.println("muting..");
+		muteControl.setValue(mute);
+	}
+	
 	public void play(){
 		if(clip == null) return;
 		stop();
 		clip.setFramePosition(0);
 		clip.start();
+//		clip.loop(Clip.LOOP_CONTINUOUSLY);
+		System.out.println("test");
+		
+		while(clip.isActive()){
+			double test = (double)value/100;
+			System.out.println("dB :" + test + " <-> " + "Volume :" + value);
+			System.out.println(mute);
+			update();
+		}
 	}
 	
 	/**
@@ -67,16 +126,16 @@ public class SFX{
 		clip.close();
 	}
 	
-	public static void main(String[] args){
-		JFrame frame = new JFrame("SFX Tester");
-		frame.setSize(300, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
-		SFX sfx = new SFX("/Music/SFX_Powerups.wav");
-		SFX sfx1 = new SFX("/Music/SFX_Health_Replenish.wav");
-		
-		sfx.play();
-		sfx1.play();
-	}
+//	public static void main(String[] args){
+//		JFrame frame = new JFrame("SFX Tester");
+//		frame.setSize(300, 300);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		
+//		SFX sfx = new SFX("/Music/SFX_Powerups.wav");
+//		SFX sfx1 = new SFX("/Music/SFX_Health_Replenish.wav");
+//		
+//		sfx.play();
+//		sfx1.play();
+//	}
 }

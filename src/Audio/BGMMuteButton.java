@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MuteButton extends JPanel{
+public class BGMMuteButton extends JPanel{
 	
-	public MuteButton(BGMModel model){
+	public BGMMuteButton(BGMModel model){
 		
 		super();
 		
