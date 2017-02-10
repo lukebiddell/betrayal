@@ -99,7 +99,7 @@ public class BGM
 	/**
 	 * updates the audio volume 
 	 */
-	private void update(){
+	public void update(){
 		double dB1 = (double)value / 100;
 		float gain1 = (float)(Math.log(dB1)/Math.log(10.0)*20.0);
 		volume.setValue(gain1);
@@ -116,14 +116,14 @@ public class BGM
 		clip.setFramePosition(0);
 		clip.start();
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
-		System.out.println("test");
+		//System.out.println("test");
 		
-		while(clip.isActive()){
-			double test = (double)value/100;
-			System.out.println("dB :" + test + " <-> " + "Volume :" + value);
-			System.out.println(mute);
-			update();
-		}
+//		while(clip.isOpen()){
+//			double test = (double)value/100;
+//			//System.out.println("dB :" + test + " <-> " + "Volume :" + value);
+//			//System.out.println(mute);
+//			update();
+//		}
 
 	}
 	

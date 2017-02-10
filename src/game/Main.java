@@ -8,12 +8,13 @@ import java.awt.*;
 
 public class Main{
 	public GamePanel gamePane;
-	public BGM bgm;
+	public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
 	public void gameLoop()
 	{
-		//adds music to the game
-//		bgm = new BGM("/Music/BGM_Asian_Gravedrum.wav");
-//		bgm.play();
+		
+		
+		bgm.play();
+		bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();
 	   final int TARGET_FPS = 60;
