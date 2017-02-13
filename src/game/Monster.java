@@ -33,7 +33,7 @@ public class Monster extends Entity{
 		random = new Random();
 		this.game = game;
 		pos = new Point2D.Double(random.nextDouble()*game.roomW, random.nextDouble()*game.roomH);
-		size = 0.2;
+		size = 0.1;
 		hp = 100;
 		maxHp = hp;
 		dead = false;

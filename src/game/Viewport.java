@@ -5,6 +5,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+import levels.Prop;
+
 public class Viewport{
 	private Point2D.Double pos;
 	public double w;
@@ -69,6 +71,11 @@ public class Viewport{
 			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
 			a.ss.offsetW + a.ss.spriteW * a.frame, a.ss.offsetH + a.ss.spriteH * a.set, a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1, a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1,
 			null);
+	}
+	
+	public void drawSprite(Prop p, Graphics2D g){
+		Point coord = toScreenCoord(new Point2D.Double(p.getCoordinates().x, p.getCoordinates().y));
+		g.drawImage(p.getImage(), coord.x, coord.y, null);
 	}
 	
 	public int scaleToScreen(double val){return (int)(val*ppu);}

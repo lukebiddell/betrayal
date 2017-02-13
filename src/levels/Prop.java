@@ -1,6 +1,12 @@
 package levels;
 
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Prop {
 
@@ -12,154 +18,171 @@ public abstract class Prop {
 	private int imageH;
 	private boolean circleHitbox;
 	private double hitboxTop, hitboxBottom, hitboxLeft, hitboxRight;
-	
+	private Point coordinates;
 
 	
 	public Prop() {
 
 	}
 
+	public Image getImage() {
+		BufferedImage image = null;
+		try {
+		    image = ImageIO.read(new File(imageFolder + imageLocation));
+		} catch (IOException e) {
+		}
+		return image;
+	}
+	
 	/**
 	 * @return the hasHitbox
 	 */
-	protected boolean isHasHitbox() {
+	public boolean isHasHitbox() {
 		return hasHitbox;
 	}
 
 	/**
 	 * @param hasHitbox the hasHitbox to set
 	 */
-	protected void setHasHitbox(boolean hasHitbox) {
+	public void setHasHitbox(boolean hasHitbox) {
 		this.hasHitbox = hasHitbox;
 	}
 
 	/**
 	 * @return the full address of imageLocation
 	 */
-	protected String getImageLocationFull() {
+	public String getImageLocationFull() {
 		return imageFolder + imageLocation;
 	}
 
 	/**
 	 * @param imageLocation the imageLocation to set
 	 */
-	protected void setImageLocation(String imageLocation) {
+	public void setImageLocation(String imageLocation) {
 		this.imageLocation = imageLocation;
 	}
 
 	/**
 	 * @return the imageW
 	 */
-	protected int getImageW() {
+	public int getImageW() {
 		return imageW;
 	}
 
 	/**
 	 * @param imageW the imageW to set
 	 */
-	protected void setImageW(int imageW) {
+	public void setImageW(int imageW) {
 		this.imageW = imageW;
 	}
 
 	/**
 	 * @return the imageH
 	 */
-	protected int getImageH() {
+	public int getImageH() {
 		return imageH;
 	}
 
 	/**
 	 * @param imageH the imageH to set
 	 */
-	protected void setImageH(int imageH) {
+	public void setImageH(int imageH) {
 		this.imageH = imageH;
 	}
 
 	/**
 	 * @return the circleHitbox
 	 */
-	protected boolean isCircleHitbox() {
+	public boolean isCircleHitbox() {
 		return circleHitbox;
 	}
 
 	/**
 	 * @param circleHitbox the circleHitbox to set
 	 */
-	protected void setCircleHitbox(boolean circleHitbox) {
+	public void setCircleHitbox(boolean circleHitbox) {
 		this.circleHitbox = circleHitbox;
 	}
 
 	/**
 	 * @return the imageLocation
 	 */
-	protected String getImageLocation() {
+	public String getImageLocation() {
 		return imageLocation;
 	}
 
 	/**
 	 * @return the hitboxTop
 	 */
-	protected double getHitboxTop() {
+	public double getHitboxTop() {
 		return hitboxTop;
 	}
 
 	/**
 	 * @param hitboxTop the hitboxTop to set
 	 */
-	protected void setHitboxTop(double hitboxTop) {
+	public void setHitboxTop(double hitboxTop) {
 		this.hitboxTop = hitboxTop;
 	}
 
 	/**
 	 * @return the hitboxBottom
 	 */
-	protected double getHitboxBottom() {
+	public double getHitboxBottom() {
 		return hitboxBottom;
 	}
 
 	/**
 	 * @param hitboxBottom the hitboxBottom to set
 	 */
-	protected void setHitboxBottom(double hitboxBottom) {
+	public void setHitboxBottom(double hitboxBottom) {
 		this.hitboxBottom = hitboxBottom;
 	}
 
 	/**
 	 * @return the hitboxLeft
 	 */
-	protected double getHitboxLeft() {
+	public double getHitboxLeft() {
 		return hitboxLeft;
 	}
 
 	/**
 	 * @param hitboxLeft the hitboxLeft to set
 	 */
-	protected void setHitboxLeft(double hitboxLeft) {
+	public void setHitboxLeft(double hitboxLeft) {
 		this.hitboxLeft = hitboxLeft;
 	}
 
 	/**
 	 * @return the hitboxRight
 	 */
-	protected double getHitboxRight() {
+	public double getHitboxRight() {
 		return hitboxRight;
 	}
 
 	/**
 	 * @param hitboxRight the hitboxRight to set
 	 */
-	protected void setHitboxRight(double hitboxRight) {
+	public void setHitboxRight(double hitboxRight) {
 		this.hitboxRight = hitboxRight;
 	}
 	
 	/**
 	 * @param hitboxRight the hitboxRight to set
 	 */
-	protected void setHitboxCoords(double hitboxTop, double hitboxBottom, double hitboxLeft, double hitboxRight) {
+	public void setHitboxCoords(double hitboxTop, double hitboxBottom, double hitboxLeft, double hitboxRight) {
 		this.hitboxTop = hitboxTop;
 		this.hitboxBottom = hitboxBottom;
 		this.hitboxLeft = hitboxLeft;
 		this.hitboxRight = hitboxRight;
+	}
+
+	public Point getCoordinates() {
+		return coordinates;
+	}
+
+	public void setCoordinates(Point coordinates) {
+		this.coordinates = coordinates;
 	}
 
 }

@@ -14,7 +14,7 @@ public class Sword extends Weapon{
 		this.p = p;
 		
 		damage = 10;
-		len = 0.75;
+		len = 0.4; //used to be 0.75
 		arc = Math.PI/2;
 	}
 	
