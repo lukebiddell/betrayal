@@ -73,7 +73,7 @@ public class Viewport{
 			null);
 	}
 	
-	public void drawSprite(Prop p, Graphics2D g){
+	public void drawProp(Prop p, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(p.getCoordinates().x, p.getCoordinates().y));
 		g.drawImage(p.getImage(), coord.x, coord.y, null);
 	}

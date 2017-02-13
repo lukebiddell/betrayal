@@ -1,10 +1,7 @@
 package levels;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +25,8 @@ public abstract class Level {
 
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
 	private ArrayList<Prop> propList = new ArrayList<Prop>();
-	private ArrayList<Wall> wallList = new ArrayList<Wall>();
+
+	Viewport vp;
 
 	public Level() {
 		this.roomW = 20;
@@ -37,12 +35,15 @@ public abstract class Level {
 		// CardboardBox cb = new CardboardBox();
 	}
 
-	public Level(double roomW, double roomH) {
+	public Level(double roomW, double roomH, Viewport vp) {
 		this.roomW = roomW;
 		this.roomH = roomH;
+		this.vp = vp;
 	}
 
 	public void draw(Graphics2D g) {
+		for (Prop p : propList)
+			vp.drawProp(p, g);
 		return;
 	}
 

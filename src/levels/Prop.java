@@ -2,6 +2,8 @@ package levels;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +20,7 @@ public abstract class Prop {
 	private int imageH;
 	private boolean circleHitbox;
 	private double hitboxTop, hitboxBottom, hitboxLeft, hitboxRight;
-	private Point coordinates;
+	private Point2D.Double coordinates;
 
 	
 	public Prop() {
@@ -177,11 +179,11 @@ public abstract class Prop {
 		this.hitboxRight = hitboxRight;
 	}
 
-	public Point getCoordinates() {
+	public Point2D.Double getCoordinates() {
 		return coordinates;
 	}
 
-	public void setCoordinates(Point coordinates) {
+	public void setCoordinates(Point2D.Double coordinates) {
 		this.coordinates = coordinates;
 	}
 
