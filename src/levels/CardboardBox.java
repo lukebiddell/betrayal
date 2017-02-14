@@ -12,8 +12,8 @@ public class CardboardBox extends Prop {
 		this.setHitboxBottom(0.9);
 		
 		this.setImageLocation("cardboardbox.png");
-		this.setImageW(1);
-		this.setImageH(1);
+		this.setWidth(1);
+		this.setHeight(1);
 		
 	}
 
