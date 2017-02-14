@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+//user Sender
+//sends to sender
+
 public class Sender extends Thread {
 	private DataOutputStream out;
-	private BlockingQueue<byte[]> queue;
+	private BlockingQueue<Integer> queue;
 
 	public Sender(DataOutputStream out) {
 		this.out = out;
-		this.queue = new LinkedBlockingQueue<byte[]>();
+		this.queue = new LinkedBlockingQueue<Integer>();
 	}
 
 	public void run() {
@@ -28,9 +31,8 @@ public class Sender extends Thread {
 		}
 	}
 
-	public void addToQueue(byte[] input) {
-		if (input.length == 4) {
+	public void addToQueue(Integer input) {
 			queue.add(input);
-		}
+	
 	}
 }

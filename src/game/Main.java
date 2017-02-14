@@ -1,20 +1,24 @@
 package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import network.*;
 
-import audio.BGM;
+//import audio.BGM;
 
 import java.awt.*;
 
 public class Main{
 	public GamePanel gamePane;
-	public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
+	//public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
+	
+	public Server server;
+	
 	public void gameLoop()
 	{
 		
 		
-		bgm.play();
-		bgm.update();
+	//	bgm.play();
+	//	bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();
 	   final int TARGET_FPS = 60;

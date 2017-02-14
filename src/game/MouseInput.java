@@ -46,6 +46,28 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     	}
     }
     
+    public void mouseCodePressed(int button) {
+    	switch(button){
+    		case 0:
+    			leftPressed = true;
+    		break;
+    		case 1:
+    			rightPressed = true;
+    		break;
+    	}
+    }
+
+    public void mouseCodeReleased(int button) {
+    	switch(button){
+    		case 0:
+    			leftPressed = false;
+    		break;
+    		case 1:
+    			rightPressed = false;
+    		break;
+    	}
+    }
+    
     public void mouseMoved(MouseEvent e) {
     	pos = e.getPoint();
     }
@@ -62,6 +84,12 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     		else rightState = ButtonState.PRESSED;
     	}
     	else rightState = ButtonState.RELEASED;
+    }
+    
+    public void setPos(int x, int y){
+    	
+    	pos.x = x;
+    	pos.y = y;
     }
     
     public Point getPos(){

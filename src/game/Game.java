@@ -1,6 +1,10 @@
 package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import network.Listener;
+import network.Server;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +33,9 @@ public class Game{
 	public LinkedList<Monster> monstersWaiting;
 	public LinkedList<Entity> entitiesWaiting;
 	
+	public Server server;
+	public static int port = 4444;
+	
 	private Viewport viewport;
 	
 	Animation arena;
@@ -48,7 +55,7 @@ public class Game{
 					cir[0] = 3;
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
 					} catch (IOException e) {
 						System.err.println(e.getStackTrace());
 						System.err.println(e.getMessage());
@@ -63,8 +70,9 @@ public class Game{
 					cir2[2]=1;
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("Resources/Images/player.png")),0,0,104,150,6,3, cir2);
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/player.png")),0,0,104,150,6,3, cir2);
 					} catch (IOException e) {
+						System.err.println("Double checking");
 						System.err.println(e.getStackTrace());
 						System.err.println(e.getMessage());
 						System.exit(1);
@@ -77,8 +85,9 @@ public class Game{
 					
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("Resources/Images/arena.png")),0,0,1366,768,1,1, cir3);
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/arena.png")),0,0,1366,768,1,1, cir3);
 					} catch (IOException e) {
+						System.err.println("2");
 						System.err.println(e.getMessage());
 						System.exit(1);
 					}
@@ -139,9 +148,18 @@ public class Game{
 		sprites = new Spritesheet[l];
 		for(int i=0;i<l;i++)
 			sprites[i] = null;
-
+		
+		
+		
+		
+		server = new Server();
+		server.listen(port, keyboard, mouse);
+		
+		
+		
 		
 		players.add(new Player(this, keyboard, mouse, viewport));
+		
 
 		viewport.p = players.getFirst();
 		

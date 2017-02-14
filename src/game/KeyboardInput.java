@@ -116,20 +116,39 @@ public class KeyboardInput implements KeyListener {
     }
 
   }
+  
+  public synchronized void keyCodePressed( int keyCode ) {
 
+	    if( keyCode >= 0 && keyCode < KEY_COUNT ) {
+
+	      currentKeys[ keyCode ] = true;
+
+	    }
+
+	  }
 
 
   public synchronized void keyReleased( KeyEvent e ) {
 
-    int keyCode = e.getKeyCode();
+	    int keyCode = e.getKeyCode();
 
-    if( keyCode >= 0 && keyCode < KEY_COUNT ) {
+	    if( keyCode >= 0 && keyCode < KEY_COUNT ) {
 
-      currentKeys[ keyCode ] = false;
+	      currentKeys[ keyCode ] = false;
 
-    }
+	    }
 
-  }
+	  } 
+  
+  public synchronized void keyCodeReleased( int keyCode ) {
+
+		    if( keyCode >= 0 && keyCode < KEY_COUNT ) {
+
+		      currentKeys[ keyCode ] = false;
+
+		    }
+
+		  }
 
 
 

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 
+import game.KeyboardInput;
+import game.MouseInput;
+
 public class Server extends Thread {
 
 	private Sender sender;
@@ -16,7 +19,7 @@ public class Server extends Thread {
 		this.listener = null;
 	}
 
-	public boolean listen(int port) {
+	public Listener listen(int port, KeyboardInput k, MouseInput m) {
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
 
@@ -28,21 +31,20 @@ public class Server extends Thread {
 			Socket clientSocket = serverSocket.accept();
 			System.out.println("connection to " + clientSocket.getLocalAddress());
 			this.sender = new Sender(new DataOutputStream(clientSocket.getOutputStream()));
-			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()));
+			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()), k, m);
 			sender.start();
 			listener.start();
-			return true;
+			return listener;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 
-	public void addToQueue(byte[] input) {
-		if (input.length == 4 && sender != null) {
-			
-			sender.addToQueue(input);
-		}
+	public void addToQueue(Integer input) {
+
+		sender.addToQueue(input);
+
 	}
 
 	private String getLocalName() {
