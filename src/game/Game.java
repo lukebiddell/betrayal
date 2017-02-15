@@ -21,6 +21,7 @@ import java.util.NoSuchElementException;
 
 public class Game{
 	
+	
 	public boolean isRunning;
 	public KeyboardInput keyboard;
 	public MouseInput mouse;
@@ -43,7 +44,8 @@ public class Game{
 	public enum SPRITESHEET {
 		MONSTER(0),
 		PLAYER(1),
-		ARENA(2);
+		ARENA(2),
+		WALL(3);
 		
 		private final int value;
 		public int val(){return value;}
@@ -51,8 +53,7 @@ public class Game{
 		public Spritesheet getSpritesheet(){
 			switch(this){
 				case MONSTER:
-					int[] cir = new int[1];
-					cir[0] = 3;
+					int[] cir = new int[]{3};
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
 						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
@@ -64,10 +65,7 @@ public class Game{
 				
 				case PLAYER:
 
-					int[] cir2 = new int[3];
-					cir2[0] = 6;
-					cir2[1]=6;
-					cir2[2]=1;
+					int[] cir2 = new int[]{6,6,1};
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
 						return new Spritesheet(ImageIO.read(new File("../Resources/Images/player.png")),0,0,104,150,6,3, cir2);
@@ -80,8 +78,7 @@ public class Game{
 					
 				case ARENA:
 
-					int[] cir3 = new int[1];
-					cir3[0]=1;
+					int[] cir3 = new int[]{1};
 					
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
@@ -92,6 +89,15 @@ public class Game{
 						System.exit(1);
 					}
 					
+				case WALL:
+					try{
+						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/wall.png")),0,0,65,65,1,1,new int[]{1});
+					} catch (IOException e) {
+						System.err.println("3");
+						System.err.println(e.getMessage());
+						System.exit(1);
+					}					
 			}
 			return null;
 		}
@@ -123,6 +129,9 @@ public class Game{
 	public void spawnMonster(Monster e){
 		monstersWaiting.add(e);
 	}
+	
+	//private levels.Level level = new levels.TestLevel(this);
+	//java is dumb
 	
 	public Game(KeyboardInput keyboard, MouseInput mouse){
 		isRunning = true;
@@ -210,6 +219,7 @@ public class Game{
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
+		//level.draw(g);
 		
 		ListIterator<Player> pit = players.listIterator(0);
 		while(pit.hasNext())pit.next().draw(g, viewport);

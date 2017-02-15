@@ -18,7 +18,7 @@ public abstract class Level {
 	private double roomW; // in game units
 	private double roomH; // in game units
 
-	private static final String imageFolder = "../Resources/Images/";
+	private static final String imageFolder = "Resources/Images/";
 	private String backgroundImageLocation;
 	private int backgroundImageW;
 	private int backgroundImageH;
@@ -40,10 +40,17 @@ public abstract class Level {
 		this.roomH = roomH;
 		this.vp = vp;
 	}
+	
+	protected void addProp(Prop p){
+		propList.add(p);
+	}
 
 	public void draw(Graphics2D g) {
-		for (Prop p : propList)
-			vp.drawProp(p, g);
+		System.out.println("Starting drawing...");
+		for (Prop p : propList){
+			p.draw(g, vp);
+		}
+		System.out.println("Drawing complete.");
 		return;
 	}
 
