@@ -1,6 +1,7 @@
 package levels;
 
 import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -18,7 +19,7 @@ import game.Circle;
 import game.Game;
 import game.Spritesheet;
 import game.Viewport;
-import game.SPRITESHEET;
+import game.SpritesheetEnum;
 
 public abstract class Prop extends game.Entity {
 

@@ -41,7 +41,7 @@ public class Monster extends Entity{
 		lastHitBy = null;
 		immunities = new TreeMap<Projectile, Double>();
 		
-		anim = new Animation(SPRITESHEET.MONSTER,0,0,0.5,Animation.AnimationMode.LOOP);
+		anim = new Animation(SpritesheetEnum.MONSTER,0,0,0.5,Animation.AnimationMode.LOOP);
 		
 		try{
 			addBehaviour(new LinearHome(0.18, game.players.getFirst().getPos()));

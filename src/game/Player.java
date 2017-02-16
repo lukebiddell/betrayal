@@ -45,7 +45,7 @@ public class Player extends Entity{
 		hp = maxHp;
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
-		anim = new Animation(SPRITESHEET.PLAYER, 0, 0, 0.1 , Animation.AnimationMode.LOOP);
+		anim = new Animation(SpritesheetEnum.PLAYER, 0, 0, 0.1 , Animation.AnimationMode.LOOP);
 	}
 	
 	@Override

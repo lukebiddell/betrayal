@@ -92,7 +92,7 @@ public class Game{
 		
 		
 		
-		arena = new Animation(SPRITESHEET.ARENA,0,0,1,Animation.AnimationMode.LOOP);
+		arena = new Animation(SpritesheetEnum.ARENA,0,0,1,Animation.AnimationMode.LOOP);
 		
 		rand = new Random();
 		maxSpawnTime = 4.3;

@@ -63,7 +63,7 @@ public class Viewport{
 	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
 		
-		Spritesheet ss = SPRITESHEET.getSprite(a.ss);
+		Spritesheet ss = SpritesheetEnum.getSprite(a.ss);
 		
 		g.drawImage(ss.img,
 			coord.x, coord.y, coord.x + scaleToScreen(2*r) - 1, coord.y + scaleToScreen(2*r) - 1,
@@ -84,7 +84,7 @@ public class Viewport{
 	public void drawSprite(Rectangle2D.Double dest, Animation a, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(dest.x, dest.y));
 		
-		Spritesheet ss = SPRITESHEET.getSprite(a.ss);
+		Spritesheet ss = SpritesheetEnum.getSprite(a.ss);
 		
 		g.drawImage(ss.img,
 			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,

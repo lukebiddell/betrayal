@@ -1,6 +1,7 @@
 package network;
 
 import java.io.DataInputStream;
+
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +11,7 @@ import game.KeyboardInput;
 import game.MouseInput;
 import game.Player;
 import game.Spritesheet;
-import game.SPRITESHEET;
+import game.SpritesheetEnum;
 import game.ClientWindow;
 
 public class ClientListener extends Thread {
@@ -35,7 +36,7 @@ public class ClientListener extends Thread {
 				for(int i=0;i<inputSize;i++) input[i] = in.readInt();
 				panel.paintImmediately(panel.getBounds());
 				
-				Spritesheet sprs = SPRITESHEET.getSprite(input[0]);
+				Spritesheet sprs = SpritesheetEnum.getSprite(input[0]);
 				
 				g.drawImage(sprs.img,
 					input[1], input[2], input[3], input[4],

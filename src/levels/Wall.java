@@ -1,12 +1,14 @@
 /**
+
  * 
  */
 package levels;
 
 import java.awt.geom.Rectangle2D;
 
+
 import game.Animation;
-import game.SPRITESHEET;
+import game.SpritesheetEnum;
 import game.Game;
 import game.Viewport;
 
