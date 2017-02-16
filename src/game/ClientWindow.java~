@@ -25,10 +25,10 @@ public class ClientWindow extends JPanel{
 		frame.add(this);
 		
 		l = new ClientInputListener(sender);
-		frame.addKeyListener(l);
-		frame.addMouseListener(l);
-		frame.addMouseMotionListener(l);
-		frame.addComponentListener(l);
+		addKeyListener(l);
+		addMouseListener(l);
+		addMouseMotionListener(l);
+		addComponentListener(l);
 		
 		frame.setVisible(true);
 	}

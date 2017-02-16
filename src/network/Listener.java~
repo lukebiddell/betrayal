@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import game.KeyboardInput;
 import game.MouseInput;
-import game.Player;
 
 public class Listener extends Thread {
 

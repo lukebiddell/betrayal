@@ -86,7 +86,7 @@ public class Viewport{
 		
 		Spritesheet ss = SPRITESHEET.getSprite(a.ss);
 		
-		g.drawImage(ss.img,
+		g.drawImage(a.ss.img,
 			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
 			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
 			null);

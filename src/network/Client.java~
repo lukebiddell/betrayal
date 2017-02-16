@@ -10,7 +10,7 @@ import game.ClientWindow;
 public class Client {
 
 	private Sender sender;
-	private ClientListener listener;
+	private Listener listener;
 	private Socket server;
 
 	private ClientWindow window;

@@ -18,7 +18,7 @@ import game.Circle;
 import game.Game;
 import game.Spritesheet;
 import game.Viewport;
-import game.Game.SPRITESHEET;
+import game.SPRITESHEET;
 
 public abstract class Prop extends game.Entity {
 

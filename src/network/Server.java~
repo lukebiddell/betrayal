@@ -32,7 +32,7 @@ public class Server extends Thread {
 			Socket clientSocket = serverSocket.accept();
 			System.out.println("connection to " + clientSocket.getLocalAddress());
 			this.sender = new Sender(new DataOutputStream(clientSocket.getOutputStream()));
-			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()), p);
+			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()), p.keyboard, p.mouse);
 			sender.start();
 			listener.start();
 			return listener;

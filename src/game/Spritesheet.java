@@ -26,4 +26,15 @@ public class Spritesheet{
 		this.spriteRow = spriteRow;
 		this.colsInRow = colsInRow;
 	}
+	
+	public Spritesheet(BufferedImage img, int spriteCol, int spriteRow, int[] colsInRow){
+		this.img = img;
+		this.offsetW = 0;
+		this.offsetH = 0;
+		this.spriteW = img.getWidth()/spriteCol;
+		this.spriteH = img.getHeight()/spriteRow;
+		this.spriteCol = spriteCol;
+		this.spriteRow = spriteRow;
+		this.colsInRow = colsInRow;
+	}
 }

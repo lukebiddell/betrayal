@@ -42,7 +42,7 @@ public class Animation{
 		while(timeLeft<=0){
 			timeLeft+=timeBetweenFrames;
 			frame++;
-			int[] colsInRow = SPRITESHEET.getSprite(ss).colsInRow;
+			int[] colsInRow = SPRITESHEET.getSprite(ss);
 			if(frame >= colsInRow[set]){
 				finished = true;
 				switch(mode){
