@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 //user Sender
-//sends to sender
+//sends to server
 
 public class Sender extends Thread {
 	private DataOutputStream out;
@@ -21,7 +21,9 @@ public class Sender extends Thread {
 
 		try {
 			while (true) {
-				out.write(queue.take());
+				Integer tmp = queue.take();
+				System.out.println("sending " + tmp.intValue() + " to server");
+				out.writeInt(tmp);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

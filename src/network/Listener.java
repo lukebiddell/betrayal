@@ -40,7 +40,7 @@ public class Listener extends Thread {
 					m.mouseCodePressed(0);
 					break;
 				case 4: //rmb released
-					m.mouseCodePressed(1);
+					m.mouseCodeReleased(1);
 					break;
 				case 5: //rmb pressed
 					m.mouseCodePressed(1);

@@ -53,10 +53,10 @@ public class Game{
 		public Spritesheet getSpritesheet(){
 			switch(this){
 				case MONSTER:
-					int[] cir = new int[]{3};
+					int[] cir = new int[]{4,4,4,2};
 					try{
 						//return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster.png")),0,0,682,682,3,1, cir);
-						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster_copy.png")),0,0,682,682,3,1, cir);
+						return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster_bird.png")),0,0,150,150,4,4, cir);
 					} catch (IOException e) {
 						System.err.println(e.getStackTrace());
 						System.err.println(e.getMessage());

@@ -26,6 +26,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 			sender.addToQueue(-1);
 			break;
 		case MouseEvent.BUTTON3:
+			System.err.println("adding 5, -1, -1");
 			sender.addToQueue(5);
 			sender.addToQueue(-1);
 			sender.addToQueue(-1);
@@ -36,11 +37,13 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	public void mouseReleased(MouseEvent e) {
 		switch (e.getButton()) {
 		case MouseEvent.BUTTON1:
+			System.err.println("adding 2, -1, -1");
 			sender.addToQueue(2);
 			sender.addToQueue(-1);
 			sender.addToQueue(-1);
 			break;
 		case MouseEvent.BUTTON3:
+			System.err.println("adding 4, -1, -1");
 			sender.addToQueue(4);
 			sender.addToQueue(-1);
 			sender.addToQueue(-1);
@@ -50,6 +53,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 	public void mouseMoved(MouseEvent e) {
 		Point pos = e.getPoint();
+			System.err.println("adding 6, x, y");
 
 		sender.addToQueue(6);
 		sender.addToQueue(pos.x);
@@ -67,6 +71,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 	public void mouseDragged(MouseEvent e) {
 		Point pos = e.getPoint();
+			System.err.println("adding 6, x, y");
 
 		sender.addToQueue(6);
 		sender.addToQueue(pos.x);
@@ -79,6 +84,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 
+				System.err.println("adding 1, kc, -1");
 
 			sender.addToQueue(1);
 			sender.addToQueue(keyCode);
@@ -94,6 +100,8 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 
+				System.err.println("adding 0, kc, -1");
+			
 			sender.addToQueue(0);
 			sender.addToQueue(keyCode);
 			sender.addToQueue(-1);
