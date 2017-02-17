@@ -27,6 +27,7 @@ public class SFXModel extends Observable
 
 	public void setMuteStatus(boolean mute){
 		sfx.setMuteStatus(mute);
+		sfx.update();
 		setChanged();
 		notifyObservers();
 	}
@@ -38,6 +39,7 @@ public class SFXModel extends Observable
 	public void setValue(int value)
 	{
 		sfx.setValue(value);
+		sfx.update();
 		setChanged();
 		notifyObservers();
 	}

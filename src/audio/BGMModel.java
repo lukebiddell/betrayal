@@ -35,6 +35,7 @@ public class BGMModel extends Observable
 
 	public void setMuteStatus(boolean mute){
 		bgm.setMuteStatus(mute);
+		bgm.update();
 		setChanged();
 		notifyObservers();
 	}
@@ -46,6 +47,7 @@ public class BGMModel extends Observable
 	public void setValue(int value)
 	{
 		bgm.setValue(value);
+		bgm.update();
 		setChanged();
 		notifyObservers();
 	}

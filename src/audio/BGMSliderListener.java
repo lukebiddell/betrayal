@@ -25,6 +25,7 @@ public class BGMSliderListener implements ChangeListener
 	{
 		int value = slider.getValue();
 		model.setValue(value);
+		
 	}
 
 }

@@ -18,7 +18,7 @@ public class Main{
 		
 		
 		bgm.play();
-		bgm.update();
+//		bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();
 	   final int TARGET_FPS = 60;

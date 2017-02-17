@@ -103,7 +103,7 @@ public class BGM
 		double dB1 = (double)value / 100;
 		float gain1 = (float)(Math.log(dB1)/Math.log(10.0)*20.0);
 		volume.setValue(gain1);
-//		System.out.println("muting..");
+//		System.out.println("updating..");
 		muteControl.setValue(mute);
 	}
 	

@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 
 import game.Animation.AnimationMode;
 
+import audio.SFX;
+
 public class Player extends Entity{
 	public KeyboardInput keyboard;
 	public MouseInput mouse;
@@ -28,6 +30,8 @@ public class Player extends Entity{
 	
 	public Weapon[] weapon;
 	
+	public SFX sword_swing, pew_pew;
+	
 	public Player(Game game, KeyboardInput keyboard, MouseInput mouse){
 		super();
 		this.game = game;
@@ -46,6 +50,9 @@ public class Player extends Entity{
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
 		anim = new Animation(SpritesheetEnum.PLAYER, 0, 0, 0.1 , Animation.AnimationMode.LOOP);
+		
+		sword_swing = new SFX(50,"/Music/SFX_Swoosh.mp3");
+		pew_pew = new SFX(50,"/Music/SFX_Hit_2.wav");
 	}
 	
 	@Override
@@ -75,9 +82,13 @@ public class Player extends Entity{
 			
 			if(mouse.isPressed(0) && hp>0){
 				weapon[0].use(viewport.toGameCoord(mouse.getPos()));
+				
+				sword_swing.play();
 			}
 			if(mouse.isPressed(1) && hp>0){
 				weapon[1].use(viewport.toGameCoord(mouse.getPos()));
+				
+				pew_pew.play();
 			}
 		
 			int l = weapon.length;
@@ -92,6 +103,9 @@ public class Player extends Entity{
 				if(hitbox.intersects(m.hitbox)){if(immunityTime<=0){hp -= 10; immunityTime = maxImmunityTime;}}
 			}
 			anim.update(delta);
+		}else{
+			SFX scream = new SFX(50,"/Music/SFX_Man_Scream_1.wav");
+			scream.play();
 		}
 	}
 	

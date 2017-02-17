@@ -76,7 +76,7 @@ public class Monster extends Entity{
 	
 	public void update(double delta, Game game){
 		if(hp<=0){
-			SFX deathSound = new SFX(100, "/Music/SFX_Collect_Gold.wav");
+			SFX deathSound = new SFX(100, "/Music/SFX_Monster_3.wav");
 			deathSound.play();
 			dead = true; 
 			game.score++;
