@@ -22,7 +22,7 @@ public class ControlMenu
 	public JButton back = new JButton("Back");
 	public JButton quit = new JButton("Quit");
 
-	public ControlMenu() throws IOException
+	public ControlMenu()
 	{
 		//JPanel
 		JPanel controlPanel = new JPanel();
@@ -30,9 +30,16 @@ public class ControlMenu
 		controlPanel.setBackground(brown);
 		
 		//Converts Image to a Swing Component
-		BufferedImage control = ImageIO.read(new File("C:/Users/Owner/Desktop/ControlsBrownFinal.png")); 
+		BufferedImage control;
+		try {
+			control = ImageIO.read(new File("Resources/Images/ControlsBrownFinal.png"));
+		
 		JLabel controlLabel = new JLabel(new ImageIcon(control));
 		controlPanel.add(controlLabel);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 		//Creates JFrame, adds JPanel to JFrame
 		JFrame menu = new JFrame("Betrayal");

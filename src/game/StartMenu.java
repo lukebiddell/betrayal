@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 
 import javax.swing.JPanel;
+
+import network.Client;
+
 import javax.swing.JLabel;
 public class StartMenu 
 {
@@ -55,7 +58,11 @@ public class StartMenu
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-							
+						
+				String[] args = new String[] {"localhost", "4444"};
+				menu.dispose();
+				Client.main(args);
+				
 			}
 		});
 
@@ -66,10 +73,19 @@ public class StartMenu
 		JButton controls = new JButton("Controls");
 		controls.setSize(buttonWidth, buttonHeight);
 		controls.setLocation(buttonX + 195 , buttonY + 300);
+		controls.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new ControlMenu();
+				
+			}
+		});
 		
 		JButton quit = new JButton("Quit");
 		quit.setSize(buttonWidth, buttonHeight);
 		quit.setLocation(buttonX + 360, buttonY + 300);
+		quit.addActionListener(e -> System.exit(0));
 	
 		menuPanel.setLayout(null);
 		menuPanel.add(findGame);
