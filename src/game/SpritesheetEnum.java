@@ -14,7 +14,7 @@ public final class SpritesheetEnum {
 		switch(val){
 			case MONSTER:
 				try{
-					return new Spritesheet(ImageIO.read(new File("../Resources/Images/monster_bird.png")),4,4, new int[]{4,4,4,2});
+					return new Spritesheet(ImageIO.read(new File("Resources/Images/monster_bird.png")),4,4, new int[]{4,4,4,2});
 				} catch (IOException e) {
 					System.err.println(e.getStackTrace());
 					System.err.println(e.getMessage());
@@ -23,7 +23,7 @@ public final class SpritesheetEnum {
 			
 			case PLAYER:
 				try{
-					return new Spritesheet(ImageIO.read(new File("../Resources/Images/player.png")),6,3, new int[]{6,6,1});
+					return new Spritesheet(ImageIO.read(new File("Resources/Images/player.png")),6,3, new int[]{6,6,1});
 				} catch (IOException e) {
 					System.err.println(e.getStackTrace());
 					System.err.println(e.getMessage());
@@ -32,7 +32,7 @@ public final class SpritesheetEnum {
 				
 			case ARENA:
 				try{
-					return new Spritesheet(ImageIO.read(new File("../Resources/Images/arena.png")),1,1, new int[]{1});
+					return new Spritesheet(ImageIO.read(new File("Resources/Images/arena.png")),1,1, new int[]{1});
 				} catch (IOException e) {
 					System.err.println(e.getStackTrace());
 					System.err.println(e.getMessage());

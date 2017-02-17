@@ -2,6 +2,8 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import levels.Level;
+import levels.TestLevel;
 import network.Listener;
 import network.Server;
 
@@ -41,7 +43,7 @@ public class Game{
 	
 	Animation arena;
 	
-	
+	private Level level = new TestLevel(roomW, roomH);
 	
 	public Random rand;
 	
@@ -136,7 +138,7 @@ public class Game{
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
-		//level.draw(g);
+		level.draw(g, viewport);
 		
 		ListIterator<Player> pit = players.listIterator(0);
 		while(pit.hasNext())pit.next().draw(g, viewport);

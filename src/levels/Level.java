@@ -26,26 +26,23 @@ public abstract class Level {
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
 	private ArrayList<Prop> propList = new ArrayList<Prop>();
 
-	Viewport vp;
-
-	public Level() {
+	/*public Level() {
 		this.roomW = 20;
 		this.roomH = 16;
 		// this.propList.add(new CardboardBox());
 		// CardboardBox cb = new CardboardBox();
-	}
+	}*/
 
-	public Level(double roomW, double roomH, Viewport vp) {
+	public Level(double roomW, double roomH) {
 		this.roomW = roomW;
 		this.roomH = roomH;
-		this.vp = vp;
 	}
 	
 	protected void addProp(Prop p){
 		propList.add(p);
 	}
 
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, Viewport vp) {
 		System.out.println("Starting drawing...");
 		for (Prop p : propList){
 			p.draw(g, vp);
