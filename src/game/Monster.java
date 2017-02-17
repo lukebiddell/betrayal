@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
+
+import audio.SFX;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -73,6 +76,8 @@ public class Monster extends Entity{
 	
 	public void update(double delta, Game game){
 		if(hp<=0){
+			SFX deathSound = new SFX(100, "/Music/SFX_Collect_Gold.wav");
+			deathSound.play();
 			dead = true; 
 			game.score++;
 			try{
