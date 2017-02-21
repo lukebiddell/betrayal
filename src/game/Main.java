@@ -11,13 +11,13 @@ import java.awt.*;
 
 public class Main{
 	public GamePanel gamePane;
-	public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
+	//public BGM bgm = new BGM(50,"../Music/BGM_Asian_Gravedrum.wav");
 	
 	public void gameLoop()
 	{
 		
 		
-		bgm.play();
+	//	bgm.play();
 //		bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();

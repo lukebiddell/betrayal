@@ -6,6 +6,7 @@ import levels.Level;
 import levels.TestLevel;
 import network.Listener;
 import network.Server;
+import network.MainServer;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -19,7 +20,11 @@ import java.util.Random;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 
 public class Game{
 	
@@ -30,7 +35,7 @@ public class Game{
 	
 	public double roomW;//in game units
 	public double roomH;//in game units
-	public LinkedList<Player> players;
+	public ConcurrentLinkedQueue<Player> players;
 	public LinkedList<Monster> monsters;
 	public LinkedList<Entity> entities;
 	public LinkedList<Monster> monstersWaiting;
@@ -69,7 +74,7 @@ public class Game{
 		this.keyboard = keyboard;
 		this.mouse = mouse;
 		
-		players = new LinkedList<Player>();
+		players = new ConcurrentLinkedQueue<Player>();
 		monsters = new LinkedList<Monster>();
 		entities = new LinkedList<Entity>();
 		monstersWaiting = new LinkedList<Monster>();
@@ -79,7 +84,7 @@ public class Game{
 		roomH = 3.0;
 		
 		
-		Player p = new Player(this, keyboard, mouse);
+		/*Player p = new Player(this, keyboard, mouse);
 		p.viewport = new Viewport(this, p);
 		players.add(p);
 		
@@ -90,9 +95,9 @@ public class Game{
 		
 		p.viewport.server = server;
 		
-		server.listen(port, p);
+		server.listen(port, p);*/
 		
-		
+		new MainServer(port, this).start();
 		
 		arena = new Animation(SpritesheetEnum.ARENA,0,0,1,Animation.AnimationMode.LOOP);
 		
@@ -108,7 +113,7 @@ public class Game{
 		entities.addAll(entitiesWaiting);
 		entitiesWaiting = new LinkedList<Entity>();
 		
-		ListIterator<Player> pit = players.listIterator(0);
+		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){Player p = pit.next(); p.update(delta, this); if(p.disposable()) pit.remove();}
 		ListIterator<Monster> mit = monsters.listIterator(0);
 		while(mit.hasNext()){Monster m = mit.next(); m.update(delta, this); if(m.disposable()) mit.remove();}
@@ -125,7 +130,7 @@ public class Game{
 	}
 	
 	public void render(Graphics2D g){
-		ListIterator<Player> pit = players.listIterator(0);
+		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){drawOnViewport(g, pit.next().viewport);}
 	}
 	
@@ -140,7 +145,7 @@ public class Game{
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		level.draw(g, viewport);
 		
-		ListIterator<Player> pit = players.listIterator(0);
+		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext())pit.next().draw(g, viewport);
 		ListIterator<Monster> mit = monsters.listIterator(0);
 		while(mit.hasNext())mit.next().draw(g, viewport);

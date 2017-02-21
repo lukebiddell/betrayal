@@ -6,55 +6,37 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 
-import game.KeyboardInput;
-import game.MouseInput;
 import game.Player;
 
 public class Server extends Thread {
 
 	private Sender sender;
 	private Listener listener;
+	private Socket clientSocket;
+	private Player p;
 
-	public Server() {
+	public Server(Socket clientSocket, Player p) {
 		this.sender = null;
 		this.listener = null;
+		this.clientSocket = clientSocket;
+		this.p = p;
 	}
 
-	public Listener listen(int port, Player p) {
+	public void run() {
 		try {
-			ServerSocket serverSocket = new ServerSocket(port);
 
-			String name = getLocalName();
-
-			System.out.println("To connect to this server use this name : " + name);
-			System.out.println("Waiting for connection...");
-
-			Socket clientSocket = serverSocket.accept();
-			System.out.println("connection to " + clientSocket.getLocalAddress());
 			this.sender = new Sender(new DataOutputStream(clientSocket.getOutputStream()));
 			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()), p);
 			sender.start();
 			listener.start();
-			return listener;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
 		}
-	}
-
+	} 
+	
 	public void addToQueue(Integer input) {
 
 		sender.addToQueue(input);
 
-	}
-
-	private String getLocalName() {
-		InetAddress addr = null;
-		try {
-			addr = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		return addr.getHostName();
 	}
 }

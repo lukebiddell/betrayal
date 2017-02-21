@@ -47,7 +47,9 @@ public class Monster extends Entity{
 		anim = new Animation(SpritesheetEnum.MONSTER,0,0,0.5,Animation.AnimationMode.LOOP);
 		
 		try{
-			addBehaviour(new LinearHome(0.18, game.players.getFirst().getPos()));
+		 Player towards = game.players.peek();
+		 if(towards == null) throw new NoSuchElementException();
+			addBehaviour(new LinearHome(0.18, towards.getPos()));
 		}
 		catch(NoSuchElementException e){}
 	}

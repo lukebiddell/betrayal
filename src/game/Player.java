@@ -45,7 +45,7 @@ public class Player extends Entity{
 		weapon[0] = new Sword(game, this);
 		weapon[1] = new Gun(game, this);
 		hitbox = new Circle(size, pos);
-		maxHp = 10;
+		maxHp = 10000;
 		hp = maxHp;
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
