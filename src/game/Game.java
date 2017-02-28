@@ -161,5 +161,6 @@ public class Game{
 		g.setColor(Color.RED);
 		g.fillRect(30,60,(int)(100 * viewport.p.hp / viewport.p.maxHp),10);
 		
+		viewport.server.addToQueue(-1);
 	}
 }
