@@ -84,9 +84,11 @@ public abstract class Level {
 		return backgroundImageH;
 	}
 
+	/**
+	 * @param c Circle of hitbox
+	 * @return true if valid position
+	 */
 	public Boolean validPos(Circle c){
-		
-		
 		for (Prop p : propList){
 			if(c.intersects(p.getDestination()))
 				return false;

@@ -45,7 +45,7 @@ public class Circle {
 		Circle sToCircle = new Circle(rect.getWidth() / 2,
 				new Point2D.Double(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2));
 
-		return sToCircle.intersects(rect);
+		return sToCircle.intersects(this);
 	}
 
 	public boolean intersects(CircleSector s) {
