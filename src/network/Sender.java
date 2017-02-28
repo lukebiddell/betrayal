@@ -22,7 +22,7 @@ public class Sender extends Thread {
 		try {
 			while (true) {
 				Integer tmp = queue.take();
-				System.out.println("sending " + tmp.intValue() + " to server");
+				//System.out.println("sending " + tmp.intValue() + " to server");
 				out.writeInt(tmp);
 			}
 		} catch (IOException e) {

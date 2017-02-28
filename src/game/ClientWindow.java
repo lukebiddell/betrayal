@@ -22,13 +22,18 @@ public class ClientWindow extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640,420);
 		
-		frame.add(this);
+		setLayout(new BorderLayout());
+		
+		frame.add(this, BorderLayout.CENTER);
 		
 		l = new ClientInputListener(sender);
-		frame.addKeyListener(l);
-		frame.addMouseListener(l);
-		frame.addMouseMotionListener(l);
-		frame.addComponentListener(l);
+		
+		setFocusable(true);
+		
+		addKeyListener(l);
+		addMouseListener(l);
+		addMouseMotionListener(l);
+		addComponentListener(l);
 		
 		frame.setVisible(true);
 	}
