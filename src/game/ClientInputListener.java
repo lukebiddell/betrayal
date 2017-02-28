@@ -48,11 +48,9 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		Point pos = e.getPoint();
-
 		sender.addToQueue(6);
-		sender.addToQueue(pos.x);
-		sender.addToQueue(pos.y);
+		sender.addToQueue(e.getX());
+		sender.addToQueue(e.getY());
 	}
 
 	public void mouseEntered(MouseEvent e) {
@@ -65,11 +63,9 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		Point pos = e.getPoint();
-
 		sender.addToQueue(6);
-		sender.addToQueue(pos.x);
-		sender.addToQueue(pos.y);
+		sender.addToQueue(e.getX());
+		sender.addToQueue(e.getY());
 	}
 
 	public synchronized void keyPressed(KeyEvent e) {
