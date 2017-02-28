@@ -55,9 +55,17 @@ public class Viewport{
 	}
 	
 	public void drawCircle(Point2D.Double c, double r, Color col, Graphics2D g){
-		g.setColor(col);
+		//g.setColor(col);
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
-		g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
+		//g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
+		server.addToQueue(-2);
+		server.addToQueue(col.getRed());
+		server.addToQueue(col.getGreen());
+		server.addToQueue(col.getBlue());
+		server.addToQueue(coord.x);
+		server.addToQueue(coord.y);
+		server.addToQueue(scaleToScreen(2*r));
+		
 	}
 	
 	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g){

@@ -47,6 +47,11 @@ public class ClientListener extends Thread {
 				}
 					
 				else if(input[0]==-1) panel.paintImmediately(panel.getBounds());
+				else if(input[0]==-2){
+					for(int i=1;i<inputSize;i++) input[i] = in.readInt();
+					g.setColor(new Color(input[1], input[2], input[3]));
+					g.fillOval(input[4], input[5], input[6], input[6]);
+				}
 			}
 		}
 		catch (IOException e) {
