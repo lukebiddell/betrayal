@@ -68,11 +68,19 @@ public class Player extends Entity{
 		if(keyboard.keyDown(KeyEvent.VK_DOWN)) viewport.ppu-=20.0*delta;
 		
 		if(hp>0){
+			Point2D.Double oldPos = pos;
+			
 			//adjust speed so it's the same in all directions
 			if(keyboard.keyDown(KeyEvent.VK_W)){pos.y = Math.max(pos.y - speed*delta, size);}
 			if(keyboard.keyDown(KeyEvent.VK_A)){pos.x = Math.max(pos.x - speed*delta, size); anim.setSet(1);}
 			if(keyboard.keyDown(KeyEvent.VK_S)){pos.y = Math.min(pos.y + speed*delta, game.roomH-size);}
 			if(keyboard.keyDown(KeyEvent.VK_D)){pos.x = Math.min(pos.x + speed*delta, game.roomW-size); anim.setSet(0);}
+			
+			//Luke's code
+			/*if(!game.getLevel().validPos(hitbox)){
+				pos = oldPos;
+			}*/
+			
 			
 			if(!game.keyboard.keyDown(KeyEvent.VK_W)&&!game.keyboard.keyDown(KeyEvent.VK_A)&&!game.keyboard.keyDown(KeyEvent.VK_S)&&!game.keyboard.keyDown(KeyEvent.VK_D))
 				{anim.setSet(2);}

@@ -129,6 +129,10 @@ public class Game{
 		else timeUntilSpawn -= delta;
 	}
 	
+	public Level getLevel(){
+		return level;
+	}
+	
 	public void render(Graphics2D g){
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){drawOnViewport(g, pit.next().viewport);}

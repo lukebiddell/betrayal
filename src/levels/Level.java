@@ -2,6 +2,7 @@ package levels;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import game.Circle;
 import game.Viewport;
 
 public abstract class Level {
@@ -43,11 +45,9 @@ public abstract class Level {
 	}
 
 	public void draw(Graphics2D g, Viewport vp) {
-		System.out.println("Starting drawing...");
 		for (Prop p : propList){
 			p.draw(g, vp);
 		}
-		System.out.println("Drawing complete.");
 		return;
 	}
 
@@ -84,4 +84,15 @@ public abstract class Level {
 		return backgroundImageH;
 	}
 
+	public Boolean validPos(Circle c){
+		
+		
+		for (Prop p : propList){
+			if(c.intersects(p.getDestination()))
+				return false;
+		}
+		
+		return true;
+		
+	}
 }
