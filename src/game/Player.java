@@ -100,7 +100,9 @@ public class Player extends Entity {
 			}
 			
 			pos.x += dx;
-			pos.y += dy;			
+			pos.y += dy;
+			
+			//Check if valid position and move back to valid position
 			if (!game.getLevel().validPos(hitbox)){
 				pos.x = oldPos.x;
 				if(!game.getLevel().validPos(hitbox)){
