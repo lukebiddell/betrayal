@@ -19,6 +19,14 @@ import java.awt.Color;
 /*
  * @author Jack Marshman
  */
+
+//TODO
+//Convert all AWT buttons to JButtons
+//Create and add graphics to new JButtons
+//Refactor image rescaling code
+//Add events and sounds to button clicks
+//Integrate into game
+//Comment Control.java correctly
 public class Control extends JFrame 
 {
 	/**
@@ -100,7 +108,7 @@ public class Control extends JFrame
 		
 		JLabel controlIconLabel = new JLabel();
 		controlIconLabel.setIcon(controlIcon);
-		controlIconLabel.setBounds(44, 60, 363, 166);
+		controlIconLabel.setBounds(44, 56, 363, 166);
 		contentPane.add(controlIconLabel);
 		
 		
@@ -112,7 +120,7 @@ public class Control extends JFrame
 		
 		JLabel controlLogoLabel = new JLabel();
 		controlLogoLabel.setIcon(controlLogoIcon);
-		controlLogoLabel.setBounds(81, 11, 244, 80);
+		controlLogoLabel.setBounds(108, 11, 213, 64);
 		contentPane.add(controlLogoLabel);
 	}
 }

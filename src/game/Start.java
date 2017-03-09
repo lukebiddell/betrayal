@@ -2,6 +2,7 @@ package game;
 
 import java.awt.EventQueue;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,6 +17,15 @@ import java.awt.event.ActionEvent;
 /*
  * @author Jack Marshman
  */
+
+
+//TODO
+//Convert all AWT buttons to JButtons
+//Create and add graphics to new JButtons
+//Refactor image rescaling code
+//Add events and sounds to button clicks
+//Integrate into game
+//Comment Start.java correctly
 public class Start extends JFrame
 {
 	/**
@@ -103,11 +113,16 @@ public class Start extends JFrame
 		ImageIcon betrayalIcon = new ImageIcon("C:\\Users\\Owner\\Desktop\\betrayalLogo1.png"); // load the image to a imageIcon
 		Image betrayalImage = betrayalIcon.getImage(); // transform it 
 		Image rescaleBetrayalImage = betrayalImage.getScaledInstance(controlImageWidth, controlImageHeight,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		betrayalIcon = new ImageIcon(rescaleBetrayalImage);  // transform it back
+		betrayalIcon = new ImageIcon(rescaleBetrayalImage);
 		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(betrayalIcon);
 		lblNewLabel.setBounds(96, 11, controlImageWidth, controlImageHeight);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("New button");
+		//btnNewButton.setIcon();
+		btnNewButton.setBounds(47, 159, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }

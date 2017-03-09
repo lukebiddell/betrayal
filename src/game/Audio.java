@@ -16,6 +16,15 @@ import javax.swing.JSlider;
 /*
  * @author Jack Marshman
  */
+
+//TODO
+//Finish general menu layout
+//Convert all AWT buttons to JButtons
+//Create and add graphics to new JButtons
+//Refactor image rescaling code
+//Add events and sounds to button clicks
+//Integrate into game
+//Comment Audio.java correctly
 public class Audio extends JFrame
 {
 	/**
@@ -83,12 +92,6 @@ public class Audio extends JFrame
 		btnExit.setBounds(334, 201, 90, 50);
 		btnExit.addActionListener(e -> System.exit(0));
 		contentPane.add(btnExit);
-		
-		JLabel lblAudio = new JLabel("Audio");
-		lblAudio.setForeground(Color.WHITE);
-		lblAudio.setBackground(Color.WHITE);
-		lblAudio.setBounds(187, 11, 46, 14);
-		contentPane.add(lblAudio);
 		
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
 		tglbtnNewToggleButton.setBounds(148, 36, 121, 23);
