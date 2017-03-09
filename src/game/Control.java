@@ -98,9 +98,21 @@ public class Control extends JFrame
 		controlIcon = new ImageIcon(rescaleControlImage);  // transform it back
 		
 		
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(controlIcon);
-		lblNewLabel.setBounds(44, 26, 363, 210);
-		contentPane.add(lblNewLabel);
+		JLabel controlIconLabel = new JLabel();
+		controlIconLabel.setIcon(controlIcon);
+		controlIconLabel.setBounds(44, 60, 363, 166);
+		contentPane.add(controlIconLabel);
+		
+		
+		ImageIcon controlLogoIcon = new ImageIcon("C:\\Users\\Owner\\Desktop\\controlsLogo1.png"); // load the image to a imageIcon
+		Image controlLogoImage = controlLogoIcon.getImage(); // transform it 
+		Image rescaleControlLogoImage = controlLogoImage.getScaledInstance(200, 64,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		controlLogoIcon = new ImageIcon(rescaleControlLogoImage);  // transform it back
+		
+		
+		JLabel controlLogoLabel = new JLabel();
+		controlLogoLabel.setIcon(controlLogoIcon);
+		controlLogoLabel.setBounds(81, 11, 244, 80);
+		contentPane.add(controlLogoLabel);
 	}
 }
