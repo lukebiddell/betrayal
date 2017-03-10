@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 //Add events and sounds to button clicks
 //Integrate into game
 //Comment Start.java correctly
+//Add graphics to resources
 public class Start extends JFrame
 {
 	/**
@@ -69,11 +70,29 @@ public class Start extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnFindGame = new JButton();
+		btnFindGame.setBounds(x, y, width, height);
+		ImageIcon btnFindGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnFindGame.setIcon(defaultIcon);
+		contentPane.add(btnFindGame);
+		
+		JButton btnControl = new JButton();
+		btnControl.setBounds(10, 201, 90, 50);
+		ImageIcon btnControlIcon = new ImageIcon(new ImageIcon("C:\\Users\\Owner\\Desktop\\controlsLogo1.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnControl.setIcon(btnControlIcon);
+		contentPane.add(btnControl);
+		
+		JButton btnAudio = new JButton();
+		
+		JButton btnExit = new JButton();
+		
+		/*
 		Button btnControl = new Button("Controls");
 		btnControl.setForeground(Color.WHITE);
 		btnControl.setBackground(Color.BLACK);
 		btnControl.setBounds(10, 201, 90, 50);
 		contentPane.add(btnControl);
+		*/
 		
 		Button btnExit = new Button("Exit");
 		btnExit.setForeground(Color.WHITE);
@@ -108,6 +127,10 @@ public class Start extends JFrame
 		btnFindGame.setBounds(10, 88, 414, 50);
 		contentPane.add(btnFindGame);
 		
+		
+		/*
+		 * Betrayal Logo, rescaling and adding to contentPane
+		 */
 		int controlImageWidth = 250;
 		int controlImageHeight = 80;
 		ImageIcon betrayalIcon = new ImageIcon("C:\\Users\\Owner\\Desktop\\betrayalLogo1.png"); // load the image to a imageIcon
@@ -115,14 +138,18 @@ public class Start extends JFrame
 		Image rescaleBetrayalImage = betrayalImage.getScaledInstance(controlImageWidth, controlImageHeight,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		betrayalIcon = new ImageIcon(rescaleBetrayalImage);
 		
+		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(betrayalIcon);
 		lblNewLabel.setBounds(96, 11, controlImageWidth, controlImageHeight);
 		contentPane.add(lblNewLabel);
 		
+		/*
 		JButton btnNewButton = new JButton("New button");
 		//btnNewButton.setIcon();
 		btnNewButton.setBounds(47, 159, 89, 23);
 		contentPane.add(btnNewButton);
+		*/
+		
 	}
 }

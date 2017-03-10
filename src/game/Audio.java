@@ -25,6 +25,7 @@ import javax.swing.JSlider;
 //Add events and sounds to button clicks
 //Integrate into game
 //Comment Audio.java correctly
+//Add graphics to resources
 public class Audio extends JFrame
 {
 	/**

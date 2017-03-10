@@ -27,6 +27,7 @@ import java.awt.Color;
 //Add events and sounds to button clicks
 //Integrate into game
 //Comment Control.java correctly
+//Add graphics to resources
 public class Control extends JFrame 
 {
 	/**
