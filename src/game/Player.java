@@ -29,6 +29,8 @@ public class Player extends Entity {
 	public double maxImmunityTime;
 	public Animation anim;
 
+	private int lastSet;
+	
 	public Weapon[] weapon;
 
 	public SFX sword_swing, pew_pew;
@@ -84,6 +86,7 @@ public class Player extends Entity {
 			if (keyboard.keyDown(KeyEvent.VK_A)) {
 				dx += Math.max(pos.x - speed * delta, size) - pos.x;
 				anim.setSet(1);
+				lastSet=1;
 			}
 			if (keyboard.keyDown(KeyEvent.VK_S)) {
 				dy += Math.min(pos.y + speed * delta, game.roomH - size) - pos.y;
@@ -91,6 +94,7 @@ public class Player extends Entity {
 			if (keyboard.keyDown(KeyEvent.VK_D)) {
 				dx += Math.min(pos.x + speed * delta, game.roomW - size) - pos.x;
 				anim.setSet(0);
+				lastSet=0;
 			}
 			
 			//if moving diagonally, adjust speed
@@ -114,8 +118,8 @@ public class Player extends Entity {
 				}
 			}
 			
-			/*// adjust speed so it's the same in all directions
-			if (keyboard.keyDown(KeyEvent.VK_W)) {
+			// adjust speed so it's the same in all directions
+	/*		if (keyboard.keyDown(KeyEvent.VK_W)) {
 				pos.y = Math.max(pos.y - speed * delta, size);
 			}
 			if (keyboard.keyDown(KeyEvent.VK_A)) {
@@ -128,14 +132,15 @@ public class Player extends Entity {
 			if (keyboard.keyDown(KeyEvent.VK_D)) {
 				pos.x = Math.min(pos.x + speed * delta, game.roomW - size);
 				anim.setSet(0);
-			}*/
-			
+			}
+			*/
 			
 			if (!game.keyboard.keyDown(KeyEvent.VK_W) && !game.keyboard.keyDown(KeyEvent.VK_A)
 					&& !game.keyboard.keyDown(KeyEvent.VK_S) && !game.keyboard.keyDown(KeyEvent.VK_D)) {
-				anim.setSet(2);
+				anim.setSet(lastSet);
 			}
-
+			
+			
 			if (mouse.isPressed(0) && hp > 0) {
 				weapon[0].use(viewport.toGameCoord(mouse.getPos()));
 
