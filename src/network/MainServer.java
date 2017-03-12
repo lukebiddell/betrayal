@@ -39,18 +39,15 @@ public class MainServer extends Thread{
 				//new Server(clientSocket).start();
 
 
-    KeyboardInput keyboard = new KeyboardInput();
-    MouseInput mouse = new MouseInput();
-    
-    Player p = new Player(game, keyboard, mouse);
+	KeyboardInput keyboard = new KeyboardInput();
+	MouseInput mouse = new MouseInput();
+
+	Player p = new Player(game, keyboard, mouse);
 		  p.viewport = new Viewport(game, p);
+		
+		  new Server(clientSocket, p);
+		  
 		  game.players.add(p);
-		
-		  Server server = new Server(clientSocket, p);
-		
-		  p.viewport.server = server;
-		
-		  server.start();
 
 
 			}

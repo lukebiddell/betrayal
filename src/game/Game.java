@@ -5,8 +5,10 @@ import javax.swing.JPanel;
 import levels.Level;
 import levels.TestLevel;
 import network.Listener;
+import network.ClientListener;
 import network.Server;
 import network.MainServer;
+import weapons.*;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -139,14 +141,28 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
-		g.setColor(Color.BLACK);
-		g.fillRect(0,0,viewport.screenW,viewport.screenH);
+		for(int i=0;i<ClientListener.inputSize;i++)
+			viewport.server.addToQueue(-1);
+	
+	
+		viewport.server.addToQueue(-3);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(viewport.screenW);
+		viewport.server.addToQueue(viewport.screenH);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		
 		
 		//g.setColor(Color.GREEN);
 		//Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
+		
 		level.draw(g, viewport);
 		
 		Iterator<Player> pit = players.iterator();
@@ -164,7 +180,5 @@ public class Game{
 		g.fillRect(30,60,100,10);
 		g.setColor(Color.RED);
 		g.fillRect(30,60,(int)(100 * viewport.p.hp / viewport.p.maxHp),10);
-		
-		viewport.server.addToQueue(-1);
 	}
 }

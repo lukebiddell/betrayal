@@ -1,4 +1,6 @@
 package game;
+
+import weapons.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.event.KeyEvent;
@@ -107,11 +109,13 @@ public class Monster extends Entity{
 		double hpBarH = 0.08;
 	
 		viewport.drawCircleSprite(pos, size, anim, g);
-		Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-size, pos.y-size));
+		//Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-size, pos.y-size));
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size), viewport.scaleToScreen(hpBarH));
-		g.setColor(Color.RED);
-		g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size*hp/maxHp), viewport.scaleToScreen(hpBarH));
+		//g.setColor(Color.BLACK);
+		//g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size), viewport.scaleToScreen(hpBarH));
+		viewport.drawRect(new Point2D.Double(pos.x-size, pos.y-size-hpBarH), 2*size, hpBarH, Color.BLACK, g);
+		//g.setColor(Color.RED);
+		//g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size*hp/maxHp), viewport.scaleToScreen(hpBarH));
+		viewport.drawRect(new Point2D.Double(pos.x-size, pos.y-size-hpBarH), 2*size*hp/maxHp, hpBarH, Color.RED, g);
 	}
 }
