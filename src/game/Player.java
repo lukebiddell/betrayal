@@ -35,6 +35,11 @@ public class Player extends Entity {
 	
 	private static final double sqrt2 = Math.sqrt(2);
 
+	//Luke
+	//returns angle clockwise from north (i think)
+	private double getAngle(){
+		return Math.atan2(pos.y - mouse.getPos().y, pos.x - mouse.getPos().x) - Math.PI / 2;
+	}
 
 	public Player(Game game, KeyboardInput keyboard, MouseInput mouse) {
 		super();
@@ -66,7 +71,8 @@ public class Player extends Entity {
 		mouse.poll();
 
 		viewport.update(delta);
-
+		
+		
 		if (keyboard.keyDown(KeyEvent.VK_UP))
 			viewport.ppu += 20.0 * delta;
 		if (keyboard.keyDown(KeyEvent.VK_DOWN))
@@ -77,20 +83,25 @@ public class Player extends Entity {
 			
 			double dx = 0;
 			double dy = 0;
+			
+			anim.setSet(0);
+			
+			
+			
 			// adjust speed so it's the same in all directions
 			if (keyboard.keyDown(KeyEvent.VK_W)) {
 				dy += Math.max(pos.y - speed * delta, size) - pos.y;
 			}
 			if (keyboard.keyDown(KeyEvent.VK_A)) {
 				dx += Math.max(pos.x - speed * delta, size) - pos.x;
-				anim.setSet(1);
+				//anim.setSet(1);
 			}
 			if (keyboard.keyDown(KeyEvent.VK_S)) {
 				dy += Math.min(pos.y + speed * delta, game.roomH - size) - pos.y;
 			}
 			if (keyboard.keyDown(KeyEvent.VK_D)) {
 				dx += Math.min(pos.x + speed * delta, game.roomW - size) - pos.x;
-				anim.setSet(0);
+				//anim.setSet(0);
 			}
 			
 			//if moving diagonally, adjust speed
@@ -171,7 +182,6 @@ public class Player extends Entity {
 
 	@Override
 	public void draw(Graphics2D g, Viewport vp) {
-
 		vp.drawCircleSprite(pos, size, anim, g);
 	}
 
@@ -184,4 +194,5 @@ public class Player extends Entity {
 	public boolean disposable() {
 		return false;
 	}
+	
 }

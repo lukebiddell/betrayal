@@ -36,7 +36,8 @@ public class ClientListener extends Thread {
 				input[0] = in.readInt();
 				
 				if(input[0]>=0){
-					for(int i=1;i<inputSize;i++) input[i] = in.readInt();
+					for(int i=1; i<inputSize; i++) 
+						input[i] = in.readInt();
 				
 					Spritesheet sprs = SpritesheetEnum.getSprite(input[0]);
 				
@@ -51,10 +52,10 @@ public class ClientListener extends Thread {
 					for(int i=1;i<inputSize;i++) input[i] = in.readInt();
 					g.setColor(new Color(input[1], input[2], input[3]));
 					g.fillOval(input[4], input[5], input[6], input[6]);
+					
 				}
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println(e + " : Connection was lost");
 		}
 	}

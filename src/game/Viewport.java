@@ -88,6 +88,26 @@ public class Viewport{
 		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
 	}
 	
+	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g, double angle){
+		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
+		
+		/*Spritesheet ss = SpritesheetEnum.getSprite(a.ss);
+		
+		g.drawImage(ss.img,
+			coord.x, coord.y, coord.x + scaleToScreen(2*r) - 1, coord.y + scaleToScreen(2*r) - 1,
+			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
+			null);*/
+		server.addToQueue(a.ss);
+		server.addToQueue(coord.x);
+		server.addToQueue(coord.y);
+		server.addToQueue(coord.x + scaleToScreen(2*r) - 1);
+		server.addToQueue(coord.y + scaleToScreen(2*r) - 1);
+		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
+		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
+	}
+	
 	
 	public void drawSprite(Rectangle2D.Double dest, Animation a, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(dest.x, dest.y));
