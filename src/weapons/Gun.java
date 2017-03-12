@@ -1,5 +1,8 @@
 package weapons;
+import game.*;
+
 import java.awt.geom.Point2D;
+import java.awt.Color;
 
 public class Gun extends Weapon{
 	public Game game;
@@ -29,7 +32,7 @@ public class Gun extends Weapon{
 		
 		Projectile bullet = new Projectile(damage, new CircleSector(size, new Point2D.Double(p.pos.x, p.pos.y)), new Point2D.Double((pos.x-p.pos.x),(pos.y-p.pos.y)), immunity, p, true, 8.0, true, Color.CYAN);
 		bullet.knockbackAmp = knockbackLen;
-		addBehaviour(new LinearMotion(speed, pos, p.pos));
+		bullet.addBehaviour(new LinearMotion(speed, pos, p.pos));
 		game.spawnEntity(bullet);
 	}
 }

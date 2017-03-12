@@ -54,6 +54,22 @@ public class Viewport{
 		return new Point2D.Double(screenCoord.x/ppu+pos.x, screenCoord.y/ppu+pos.y);
 	}
 	
+	public void drawRect(Point2D.Double pos, double wi, double he, Color col, Graphics2D g){
+		//g.setColor(col);
+		Point coord = toScreenCoord(pos);
+		server.addToQueue(-3);
+		server.addToQueue(col.getRed());
+		server.addToQueue(col.getGreen());
+		server.addToQueue(col.getBlue());
+		server.addToQueue(coord.x);
+		server.addToQueue(coord.y);
+		server.addToQueue(scaleToScreen(wi));
+		server.addToQueue(scaleToScreen(he));
+		server.addToQueue(0);
+		server.addToQueue(0);
+		
+	}
+	
 	public void drawCircle(Point2D.Double c, double r, Color col, Graphics2D g){
 		//g.setColor(col);
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
@@ -65,6 +81,26 @@ public class Viewport{
 		server.addToQueue(coord.x);
 		server.addToQueue(coord.y);
 		server.addToQueue(scaleToScreen(2*r));
+		server.addToQueue(scaleToScreen(2*r));
+		server.addToQueue(0);
+		server.addToQueue(0);
+		
+	}
+	
+	public void drawCircleSector(Point2D.Double c, double r, double arcStart, double arcLen, Color col, Graphics2D g){
+		//g.setColor(col);
+		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
+		//g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
+		server.addToQueue(-4);
+		server.addToQueue(col.getRed());
+		server.addToQueue(col.getGreen());
+		server.addToQueue(col.getBlue());
+		server.addToQueue(coord.x);
+		server.addToQueue(coord.y);
+		server.addToQueue(scaleToScreen(2*r));
+		server.addToQueue(scaleToScreen(2*r));
+		server.addToQueue(-(int)(arcStart*180/Math.PI));
+		server.addToQueue(-(int)(arcLen*180/Math.PI));
 		
 	}
 	
@@ -86,6 +122,9 @@ public class Viewport{
 		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
 		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
 		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
+		server.addToQueue(0);
+		server.addToQueue(0);
+		server.addToQueue(0);
 	}
 	
 	
@@ -105,6 +144,9 @@ public class Viewport{
 		server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
 		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
 		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+		server.addToQueue(0);
+		server.addToQueue(0);
+		server.addToQueue(0);
 	}
 	
 	

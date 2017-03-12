@@ -1,5 +1,8 @@
 package weapons;
+
+import game.*;
 import java.awt.geom.Point2D;
+import java.awt.Color;
 
 public class Sword extends Weapon{
 	public Game game;

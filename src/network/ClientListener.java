@@ -20,7 +20,7 @@ public class ClientListener extends Thread {
 	public ClientWindow panel;
 	public Graphics2D g;
 
-	private static int inputSize = 7;
+	public static final int inputSize = 10;
 	int[] input;
 
 	public ClientListener(DataInputStream in, ClientWindow panel) {
@@ -33,10 +33,9 @@ public class ClientListener extends Thread {
 	public void run() {
 		try {
 			while (true) {
-				input[0] = in.readInt();
+				for(int i=0;i<inputSize;i++) input[i] = in.readInt();
 				
 				if(input[0]>=0){
-					for(int i=1;i<inputSize;i++) input[i] = in.readInt();
 				
 					Spritesheet sprs = SpritesheetEnum.getSprite(input[0]);
 				
@@ -48,9 +47,16 @@ public class ClientListener extends Thread {
 					
 				else if(input[0]==-1) panel.paintImmediately(panel.getBounds());
 				else if(input[0]==-2){
-					for(int i=1;i<inputSize;i++) input[i] = in.readInt();
 					g.setColor(new Color(input[1], input[2], input[3]));
-					g.fillOval(input[4], input[5], input[6], input[6]);
+					g.fillOval(input[4], input[5], input[6], input[7]);
+				}
+				else if(input[0]==-3){
+					g.setColor(new Color(input[1], input[2], input[3]));
+					g.fillRect(input[4], input[5], input[6], input[7]);
+				}
+				else if(input[0]==-4){
+					g.setColor(new Color(input[1], input[2], input[3]));
+					g.fillArc(input[4], input[5], input[6], input[7], input[8], input[9]);
 				}
 			}
 		}

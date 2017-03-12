@@ -1,10 +1,13 @@
 package weapons;
+
+import game.*;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.LinkedList;
 
-public abstract class Projectile extends Entity{
+public class Projectile extends Entity{
 	public boolean isDisposable = false;
 	public double damage;
 	public Point2D.Double knockbackDir;
@@ -65,12 +68,8 @@ public abstract class Projectile extends Entity{
 		}
 	}
 	
+	@Override
 	public void draw(Graphics2D g, Viewport viewport){
-		g.setColor(color);
-		Point2D.Double pos = getPos();
-		double len = getSize();
-		Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-len, pos.y-len));
-		g.fillArc(coord.x, coord.y, viewport.scaleToScreen(2*len), viewport.scaleToScreen(2*len), -(int)(hitbox.getArcStart()*180/Math.PI), -(int)(hitbox.getArcLen()*180/Math.PI));
-	
+		viewport.drawCircleSector(getPos(), getSize(), hitbox.getArcStart(), hitbox.getArcLen(), color, g);
 	}
 }

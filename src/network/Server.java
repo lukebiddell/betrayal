@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import game.Player;
 
-public class Server extends Thread {
+public class Server{
 
 	private Sender sender;
 	private Listener listener;
@@ -20,9 +20,9 @@ public class Server extends Thread {
 		this.listener = null;
 		this.clientSocket = clientSocket;
 		this.p = p;
-	}
-
-	public void run() {
+		this.p.viewport.server = this;
+		
+		
 		try {
 
 			this.sender = new Sender(new DataOutputStream(clientSocket.getOutputStream()));
@@ -32,7 +32,19 @@ public class Server extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	} 
+	}
+
+	/*public void run() {
+		try {
+
+			this.sender = new Sender(new DataOutputStream(clientSocket.getOutputStream()));
+			this.listener = new Listener(new DataInputStream(clientSocket.getInputStream()), p);
+			sender.start();
+			listener.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	} */
 	
 	public void addToQueue(Integer input) {
 

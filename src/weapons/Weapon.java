@@ -1,4 +1,6 @@
 package weapons;
+
+import game.*;
 import java.awt.geom.Point2D;
 
 public abstract class Weapon{
