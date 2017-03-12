@@ -4,30 +4,27 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToggleButton;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JSlider;
 
 /*
  * @author Jack Marshman
  */
 
 //TODO
-//Finish general menu layout
 //Create and add graphics to new JButtons
 //Add events and sounds to button clicks
 //Integrate into game
 //Add graphics to resources
-public class Audio extends JFrame
+public class Control extends JFrame 
 {
 	/**
-	 * Initial JFrame
+	 * Initial JPanel
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -37,17 +34,17 @@ public class Audio extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		EventQueue.invokeLater(new Runnable() 
+		EventQueue.invokeLater(new Runnable()
 		{
 			public void run() 
 			{
 				try
 				{
-					Audio frame = new Audio();
+					Control frame = new Control();
 					frame.setVisible(true);
 				} 
 				
-				catch (Exception e) 
+				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
@@ -58,7 +55,7 @@ public class Audio extends JFrame
 	/**
 	 * Frame constructor
 	 */
-	public Audio() 
+	public Control()
 	{
 		/*
 		 * Creates content pane
@@ -87,8 +84,8 @@ public class Audio extends JFrame
 		contentPane.add(btnBack);
 		
 		/*
-		 * Exit button		
-		 */
+		 * Exit button
+		 */		
 		JButton btnExit = new JButton();
 		btnExit.setBounds(334, 201, 90, 50);
 		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
@@ -96,29 +93,25 @@ public class Audio extends JFrame
 		btnExit.addActionListener(e -> System.exit(0));
 		contentPane.add(btnExit);
 		
-		
 		/*
-		 * To be compelted
-		 */
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
-		tglbtnNewToggleButton.setBounds(148, 36, 121, 23);
-		contentPane.add(tglbtnNewToggleButton);
-		
-		JSlider slider = new JSlider();
-		slider.setToolTipText("50");
-		slider.setPaintTicks(true);
-		slider.setPaintLabels(true);
-		slider.setMinorTickSpacing(25);
-		slider.setBounds(106, 70, 200, 26);
-		contentPane.add(slider);
-		
-		/*
-		 * Audio title graphic
+		 * Controls title graphic
 		 */
 		JLabel titleLabel = new JLabel();
 		titleLabel.setBounds(108, 11, 213, 64);
 		ImageIcon titleIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		contentPane.add(titleLabel);
+		
+		/*
+		 * Controls graphic
+		 */
+		int controlsWidth = 350;
+		int controlsHeight = 120;
+		JLabel controlsLabel = new JLabel();
+		controlsLabel.setBounds(44, 56, 363, 166);
+		ImageIcon controlsIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(controlsWidth, controlsHeight, Image.SCALE_DEFAULT));
+		controlsLabel.setIcon(controlsIcon);
+		contentPane.add(controlsLabel);	
 	}
 }
+
