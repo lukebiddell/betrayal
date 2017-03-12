@@ -51,9 +51,11 @@ public class Monster extends Entity{
 		try{
 		 Player towards = game.players.peek();
 		 if(towards == null) throw new NoSuchElementException();
-			addBehaviour(new LinearHome(0.18, towards.getPos()));
+			//addBehaviour(new LinearHome(0.18, towards.getPos()));
 		}
 		catch(NoSuchElementException e){}
+		
+		addBehaviour(new JumpAround(2.8, 0.4));	
 	}
 	
 	public void hit(Projectile p){
