@@ -87,7 +87,19 @@ public class Monster extends Entity{
 			dead = true; 
 			game.score++;
 			try{
-				game.spawnEntity(new Fairy(7.0, 0.1, 10, 0.2, 2.8, new Point2D.Double(pos.x, pos.y), lastHitBy.player, game));
+				if(random.nextDouble()<0.33)game.spawnEntity(new Fairy(7.0, 0.1, 10, 0.2, 2.8, new Point2D.Double(pos.x, pos.y), lastHitBy.player, game));
+				if(random.nextDouble()<0.1){
+					Weapon w = null;
+					double wchance = random.nextDouble();
+					if(wchance<0.33){
+						w = new Sword(game,null);
+					} else if(wchance<0.66){
+						w = new Laser(game,null);
+					} else {
+						w = new Gun(game,null);
+					}
+					game.spawnEntity(new WeaponDrop((Point2D.Double)(pos.clone()),w));
+				}
 			}
 			catch(NullPointerException e){}
 		}

@@ -89,7 +89,10 @@ public class Player extends Entity {
 			
 			anim.setSet(0);
 			
-			
+			if(keyboard.keyDownOnce(KeyEvent.VK_Q)){
+				ListIterator<Entity> eit = game.entities.listIterator(0);
+				while(eit.hasNext())eit.next().playerInteracted(this, KeyEvent.VK_Q);
+			}
 			
 			// adjust speed so it's the same in all directions
 			if (keyboard.keyDown(KeyEvent.VK_W)) {

@@ -28,6 +28,9 @@ public abstract class Entity implements Comparable<Entity>{
 		behaviour.add(b);
 	}
 	
+	public void playerInteracted(Player p, int event){
+	}
+	
 	@Override
 	public int compareTo(Entity e){
 		return hashCode() - e.hashCode();

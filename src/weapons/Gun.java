@@ -6,7 +6,6 @@ import java.awt.Color;
 
 public class Gun extends Weapon{
 	public Game game;
-	public Player p;
 	public double damage;
 	public double speed;
 	public double size;
@@ -16,7 +15,6 @@ public class Gun extends Weapon{
 	public Gun(Game game, Player p){
 		super(0.1, p);
 		this.game = game;
-		this.p = p;
 		
 		damage = 4.1;
 		speed = 4.2;
@@ -30,9 +28,14 @@ public class Gun extends Weapon{
 		if(!usable())return;
 		super.use(pos);
 		
-		Projectile bullet = new Projectile(damage, new CircleSector(size, new Point2D.Double(p.pos.x, p.pos.y)), new Point2D.Double((pos.x-p.pos.x),(pos.y-p.pos.y)), immunity, p, true, 8.0, true, Color.CYAN, 0);
+		Projectile bullet = new Projectile(damage, new CircleSector(size, new Point2D.Double(player.pos.x, player.pos.y)), new Point2D.Double((pos.x-player.pos.x),(pos.y-player.pos.y)), immunity, player, true, 8.0, true, Color.ORANGE, 0);
 		bullet.knockbackAmp = knockbackLen;
-		bullet.addBehaviour(new LinearMotion(speed, pos, p.pos));
+		bullet.addBehaviour(new LinearMotion(speed, pos, player.pos));
 		game.spawnEntity(bullet);
+	}
+	
+	@Override
+	public Color getDropColor(){
+		return Color.ORANGE;
 	}
 }

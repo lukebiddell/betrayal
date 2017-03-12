@@ -2,6 +2,7 @@ package weapons;
 
 import game.*;
 import java.awt.geom.Point2D;
+import java.awt.Color;
 
 public abstract class Weapon{
 	public double cooldown;
@@ -26,5 +27,9 @@ public abstract class Weapon{
 	
 	public void use(Point2D.Double pos){
 		cooldownTimer = cooldown;
+	}
+	
+	public Color getDropColor(){
+		return Color.WHITE;
 	}
 }

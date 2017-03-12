@@ -6,7 +6,6 @@ import java.awt.Color;
 
 public class Sword extends Weapon{
 	public Game game;
-	public Player p;
 	public double damage;
 	public double len;
 	public double arc;
@@ -16,7 +15,6 @@ public class Sword extends Weapon{
 	public Sword(Game game, Player p){
 		super(0.3, p);
 		this.game = game;
-		this.p = p;
 		
 		damage = 10;
 		len = 0.4; //used to be 0.75
@@ -32,8 +30,13 @@ public class Sword extends Weapon{
 		if(!usable())return;
 		super.use(pos);
 		
-		double arcStart = Math.atan2(pos.y-p.pos.y,pos.x-p.pos.x)-arc/2-lifetime*speed/2;
+		double arcStart = Math.atan2(pos.y-player.pos.y,pos.x-player.pos.x)-arc/2-lifetime*speed/2;
 		while(arcStart<0)arcStart += 2*Math.PI;
-		game.spawnEntity(new Projectile(damage, new CircleSector(len, p.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, p, true, lifetime, false, Color.CYAN, speed));
+		game.spawnEntity(new Projectile(damage, new CircleSector(len, player.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, player, true, lifetime, false, Color.CYAN, speed));
+	}
+	
+	@Override
+	public Color getDropColor(){
+		return Color.CYAN;
 	}
 }
