@@ -19,10 +19,11 @@ public class Projectile extends Entity{
 	public boolean hasLifetime;
 	public double lifetime;
 	public boolean breaksOnContact;
+	public double rotationSpeed;
 	
 	public Color color;
 	
-	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color){
+	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, double rotationSpeed){
 		super();
 		this.damage = damage;
 		this.hitbox = hitbox;
@@ -33,6 +34,7 @@ public class Projectile extends Entity{
 		this.breaksOnContact = breaksOnContact;
 		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
 		this.knockbackDir = (knockbackAmp > 0)?(new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp)):(new Point2D.Double(0,0));
+		this.rotationSpeed = rotationSpeed;
 	
 		this.color = color;
 	}
@@ -60,6 +62,8 @@ public class Projectile extends Entity{
 		}
 		
 		super.update(delta, game);
+		
+		hitbox.setArcStart(hitbox.getArcStart() + rotationSpeed*delta);
 		
 		ListIterator<Monster> mit = game.monsters.listIterator(0);
 		while(mit.hasNext()){

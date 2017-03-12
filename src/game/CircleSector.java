@@ -22,6 +22,7 @@ public class CircleSector{
 		arcStart = a % (2*Math.PI);
 	}
 	public double getArcStart(){return arcStart;}
+	public void setArcLen(double arcLen){this.arcLen = arcLen;}
 	public double getArcLen(){return arcLen;}
 
 	public CircleSector(double radius, Point2D.Double center){

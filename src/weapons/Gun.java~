@@ -30,7 +30,7 @@ public class Gun extends Weapon{
 		if(!usable())return;
 		super.use(pos);
 		
-		Projectile bullet = new Projectile(damage, new CircleSector(size, new Point2D.Double(p.pos.x, p.pos.y)), new Point2D.Double((pos.x-p.pos.x),(pos.y-p.pos.y)), immunity, p, true, 8.0, true, Color.CYAN, 0);
+		Projectile bullet = new Projectile(damage, new CircleSector(size, new Point2D.Double(p.pos.x, p.pos.y)), new Point2D.Double((pos.x-p.pos.x),(pos.y-p.pos.y)), immunity, p, true, 8.0, true, Color.CYAN);
 		bullet.knockbackAmp = knockbackLen;
 		bullet.addBehaviour(new LinearMotion(speed, pos, p.pos));
 		game.spawnEntity(bullet);

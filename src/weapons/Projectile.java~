@@ -1,10 +1,13 @@
-package game;
+package weapons;
+
+import game.*;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.LinkedList;
 
-public abstract class Projectile extends Entity{
+public class Projectile extends Entity{
 	public boolean isDisposable = false;
 	public double damage;
 	public Point2D.Double knockbackDir;
@@ -16,8 +19,11 @@ public abstract class Projectile extends Entity{
 	public boolean hasLifetime;
 	public double lifetime;
 	public boolean breaksOnContact;
+	public double rotationSpeed;
 	
-	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact){
+	public Color color;
+	
+	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, double rotationSpeed){
 		super();
 		this.damage = damage;
 		this.hitbox = hitbox;
@@ -28,6 +34,9 @@ public abstract class Projectile extends Entity{
 		this.breaksOnContact = breaksOnContact;
 		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
 		this.knockbackDir = (knockbackAmp > 0)?(new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp)):(new Point2D.Double(0,0));
+		this.rotationSpeed = rotationSpeed;
+	
+		this.color = color;
 	}
 	
 	@Override
@@ -59,5 +68,10 @@ public abstract class Projectile extends Entity{
 			Monster m = mit.next(); 
 			if(hitbox.intersects(m.hitbox)){m.hit(this); if(breaksOnContact){isDisposable = true; break;}}
 		}
+	}
+	
+	@Override
+	public void draw(Graphics2D g, Viewport viewport){
+		viewport.drawCircleSector(getPos(), getSize(), hitbox.getArcStart(), hitbox.getArcLen(), color, g);
 	}
 }

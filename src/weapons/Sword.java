@@ -11,6 +11,7 @@ public class Sword extends Weapon{
 	public double len;
 	public double arc;
 	public double lifetime;
+	public double speed;
 	
 	public Sword(Game game, Player p){
 		super(0.3, p);
@@ -19,9 +20,11 @@ public class Sword extends Weapon{
 		
 		damage = 10;
 		len = 0.4; //used to be 0.75
-		arc = Math.PI/2;
+		arc = Math.PI/4;
 		
 		lifetime = 0.2;
+		
+		speed = 1.8*Math.PI;
 	}
 	
 	@Override
@@ -29,8 +32,8 @@ public class Sword extends Weapon{
 		if(!usable())return;
 		super.use(pos);
 		
-		double arcStart = Math.atan2(pos.y-p.pos.y,pos.x-p.pos.x)-arc/2;
+		double arcStart = Math.atan2(pos.y-p.pos.y,pos.x-p.pos.x)-arc/2-lifetime*speed/2;
 		while(arcStart<0)arcStart += 2*Math.PI;
-		game.spawnEntity(new Projectile(damage, new CircleSector(len, p.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, p, true, lifetime, false, Color.CYAN));
+		game.spawnEntity(new Projectile(damage, new CircleSector(len, p.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, p, true, lifetime, false, Color.CYAN, speed));
 	}
 }
