@@ -54,10 +54,10 @@ public class Player extends Entity {
 		size = 0.14; // used to be 0.28
 		speed = 1.0;
 		weapon = new Weapon[2];
-		weapon[0] = new Sword(game, this);
+		weapon[0] = new Gun(game, this);
 		weapon[1] = new Laser(game, this);
 		hitbox = new Circle(size, pos);
-		maxHp = 10000;
+		maxHp = 100;
 		hp = maxHp;
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
@@ -69,6 +69,7 @@ public class Player extends Entity {
 
 	@Override
 	public void update(double delta, Game game) {
+		
 		super.update(delta, game);
 		keyboard.poll();
 		mouse.poll();
@@ -87,11 +88,15 @@ public class Player extends Entity {
 			double dx = 0;
 			double dy = 0;
 			
-			anim.setSet(0);
-			
+		//	anim.setSet(0);
+			anim.update(delta);
 			if(keyboard.keyDownOnce(KeyEvent.VK_Q)){
 				ListIterator<Entity> eit = game.entities.listIterator(0);
 				while(eit.hasNext())eit.next().playerInteracted(this, KeyEvent.VK_Q);
+			}
+			if(keyboard.keyDownOnce(KeyEvent.VK_E)){
+				ListIterator<Entity> eit = game.entities.listIterator(0);
+				while(eit.hasNext())eit.next().playerInteracted(this, KeyEvent.VK_E);
 			}
 			
 			// adjust speed so it's the same in all directions
@@ -187,6 +192,7 @@ public class Player extends Entity {
 			SFX scream = new SFX(50, "/Music/SFX_Man_Scream_1.wav");
 			scream.play();
 		}
+		
 	}
 
 	@Override
@@ -202,6 +208,16 @@ public class Player extends Entity {
 	@Override
 	public boolean disposable() {
 		return false;
+	}
+	
+	
+	public void hit(Projectile proj){
+		if (hitbox.intersects(proj.hitbox)) {
+			if (immunityTime <= 0) {
+				hp -= proj.damage;
+				immunityTime = maxImmunityTime;
+			}
+		}
 	}
 	
 }

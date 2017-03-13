@@ -41,5 +41,11 @@ public class WeaponDrop extends Entity{
 			p.weapon[0] = weapon;
 			weapon = w;
 		}
+		if(event == KeyEvent.VK_E && p.hitbox.intersects(hitbox)){
+			weapon.player = p;
+			Weapon w = p.weapon[1];
+			p.weapon[1] = weapon;
+			weapon = w;
+		}
 	}
 }

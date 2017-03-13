@@ -31,7 +31,7 @@ public class Laser extends Weapon{
 		
 		double arcStart = Math.atan2(pos.y-player.pos.y,pos.x-player.pos.x)-arc/2;
 		while(arcStart<0)arcStart += 2*Math.PI;
-		game.spawnEntity(new Projectile(damage, new CircleSector(len, player.pos, arcStart, arc), new Point2D.Double(0,0), immunityTime, player, true, lifetime, false, Color.RED, 0));
+		game.spawnEntity(new Projectile(damage, new CircleSector(len, player.pos, arcStart, arc), new Point2D.Double(0,0), immunityTime, player, true, lifetime, false, Color.RED, 0, true, true, 10));
 	}
 	
 	@Override
