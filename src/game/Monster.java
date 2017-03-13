@@ -51,7 +51,7 @@ public class Monster extends Entity{
 		try{
 		 Player towards = game.players.peek();
 		 if(towards == null) throw new NoSuchElementException();
-			//addBehaviour(new LinearHome(0.18, towards.getPos()));
+			addBehaviour(new LinearHome(0.18, towards.getPos()));
 		}
 		catch(NoSuchElementException e){}
 		
@@ -120,7 +120,7 @@ public class Monster extends Entity{
 	}
 	
 	public void draw(Graphics2D g, Viewport viewport){
-		double hpBarH = 0.08;
+		double hpBarH = 0.03;
 	
 		viewport.drawCircleSprite(pos, size, anim, g);
 		//Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-size, pos.y-size));

@@ -32,7 +32,7 @@ public class Sword extends Weapon{
 		
 		double arcStart = Math.atan2(pos.y-player.pos.y,pos.x-player.pos.x)-arc/2-lifetime*speed/2;
 		while(arcStart<0)arcStart += 2*Math.PI;
-		game.spawnEntity(new Projectile(damage, new CircleSector(len, player.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, player, true, lifetime, false, Color.CYAN, speed));
+		game.spawnEntity(new Projectile(damage, new CircleSector(len, player.pos, arcStart, arc), new Point2D.Double(0,0), lifetime, player, true, lifetime, false, Color.CYAN, speed, true, true, 9));
 	}
 	
 	@Override

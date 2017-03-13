@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Projectile extends Entity{
@@ -20,10 +21,12 @@ public class Projectile extends Entity{
 	public double lifetime;
 	public boolean breaksOnContact;
 	public double rotationSpeed;
+	public boolean hitsPlayers;
+	public boolean hitsMonsters;
 	
 	public Color color;
 	
-	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, double rotationSpeed){
+	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, double rotationSpeed, boolean hitsMonsters, boolean hitsPlayers, int x){
 		super();
 		this.damage = damage;
 		this.hitbox = hitbox;
@@ -35,8 +38,12 @@ public class Projectile extends Entity{
 		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
 		this.knockbackDir = (knockbackAmp > 0)?(new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp)):(new Point2D.Double(0,0));
 		this.rotationSpeed = rotationSpeed;
+		
+		System.out.println(x);
 	
 		this.color = color;
+		this.hitsPlayers = hitsPlayers;
+		this.hitsMonsters = hitsMonsters;
 	}
 	
 	@Override
@@ -65,10 +72,21 @@ public class Projectile extends Entity{
 		
 		hitbox.setArcStart(hitbox.getArcStart() + rotationSpeed*delta);
 		
-		ListIterator<Monster> mit = game.monsters.listIterator(0);
-		while(mit.hasNext()){
-			Monster m = mit.next(); 
-			if(hitbox.intersects(m.hitbox)){m.hit(this); if(breaksOnContact){isDisposable = true; break;}}
+		if(hitsMonsters){
+			ListIterator<Monster> mit = game.monsters.listIterator(0);
+			while(mit.hasNext()){
+				Monster m = mit.next();
+				if(hitbox.intersects(m.hitbox)){m.hit(this); if(breaksOnContact){isDisposable = true; break;}}
+			}
+		}
+		
+		if(hitsPlayers){
+			Iterator<Player> pit = game.players.iterator();
+			while(pit.hasNext()){
+				Player p = pit.next();
+				if(p == player)continue;
+				if(hitbox.intersects(p.hitbox)){p.hit(this); if(breaksOnContact){isDisposable = true; break;}}
+			}
 		}
 	}
 	
