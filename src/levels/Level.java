@@ -67,7 +67,7 @@ public class Level {
 
 				switch (node.getNodeName()) {
 				case "map":
-					NodeList children = node.getChildNodes();
+					NodeList mapChildren = node.getChildNodes();
 					
 					break;
 				case "monsters":
