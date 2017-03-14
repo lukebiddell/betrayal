@@ -1,29 +1,34 @@
 package network;
 
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import game.*;
 
-public class MainServer extends Thread{
+public class MainServer extends Thread {
 
-	//private Map<String, Server> upConnections;
- 
- private int port;
- private Game game;
- 
+	private Game game;
+	private int port; // port to listen for new connections
+	private ConcurrentLinkedQueue<UDPServer> connections; // list of all
+															// connections
+
 	public MainServer(int port, Game game) {
-  this.port = port;
-	 this.game = game;
+		this.connections = new ConcurrentLinkedQueue<UDPServer>();
+		this.port = port;
+		this.game = game;
+
 	}
-	
+
 	public void run(){
-	 ServerSocket serverSocket;
+		ServerSocket serverSocket;
+
 		try {
 			serverSocket = new ServerSocket(port);
 
@@ -34,28 +39,52 @@ public class MainServer extends Thread{
 
 			while (true) {
 
-				Socket clientSocket = serverSocket.accept();
-				System.out.println("connection to " + clientSocket.getLocalAddress());
-				//new Server(clientSocket).start();
 
+				Socket clientSocket = serverSocket.accept(); // accept a new
+																// connection,
+																// allocates
+																// ports for
+																// connection
 
-	KeyboardInput keyboard = new KeyboardInput();
-	MouseInput mouse = new MouseInput();
+				int p = clientSocket.getLocalPort(); // gets local port of
+														// connection
 
-	Player p = new Player(game, keyboard, mouse);
-		  p.viewport = new Viewport(game, p);
-		
-		  new Server(clientSocket, p);
-		  
-		  game.players.add(p);
+				int p2 = clientSocket.getPort(); // gets remote port of the
+													// connection
+				InetAddress ip = clientSocket.getInetAddress(); // gets the Inet
+																// address of
+																// client
+																// connection
 
+				clientSocket.close(); // closes the socket so can be used for as
+										// Datagram Socket
+				DatagramSocket socket = new DatagramSocket(p); // create a
+																// Datagram
+																// socket using
+																// the port
+																// selected from
+																// serversocket.accept()
+				KeyboardInput keyboard = new KeyboardInput();
+				MouseInput mouse = new MouseInput();
+				Player player = new Player(game, keyboard, mouse);
+				player.viewport = new Viewport(game, player);
+				
+				connections.add(new UDPServer(socket, p2, ip, player));
+																// creates a new
+																// UDPServer
+																// with the
+																// Datagram
+																// Server object
+																// while adding
+																// it to
+																// connections
+				game.players.add(player);
+			}} catch (IOException e) {
 
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-	}
-
+	
+	
 
 	private String getLocalName() {
 		InetAddress addr = null;
@@ -66,4 +95,11 @@ public class MainServer extends Thread{
 		}
 		return addr.getHostName();
 	}
-}
+
+	public void broadcastMessage(int a, int b, int c, int d, int e, int f, int g,int h ,int i,int  j) {
+		for (UDPServer temp : connections) {
+			System.out.println("testing broadcastMessage");
+			temp.addToQueue(a, b, c, d, e, f, g, h, i, j);
+		}
+	}
+	}
