@@ -69,7 +69,8 @@ public class MainServer extends Thread {
 				MouseInput mouse = new MouseInput();
 				Player player = new Player(game, keyboard, mouse);
 				player.viewport = new Viewport(game, player);
-				
+				if(player.viewport != null)System.out.print("its not null");
+				game.players.add(player);
 				connections.add(new UDPServer(socket, p2, ip, player));
 																// creates a new
 																// UDPServer
@@ -79,7 +80,7 @@ public class MainServer extends Thread {
 																// while adding
 																// it to
 																// connections
-				game.players.add(player);
+				//game.players.add(player);
 			}} catch (IOException e) {
 
 			}

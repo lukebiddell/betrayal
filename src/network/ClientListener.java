@@ -157,7 +157,7 @@ public class ClientListener extends Thread {
 			count++;
 		}
 		count = 0;
-		ints[10] = b.getInt();
+		ints[9] = b.getInt();
 		b.rewind();
 		return ints;
 

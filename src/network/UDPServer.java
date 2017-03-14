@@ -19,7 +19,8 @@ public class UDPServer {
 
 	
 		this.sender = new ServerSender(p, inetAddress, socket);
-		
+		this.player = player;
+		this.player.viewport.server = this;
 		this.listener = new Listener(socket, player);
 		
 		sender.start();;
