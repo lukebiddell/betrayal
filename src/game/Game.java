@@ -127,7 +127,7 @@ public class Game{
 			if(timeUntilSpawn <= 0)
 			{
 				timeUntilSpawn = minSpawnTime + rand.nextDouble()*(maxSpawnTime - minSpawnTime);
-				spawnMonster(new Monster(this));
+				spawnMonster(new DefaultMonster(this, new Point2D.Double(rand.nextDouble()*roomW, rand.nextDouble()*roomH)));
 			}
 			else timeUntilSpawn -= delta;
 		}
@@ -147,16 +147,7 @@ public class Game{
 			viewport.server.addToQueue(-1);
 	
 	
-		viewport.server.addToQueue(-3);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(viewport.screenW);
-		viewport.server.addToQueue(viewport.screenH);
-		viewport.server.addToQueue(0);
-		viewport.server.addToQueue(0);
+		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);
 		
 		
 		//g.setColor(Color.GREEN);
@@ -178,9 +169,7 @@ public class Game{
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
 		g.drawString(Integer.toString(score), 30, 30);
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(30,60,100,10);
-		g.setColor(Color.RED);
-		g.fillRect(30,60,(int)(100 * viewport.p.hp / viewport.p.maxHp),10);
+		viewport.drawRectAbsolute(new Point(30,60),100,10, Color.BLACK, g);
+		viewport.drawRectAbsolute(new Point(30,60),(int)(100 * viewport.p.hp / viewport.p.maxHp),10, Color.RED, g);
 	}
 }

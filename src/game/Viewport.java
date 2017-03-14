@@ -55,7 +55,6 @@ public class Viewport{
 	}
 	
 	public void drawRect(Point2D.Double pos, double wi, double he, Color col, Graphics2D g){
-		//g.setColor(col);
 		Point coord = toScreenCoord(pos);
 		server.addToQueue(-3);
 		server.addToQueue(col.getRed());
@@ -65,6 +64,20 @@ public class Viewport{
 		server.addToQueue(coord.y);
 		server.addToQueue(scaleToScreen(wi));
 		server.addToQueue(scaleToScreen(he));
+		server.addToQueue(0);
+		server.addToQueue(0);
+		
+	}
+	
+	public void drawRectAbsolute(Point pos, int wi, int he, Color col, Graphics2D g){
+		server.addToQueue(-3);
+		server.addToQueue(col.getRed());
+		server.addToQueue(col.getGreen());
+		server.addToQueue(col.getBlue());
+		server.addToQueue(pos.x);
+		server.addToQueue(pos.y);
+		server.addToQueue(wi);
+		server.addToQueue(he);
 		server.addToQueue(0);
 		server.addToQueue(0);
 		
@@ -162,6 +175,26 @@ public class Viewport{
 		server.addToQueue(coord.y);
 		server.addToQueue(coord.x + scaleToScreen(dest.width) - 1);
 		server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
+		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+		server.addToQueue(0);
+		server.addToQueue(0);
+		server.addToQueue(0);
+	}
+	
+	public void drawSpriteAbsolute(Rectangle dest, Animation a, Graphics2D g){
+		
+		/*Spritesheet ss = SpritesheetEnum.getSprite(a.ss);
+		
+		g.drawImage(ss.img,
+			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
+			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
+			null);*/
+		server.addToQueue(a.ss);
+		server.addToQueue(dest.x);
+		server.addToQueue(dest.y);
+		server.addToQueue(dest.x + dest.width - 1);
+		server.addToQueue(dest.y + dest.height - 1);
 		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
 		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
 		server.addToQueue(0);

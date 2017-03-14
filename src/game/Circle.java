@@ -3,7 +3,7 @@ package game;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class Circle {
+public class Circle implements Shape{
 
 	private double radius;
 	public Point2D.Double center;
@@ -15,9 +15,14 @@ public class Circle {
 		radius = R;
 		radiusSq = R * R;
 	}
-
+	
+	@Override
 	public double getRadius() {
 		return radius;
+	}
+	@Override
+	public Point2D.Double getCenter() {
+		return center;
 	}
 
 	public double getRadiusSq() {
@@ -47,8 +52,13 @@ public class Circle {
 
 		return sToCircle.intersects(this);
 	}
-
-	public boolean intersects(CircleSector s) {
-		return s.intersects(this);
+	
+	@Override
+	public boolean intersects(Shape s) {
+		if(s instanceof CircleSector) return s.intersects(this);
+		else if(s instanceof Circle){
+			return (new CircleSector(s.getRadius(),s.getCenter())).intersects(this);
+		}
+		return false;
 	}
 }

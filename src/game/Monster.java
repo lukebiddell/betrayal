@@ -17,37 +17,34 @@ import audio.SFX;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Monster extends Entity{
-	public Point2D.Double pos;
-	public double size;
-	public Circle hitbox;
-	public double hp;
+public class Monster extends Projectile{
 	public double maxHp;
-	public boolean dead;
 	public Game game;
+	public double expWorth;
+	
+	public boolean dead;
+	public double hp;
 	
 	public Projectile lastHitBy;
 	public TreeMap<Projectile, Double> immunities;
 	
 	private Random random;
 	
-	public Animation anim;
-	
-	public Monster(Game game){
-		super();
-		random = new Random();
+	public Monster(Game game, double contactDamage, double size, Point2D.Double pos, double hp, double expWorth, Animation anim){
+		super(contactDamage, new Circle(size, pos), new Point2D.Double(0,0), 0.1, null, false, 0, false, null, anim, 0, false, true);
+		this.random = new Random();
 		this.game = game;
-		pos = new Point2D.Double(random.nextDouble()*game.roomW, random.nextDouble()*game.roomH);
-		size = 0.1;
-		hp = 100;
-		maxHp = hp;
+		//pos = new Point2D.Double(random.nextDouble()*game.roomW, random.nextDouble()*game.roomH);
+		this.expWorth = expWorth;
+		this.hp = hp;
+		this.maxHp = hp;
 		dead = false;
-		hitbox = new Circle(size, pos);
 		lastHitBy = null;
 		immunities = new TreeMap<Projectile, Double>();
 		
-		anim = new Animation(SpritesheetEnum.MONSTER,0,0,0.5,Animation.AnimationMode.LOOP);
+		//anim = new Animation(SpritesheetEnum.MONSTER,0,0,0.5,Animation.AnimationMode.LOOP);
 		
+		/*
 		try{
 		 Player towards = game.players.peek();
 		 if(towards == null) throw new NoSuchElementException();
@@ -55,12 +52,13 @@ public class Monster extends Entity{
 		}
 		catch(NoSuchElementException e){}
 		
-		addBehaviour(new JumpAround(2.8, 0.4));	
+		addBehaviour(new JumpAround(2.8, 0.4));	*/
 	}
 	
 	public void hit(Projectile p){
 		if(!immunities.containsKey(p)){
 			//decrease damage
+			p.player.exp += expWorth*Math.min(hp,p.damage)/maxHp;
 			hp -= p.damage;
 			
 			//apply knockback
@@ -76,18 +74,14 @@ public class Monster extends Entity{
 		return dead;
 	}
 	
-	public Point2D.Double getPos(){
-		return pos;
-	}
-	
 	public void update(double delta, Game game){
 		if(hp<=0){
 			SFX deathSound = new SFX(100, "/Music/SFX_Monster_3.wav");
 			deathSound.play();
-			dead = true; 
+			dead = true;
 			game.score++;
 			try{
-				if(random.nextDouble()<0.33)game.spawnEntity(new Fairy(7.0, 0.1, 10, 0.2, 2.8, new Point2D.Double(pos.x, pos.y), lastHitBy.player, game));
+				if(random.nextDouble()<0.33)game.spawnEntity(new Fairy(7.0, 0.1, 10, 0.2, 2.8, new Point2D.Double(getPos().x, getPos().y), lastHitBy.player, game));
 				if(random.nextDouble()<0.1){
 					Weapon w = null;
 					double wchance = random.nextDouble();
@@ -98,7 +92,7 @@ public class Monster extends Entity{
 					} else {
 						w = new Gun(game,null);
 					}
-					game.spawnEntity(new WeaponDrop((Point2D.Double)(pos.clone()),w));
+					game.spawnEntity(new WeaponDrop((Point2D.Double)(getPos().clone()),w));
 				}
 			}
 			catch(NullPointerException e){}
@@ -115,21 +109,15 @@ public class Monster extends Entity{
 		}
 		Iterator<Projectile> imtoremit = imtorem.iterator();
 		while(imtoremit.hasNext())immunities.remove(imtoremit.next());
-		
-		anim.update(delta);
 	}
 	
+	@Override
 	public void draw(Graphics2D g, Viewport viewport){
+		super.draw(g, viewport);
 		double hpBarH = 0.03;
-	
-		viewport.drawCircleSprite(pos, size, anim, g);
-		//Point coord = viewport.toScreenCoord(new Point2D.Double(pos.x-size, pos.y-size));
+		//Point coord = viewport.toScreenCoord(new Point2D.Double(getPos().x-getSize(), getPos().y-getSize()));
 		
-		//g.setColor(Color.BLACK);
-		//g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size), viewport.scaleToScreen(hpBarH));
-		viewport.drawRect(new Point2D.Double(pos.x-size, pos.y-size-hpBarH), 2*size, hpBarH, Color.BLACK, g);
-		//g.setColor(Color.RED);
-		//g.fillRect(coord.x, coord.y-viewport.scaleToScreen(hpBarH), viewport.scaleToScreen(2*size*hp/maxHp), viewport.scaleToScreen(hpBarH));
-		viewport.drawRect(new Point2D.Double(pos.x-size, pos.y-size-hpBarH), 2*size*hp/maxHp, hpBarH, Color.RED, g);
+		viewport.drawRect(new Point2D.Double(getPos().x-getSize(), getPos().y-getSize()-hpBarH), 2*getSize(), hpBarH, Color.BLACK, g);
+		viewport.drawRect(new Point2D.Double(getPos().x-getSize(), getPos().y-getSize()-hpBarH), 2*getSize()*hp/maxHp, hpBarH, Color.RED, g);
 	}
 }

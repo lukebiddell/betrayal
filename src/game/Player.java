@@ -32,6 +32,8 @@ public class Player extends Entity {
 
 	private int lastSet;
 	
+	public double exp;
+	
 	public Weapon[] weapon;
 
 	public SFX sword_swing, pew_pew;
@@ -57,11 +59,12 @@ public class Player extends Entity {
 		weapon[0] = new Gun(game, this);
 		weapon[1] = new Laser(game, this);
 		hitbox = new Circle(size, pos);
-		maxHp = 100;
+		maxHp = 500;
 		hp = maxHp;
 		maxImmunityTime = 0.7;
 		immunityTime = 0;
 		anim = new Animation(SpritesheetEnum.PLAYER, 0, 0, 0.1, Animation.AnimationMode.LOOP);
+		exp = 0;
 
 		sword_swing = new SFX(50, "/Music/SFX_Swoosh.mp3");
 		pew_pew = new SFX(50, "/Music/SFX_Hit_2.wav");
@@ -178,16 +181,6 @@ public class Player extends Entity {
 
 			if (immunityTime > 0)
 				immunityTime -= delta;
-			ListIterator<Monster> mit = game.monsters.listIterator(0);
-			while (mit.hasNext()) {
-				Monster m = mit.next();
-				if (hitbox.intersects(m.hitbox)) {
-					if (immunityTime <= 0) {
-						hp -= 10;
-						immunityTime = maxImmunityTime;
-					}
-				}
-			}
 		} else {
 			SFX scream = new SFX(50, "/Music/SFX_Man_Scream_1.wav");
 			scream.play();

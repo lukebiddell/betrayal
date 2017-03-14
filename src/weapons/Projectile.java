@@ -15,7 +15,7 @@ public class Projectile extends Entity{
 	public double knockbackAmp;
 	//the monsters hit will be immune to this projectile for this amount of time
 	public double immunityTime;
-	public CircleSector hitbox;
+	public game.Shape hitbox;
 	public Player player;
 	public boolean hasLifetime;
 	public double lifetime;
@@ -25,8 +25,9 @@ public class Projectile extends Entity{
 	public boolean hitsMonsters;
 	
 	public Color color;
+	public Animation anim;
 	
-	public Projectile(double damage, CircleSector hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, double rotationSpeed, boolean hitsMonsters, boolean hitsPlayers, int x){
+	public Projectile(double damage, game.Shape hitbox, Point2D.Double knockback, double immunityTime, Player player, boolean hasLifetime, double lifetime, boolean breaksOnContact, Color color, Animation anim, double rotationSpeed, boolean hitsMonsters, boolean hitsPlayers){
 		super();
 		this.damage = damage;
 		this.hitbox = hitbox;
@@ -38,16 +39,14 @@ public class Projectile extends Entity{
 		this.knockbackAmp = Math.sqrt(knockback.x*knockback.x+knockback.y*knockback.y);
 		this.knockbackDir = (knockbackAmp > 0)?(new Point2D.Double(knockback.x / knockbackAmp, knockback.y / knockbackAmp)):(new Point2D.Double(0,0));
 		this.rotationSpeed = rotationSpeed;
-		
-		System.out.println(x);
-	
 		this.color = color;
+		this.anim = anim;
 		this.hitsPlayers = hitsPlayers;
 		this.hitsMonsters = hitsMonsters;
 	}
 	
 	@Override
-	public Point2D.Double getPos(){return hitbox.center;}
+	public Point2D.Double getPos(){return hitbox.getCenter();}
 	
 	public double getSize(){return hitbox.getRadius();}
 	
@@ -70,7 +69,7 @@ public class Projectile extends Entity{
 		
 		super.update(delta, game);
 		
-		hitbox.setArcStart(hitbox.getArcStart() + rotationSpeed*delta);
+		if(hitbox instanceof CircleSector) ((CircleSector)hitbox).setArcStart(((CircleSector)hitbox).getArcStart() + rotationSpeed*delta);
 		
 		if(hitsMonsters){
 			ListIterator<Monster> mit = game.monsters.listIterator(0);
@@ -88,10 +87,16 @@ public class Projectile extends Entity{
 				if(hitbox.intersects(p.hitbox)){p.hit(this); if(breaksOnContact){isDisposable = true; break;}}
 			}
 		}
+		
+		if(anim != null)anim.update(delta);
 	}
 	
 	@Override
 	public void draw(Graphics2D g, Viewport viewport){
-		viewport.drawCircleSector(getPos(), getSize(), hitbox.getArcStart(), hitbox.getArcLen(), color, g);
+		if(anim == null) {
+			if(hitbox instanceof CircleSector) viewport.drawCircleSector(getPos(), getSize(), ((CircleSector)hitbox).getArcStart(), ((CircleSector)hitbox).getArcLen(), color, g);
+			else if(hitbox instanceof Circle) viewport.drawCircle(getPos(), getSize(), color, g);
+		}
+		else viewport.drawCircleSprite(getPos(), getSize(), anim, g);
 	}
 }
