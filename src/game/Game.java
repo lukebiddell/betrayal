@@ -144,8 +144,7 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
-		for(int i=0;i<ClientListener.inputSize;i++)
-			viewport.server.addToQueue(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
+		viewport.server.addToQueue(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
 	
 	
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);

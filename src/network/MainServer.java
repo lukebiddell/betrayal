@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -16,11 +17,11 @@ public class MainServer extends Thread {
 
 	private Game game;
 	private int port; // port to listen for new connections
-	private ConcurrentLinkedQueue<UDPServer> connections; // list of all
+	private ArrayList<UDPServer> connections; // list of all
 															// connections
 
 	public MainServer(int port, Game game) {
-		this.connections = new ConcurrentLinkedQueue<UDPServer>();
+		this.connections = new ArrayList<UDPServer>();
 		this.port = port;
 		this.game = game;
 
@@ -97,9 +98,10 @@ public class MainServer extends Thread {
 	}
 
 	public void broadcastMessage(int a, int b, int c, int d, int e, int f, int g,int h ,int i,int  j) {
-		for (UDPServer temp : connections) {
-			System.out.println("testing broadcastMessage");
-			temp.addToQueue(a, b, c, d, e, f, g, h, i, j);
-		}
+		for (int x = 0; i < connections.size(); x++) {
+			connections.get(x).addToQueue(a, b, c, d, e, f, g, h, i, j);
+			System.out.println("testing broadcastMessage");	
+		} 
+		
 	}
 	}
