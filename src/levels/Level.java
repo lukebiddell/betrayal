@@ -49,6 +49,7 @@ public class Level {
 		parseXML(xml);
 	}
 
+
 	private void parseXML(String fileName) {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -63,12 +64,13 @@ public class Level {
 
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Node node = nodeList.item(i);
-				if (debug) System.out.println("Exploring: " + node.getNodeName());
+				if (debug)
+					System.out.println("Exploring: " + node.getNodeName());
 
 				switch (node.getNodeName()) {
 				case "map":
 					NodeList mapChildren = node.getChildNodes();
-					
+
 					break;
 				case "monsters":
 					break;
