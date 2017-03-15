@@ -6,9 +6,8 @@ import levels.Level;
 import levels.TestLevel;
 import network.Listener;
 import network.ClientListener;
-
+import network.Server;
 import network.MainServer;
-import network.UDPServer;
 import weapons.*;
 
 import javax.imageio.ImageIO;
@@ -44,7 +43,7 @@ public class Game{
 	public LinkedList<Monster> monstersWaiting;
 	public LinkedList<Entity> entitiesWaiting;
 	
-	public UDPServer server;
+	public Server server;
 	public static int port = 4444;
 	
 	//private Viewport viewport;
@@ -144,12 +143,9 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
-		//for(int i=0;i<ClientListener.inputSize;i++)
-		//	viewport.server.addToQueue(-1);
-		if(viewport == null)System.out.println("viewport FUCKING NULL MATE");
-		else System.out.println("viewport isnt null mate");
-		if(viewport.server == null)System.out.println("the viewport server is null");
-		viewport.server.addToQueue(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
+		for(int i=0;i<ClientListener.inputSize;i++)
+			viewport.server.addToQueue(-1);
+	
 	
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);
 		

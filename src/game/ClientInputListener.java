@@ -20,16 +20,14 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 		case MouseEvent.BUTTON1:
-			sender.addToQueue(3, -1, -1);
-//			sender.addToQueue(3);
-//			sender.addToQueue(-1);
-//			sender.addToQueue(-1);
+			sender.addToQueue(3);
+			sender.addToQueue(-1);
+			sender.addToQueue(-1);
 			break;
 		case MouseEvent.BUTTON3:
-			sender.addToQueue(5, -1, -1);
-//			sender.addToQueue(5);
-//			sender.addToQueue(-1);
-//			sender.addToQueue(-1);
+			sender.addToQueue(5);
+			sender.addToQueue(-1);
+			sender.addToQueue(-1);
 			break;
 		}
 	}
@@ -37,25 +35,22 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	public void mouseReleased(MouseEvent e) {
 		switch (e.getButton()) {
 		case MouseEvent.BUTTON1:
-			sender.addToQueue(2, -1, -1);
-//			sender.addToQueue(2);
-//			sender.addToQueue(-1);
-//			sender.addToQueue(-1);
+			sender.addToQueue(2);
+			sender.addToQueue(-1);
+			sender.addToQueue(-1);
 			break;
 		case MouseEvent.BUTTON3:
-			sender.addToQueue(4, -1, -1);
-//			sender.addToQueue(4);
-//			sender.addToQueue(-1);
-//			sender.addToQueue(-1);
+			sender.addToQueue(4);
+			sender.addToQueue(-1);
+			sender.addToQueue(-1);
 			break;
 		}
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		sender.addToQueue(6, e.getX(), e.getY());
-//		sender.addToQueue(6);
-//		sender.addToQueue(e.getX());
-//		sender.addToQueue(e.getY());
+		sender.addToQueue(6);
+		sender.addToQueue(e.getX());
+		sender.addToQueue(e.getY());
 	}
 
 	public void mouseEntered(MouseEvent e) {
@@ -68,10 +63,9 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		sender.addToQueue(6, e.getX(), e.getY());
-//		sender.addToQueue(6);
-//		sender.addToQueue(e.getX());
-//		sender.addToQueue(e.getY());
+		sender.addToQueue(6);
+		sender.addToQueue(e.getX());
+		sender.addToQueue(e.getY());
 	}
 
 	public synchronized void keyPressed(KeyEvent e) {
@@ -80,10 +74,10 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 
-			sender.addToQueue(1, keyCode, -1);
-//			sender.addToQueue(1);
-//			sender.addToQueue(keyCode);
-//			sender.addToQueue(-1);
+
+			sender.addToQueue(1);
+			sender.addToQueue(keyCode);
+			sender.addToQueue(-1);
 
 		}
 
@@ -95,10 +89,10 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 
-			sender.addToQueue(0, keyCode, -1);
-//			sender.addToQueue(0);
-//			sender.addToQueue(keyCode);
-//			sender.addToQueue(-1);
+			
+			sender.addToQueue(0);
+			sender.addToQueue(keyCode);
+			sender.addToQueue(-1);
 
 		}
 
@@ -112,10 +106,10 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	
 	public void componentResized(ComponentEvent e) {
 	
-			sender.addToQueue(7, e.getComponent().getWidth(), e.getComponent().getHeight());
-//			sender.addToQueue(7);
-//			sender.addToQueue(e.getComponent().getWidth());
-//			sender.addToQueue(e.getComponent().getHeight());
+			
+			sender.addToQueue(7);
+			sender.addToQueue(e.getComponent().getWidth());
+			sender.addToQueue(e.getComponent().getHeight());
 	
 	}
 	
