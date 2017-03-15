@@ -2,10 +2,6 @@ package network;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -13,58 +9,32 @@ import java.util.concurrent.LinkedBlockingQueue;
 //sends to server
 
 public class Sender extends Thread {
+	private DataOutputStream out;
+	private BlockingQueue<Integer> queue;
 
-	private BlockingQueue<byte[]> queue;
-	private byte[] data;
-	private DatagramPacket packet;
-	private DatagramSocket socket;
-	private int remotePort;
-	private InetAddress inetAddress;
-
-	public Sender(int serverPort, InetAddress inetAddress, DatagramSocket socket) {
-		this.queue = new LinkedBlockingQueue<>(); // queue for sending
-		// packets;
-		this.data = new byte[12]; // byte array of length 12 with is the
-		// same as 3 ints
-		this.packet = new DatagramPacket(data, data.length); // datagram
-		// packet
-		// which
-		// sends
-		// whatever
-		// bytes are
-		// in data
-		this.socket = socket; // the socket data is being send on
-		this.remotePort = serverPort;
-		this.inetAddress = inetAddress;
+	public Sender(DataOutputStream out) {
+		this.out = out;
+		this.queue = new LinkedBlockingQueue<Integer>();
 	}
 
 	public void run() {
-		while (true) {
-			try {
-				this.data = queue.take();
-				packet = new DatagramPacket(data, data.length, inetAddress, remotePort);
-				socket.send(packet);
-			} catch (InterruptedException | IOException e) {
 
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void addToQueue(int a, int b, int c) {
-		byte[] temp = new byte[12];
-		ByteBuffer buf = ByteBuffer.wrap(temp);
-		buf.putInt(0, a);
-		buf.putInt(4, b);
-		buf.putInt(8, c);
-
-		buf.clear();
 		try {
-			queue.put(temp);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+			while (true) {
+				Integer tmp = queue.take();
+				//System.out.println("sending " + tmp.intValue() + " to server");
+				out.writeInt(tmp);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public void addToQueue(Integer input) {
+			queue.add(input);
+	
+	}
 }
