@@ -21,18 +21,26 @@ public class BGMModel extends Observable
 	}
 	
 	/**
-	 Get the year of Easter day
-	 @return year of Easter day
+	 Get the value of volume
+	 @return value of volume
 	 */
 	public int getValue()
 	{
 		return bgm.getValue();
 	}
 	
+	/**
+	 * Get the value of mute
+	 * @return value of mute
+	 */
 	public boolean getMuteStatus(){
 		return bgm.getMuteStatus();
 	}
 
+	/**
+	 * Change the mute value
+	 * @param mute The value of mute
+	 */
 	public void setMuteStatus(boolean mute){
 		bgm.setMuteStatus(mute);
 		bgm.update();
@@ -41,8 +49,8 @@ public class BGMModel extends Observable
 	}
 	
 	/**
-	 Change the year of Easter day
-	 @param year The new year of Easter day
+	 Change the value of volume 
+	 @param value The value of volume
 	 */
 	public void setValue(int value)
 	{

@@ -7,13 +7,18 @@ public class Knockback implements Behaviour{
 	double time;
 	double timer;
 	
+	/**
+	 * 
+	 * @param displacement
+	 * @param time
+	 */
 	public Knockback(Point2D.Double displacement, double time){
 		this.displacement = displacement;
 		this.time = time;
 		timer = 0;
 	}
 
-
+	
 	public boolean disposable(){
 		return timer >= time;
 	}

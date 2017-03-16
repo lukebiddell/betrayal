@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
+
 import javax.swing.JToggleButton;
 import java.awt.Color;
 import javax.swing.JSlider;
@@ -21,7 +24,7 @@ import javax.swing.JSlider;
 //TODO
 //Finish general menu layout
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	
 //Integrate into game
 //Add graphics to resources
 public class Audio extends JFrame
@@ -31,7 +34,7 @@ public class Audio extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application
 	 */
@@ -71,6 +74,7 @@ public class Audio extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		/*
 		 * Back button
 		 */
@@ -81,7 +85,7 @@ public class Audio extends JFrame
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+
 			}
 		});
 		contentPane.add(btnBack);
@@ -102,6 +106,12 @@ public class Audio extends JFrame
 		 */
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
 		tglbtnNewToggleButton.setBounds(148, 36, 121, 23);
+		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+
+			}
+		});
 		contentPane.add(tglbtnNewToggleButton);
 		
 		JSlider slider = new JSlider();

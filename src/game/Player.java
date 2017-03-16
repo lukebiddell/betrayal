@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 import game.Animation.AnimationMode;
 
-import audio.SFX;
+import audio.BGM;
 
 public class Player extends Entity {
 	public KeyboardInput keyboard;
@@ -36,7 +36,7 @@ public class Player extends Entity {
 	
 	public Weapon[] weapon;
 
-	public SFX sword_swing, pew_pew;
+	public BGM sword_swing, pew_pew, scream;
 	
 	private static final double sqrt2 = Math.sqrt(2);
 
@@ -66,8 +66,9 @@ public class Player extends Entity {
 		anim = new Animation(SpritesheetEnum.PLAYER, 0, 0, 0.1, Animation.AnimationMode.LOOP);
 		exp = 0;
 
-		sword_swing = new SFX(50, "/Music/SFX_Swoosh.mp3");
-		pew_pew = new SFX(50, "/Music/SFX_Hit_2.wav");
+		sword_swing = new BGM(50, "/Music/SFX_Swoosh.mp3");
+		pew_pew = new BGM(50, "/Music/SFX_Hit_2.wav");
+		scream = new BGM(50, "/Music/SFX_Man_Scream_1.wav");
 	}
 
 	@Override
@@ -167,12 +168,12 @@ public class Player extends Entity {
 			if (mouse.isPressed(0) && hp > 0) {
 				weapon[0].use(viewport.toGameCoord(mouse.getPos()));
 
-				sword_swing.play();
+				sword_swing.playOnce();
 			}
 			if (mouse.isPressed(1) && hp > 0) {
 				weapon[1].use(viewport.toGameCoord(mouse.getPos()));
 
-				pew_pew.play();
+				pew_pew.playOnce();
 			}
 
 			int l = weapon.length;
@@ -182,8 +183,8 @@ public class Player extends Entity {
 			if (immunityTime > 0)
 				immunityTime -= delta;
 		} else {
-			SFX scream = new SFX(50, "/Music/SFX_Man_Scream_1.wav");
-			scream.play();
+			
+			scream.playOnce();
 		}
 		
 	}

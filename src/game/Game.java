@@ -68,7 +68,7 @@ public class Game{
 	}
 	
 	//private levels.Level level = new levels.TestLevel(this);
-	//java is dumb
+	//java is dumb //lol
 	
 	public Game(KeyboardInput keyboard, MouseInput mouse){
 		isRunning = true;

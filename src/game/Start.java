@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Image;
@@ -20,7 +23,7 @@ import java.awt.event.ActionEvent;
 //TODO
 
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	//Farrah: added click sound
 //Integrate into game
 //Comment Start.java correctly
 //Add graphics to resources
@@ -31,7 +34,7 @@ public class Start extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application
 	 */
@@ -69,7 +72,7 @@ public class Start extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		
 		/*
 		 * Find Game button
@@ -81,7 +84,7 @@ public class Start extends JFrame
 		btnFindGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-				
+
 			}
 		});
 		contentPane.add(btnFindGame);
@@ -96,7 +99,7 @@ public class Start extends JFrame
 		btnControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-				
+
 			}
 		});
 		contentPane.add(btnControls);
@@ -111,7 +114,7 @@ public class Start extends JFrame
 		btnAudio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+
 			}
 		});
 		contentPane.add(btnAudio);

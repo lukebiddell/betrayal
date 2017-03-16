@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +21,7 @@ import java.awt.Color;
 
 //TODO
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	//Farrah: added click sound
 //Integrate into game
 //Add graphics to resources
 public class Control extends JFrame 
@@ -28,6 +31,7 @@ public class Control extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
 
 	/**
 	 * Launch the application
@@ -67,6 +71,7 @@ public class Control extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 		
 		/*
 		 * Back button
@@ -78,7 +83,7 @@ public class Control extends JFrame
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+
 			}
 		});
 		contentPane.add(btnBack);

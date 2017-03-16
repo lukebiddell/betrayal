@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
 import network.Client;
 
 /*
@@ -19,7 +21,7 @@ import network.Client;
 //TODO
 
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	//Farrah:added button click sound
 //Integrate into game
 //Comment Start.java correctly
 //Add graphics to resources
@@ -32,6 +34,14 @@ public class Start extends JPanel
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 	
+	public JButton btnFindGame;
+	public JButton btnControls;
+	public JButton btnAudio;
+	public JButton btnExit;
+	
+	private BGM click;
+	public String test = null;
+	
 	public Start(Mainframe m)
 	{
 		
@@ -42,26 +52,32 @@ public class Start extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		JButton btnFindGame = new JButton();
+		click = new BGM(10,"/Music/SFX_Click.wav");
+		
+		btnFindGame = new JButton();
 		btnFindGame.setBounds(10, 88, 414, 50);
 		ImageIcon btnFindGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
+				click.playOnce();
+				test="find";
 				String[] args = new String[] {"localhost", "4444"};
 				Client.main(args);
 			}
 		});
 		add(btnFindGame);
 		
-		JButton btnControls = new JButton();
+		btnControls = new JButton();
 		btnControls.setBounds(10, 201, 90, 50);
 		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{	
+				click.playOnce();
+				test="control";
 				m.setMenu(2);
 			}
 		});
@@ -70,13 +86,15 @@ public class Start extends JPanel
 		/*
 		 * Audio button
 		 */
-		JButton btnAudio = new JButton();
+		btnAudio = new JButton();
 		btnAudio.setBounds(171, 201, 90, 50);
 		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+				click.playOnce();
+				test="audio";
 				m.setMenu(3);
 			}
 		});
@@ -85,11 +103,19 @@ public class Start extends JPanel
 		/*
 		 * Exit button
 		 */
-		JButton btnExit = new JButton();
+		btnExit = new JButton();
 		btnExit.setBounds(334, 201, 90, 50);
 		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
-		btnExit.addActionListener(e -> System.exit(0));
+//		btnExit.addActionListener(e -> System.exit(0));
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				test = "exit";
+				System.exit(0);
+			}
+		});
 		add(btnExit);
 		
 		/*

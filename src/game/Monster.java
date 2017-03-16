@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
+import audio.BGM;
 
-import audio.SFX;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -30,6 +30,16 @@ public class Monster extends Projectile{
 	
 	private Random random;
 	
+	/**
+	 * 
+	 * @param game			Game object
+	 * @param contactDamage	The damage cause by monster
+	 * @param size			The size of monster
+	 * @param pos			The position of monster
+	 * @param hp			The health point of monster
+	 * @param expWorth		The amount of monster's experience worth 
+	 * @param anim			The animation of monster
+	 */
 	public Monster(Game game, double contactDamage, double size, Point2D.Double pos, double hp, double expWorth, Animation anim){
 		super(contactDamage, new Circle(size, pos), new Point2D.Double(0,0), 0.1, null, false, 0, false, null, anim, 0, false, true);
 		this.random = new Random();
@@ -55,6 +65,10 @@ public class Monster extends Projectile{
 		addBehaviour(new JumpAround(2.8, 0.4));	*/
 	}
 	
+	/**
+	 * 
+	 * @param p Weapon
+	 */
 	public void hit(Projectile p){
 		if(!immunities.containsKey(p)){
 			//decrease damage
@@ -76,8 +90,8 @@ public class Monster extends Projectile{
 	
 	public void update(double delta, Game game){
 		if(hp<=0){
-			SFX deathSound = new SFX(100, "/Music/SFX_Monster_3.wav");
-			deathSound.play();
+			BGM deathSound = new BGM(100, "/Music/SFX_Monster_3.wav");
+			deathSound.playOnce();
 			dead = true;
 			game.score++;
 			try{

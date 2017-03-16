@@ -11,6 +11,11 @@ public class Gravitate implements Behaviour{
 	private double accfactor;
 	private Point2D.Double towards;
 	
+	/**
+	 * 
+	 * @param towards	The position of player
+	 * @param accfactor	The acceleration value
+	 */
 	public Gravitate(Point2D.Double towards, double accfactor){
 		this.towards = towards;
 		this.accfactor = accfactor;

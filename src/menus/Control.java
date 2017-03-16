@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
 import menus.Mainframe;
 
 /*
@@ -17,13 +19,18 @@ import menus.Mainframe;
 
 //TODO
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	//Farrah:added button click sound
 //Integrate into game
 //Add graphics to resources
 public class Control extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
+	
+	public JButton btnBack;
+	public JButton btnExit;
+	public String test = null;
+	private BGM click;
 	
 	public Control(Mainframe m) 
 	{
@@ -35,16 +42,20 @@ public class Control extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
+		click = new BGM(10,"/Music/SFX_Click.wav");
+		
 		/*
 		 * Back button
 		 */
-		JButton btnBack = new JButton();
+		btnBack = new JButton();
 		btnBack.setBounds(10, 201, 90, 50);
 		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+				click.playOnce();
+				test = "back";
 				m.setMenu(1);
 			}
 		});
@@ -53,11 +64,19 @@ public class Control extends JPanel
 		/*
 		 * Exit button
 		 */		
-		JButton btnExit = new JButton();
+		btnExit = new JButton();
 		btnExit.setBounds(334, 201, 90, 50);
 		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
-		btnExit.addActionListener(e -> System.exit(0));
+//		btnExit.addActionListener(e -> System.exit(0));
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				test = "exit";
+				System.exit(0);
+			}
+		});
 		add(btnExit);
 		
 		/*

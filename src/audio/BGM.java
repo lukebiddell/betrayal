@@ -63,12 +63,6 @@ public class BGM
 		
 	}
 		
-	
-	public String toString()
-	{
-		return "Volume : " + this.value + "%";
-	}
-	
 	/**
 	 * 
 	 * @return	The audio volume 
@@ -88,16 +82,25 @@ public class BGM
 			
 	}
 	
+	/**
+	 * 
+	 * @return mute value
+	 */
 	public boolean getMuteStatus(){
 		return mute;
 	}
 	
+	/**
+	 * 
+	 * @param isMute value of mute when user click mute button
+	 */
 	public void setMuteStatus(boolean isMute){
 		this.mute = isMute;
 	}
 	
 	/**
 	 * updates the audio volume 
+	 * audio will turn off if mute==true
 	 */
 	public void update(){
 		double dB1 = (double)value / 100;
@@ -109,6 +112,7 @@ public class BGM
 	
 	/**
 	 * starts the audio and keep updating for any changes
+	 * audio will loop until stop() is called
 	 */
 	public void play() {
 		if(clip == null) return;
@@ -128,18 +132,44 @@ public class BGM
 	}
 	
 	/**
-	 * stop the audio / clip
+	 * plays the audio once
+	 */
+	public void playOnce(){
+		if(clip == null) return;
+		stop();
+		clip.setFramePosition(0);
+		update();
+		clip.start();
+		
+	}
+	
+	/**
+	 * stop the audio
 	 */
 	public void stop() {
 		if(clip.isRunning()) clip.stop();
 	}
 	
 	/**
-	 * close the audio / clip line
+	 * close the audio line
 	 */
 	public void close() {
 		stop();
 		clip.close();
 	}
 	
+	/**
+	 * 
+	 * @return audio play status
+	 */
+	public boolean isplay(){
+		if(clip.isRunning()){
+			return true;
+		}else return false;
+	}
+	
+		public String toString()
+	{
+		return "Volume : " + this.value + "%";
+	}
 }

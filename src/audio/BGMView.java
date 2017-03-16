@@ -9,7 +9,7 @@ import java.util.Observable;
  * @author Farrah Aina Mohd Zulkifli
  *
  */
-//Text view of date of Easter day.
+//Text view of date of BGM gui
 
 public class BGMView extends JLabel implements Observer
 {

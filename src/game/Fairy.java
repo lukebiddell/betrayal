@@ -10,6 +10,17 @@ import java.util.ListIterator;
 
 public class Fairy extends Projectile{
 	
+	/**
+	 * 
+	 * @param lifetime  The amount of time it spawns
+	 * @param size		The size of fairy
+	 * @param damage	The amount of damage cause to monster
+	 * @param hitrate	The hitrate of fairy
+	 * @param acceleration The acceleration of fairy
+	 * @param pos		The coordinate of spawn
+	 * @param player	The id of player
+	 * @param game		Game object
+	 */
 	public Fairy(double lifetime, double size, double damage, double hitrate, double acceleration, Point2D.Double pos, Player player, Game game){
 		super(damage, new Circle(size, pos), new Point2D.Double(0,0), hitrate, player, true, lifetime, false, Color.YELLOW, null, 0, true, false);
 		

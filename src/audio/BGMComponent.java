@@ -11,6 +11,13 @@ import javax.swing.JSlider;
 
 public class BGMComponent extends JPanel
 {
+	/**
+	 * 
+	 * @param bgm BGM object
+	 * @param min The minimum value of slider
+	 * @param max The maximum value of slider
+	 * @param initial The initial position of slider
+	 */
 	public BGMComponent(BGM bgm, int min, int max, int initial)
 	{
 		super();

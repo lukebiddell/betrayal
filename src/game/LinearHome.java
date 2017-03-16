@@ -6,6 +6,11 @@ public class LinearHome implements Behaviour{
 	public double speed;
 	public Point2D.Double towards;
 	
+	/**
+	 * 
+	 * @param speed		The speed of object
+	 * @param towards	The position of player
+	 */
 	public LinearHome(double speed, Point2D.Double towards){
 		this.speed = speed;
 		this.towards = towards;

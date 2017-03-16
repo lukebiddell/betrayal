@@ -8,11 +8,17 @@ import javax.swing.JPanel;
 
 public class BGMMuteButton extends JPanel{
 	
+	public JButton mute;
+	
+	/**
+	 * Alternatively set boolean value to muteStatus when button is clicked
+	 * @param model
+	 */
 	public BGMMuteButton(BGMModel model){
 		
 		super();
 		
-		JButton mute = new JButton("Mute/Unmute");
+		mute = new JButton("Mute/Unmute");
 		
 		mute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){

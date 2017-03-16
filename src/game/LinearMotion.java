@@ -5,6 +5,12 @@ public class LinearMotion implements Behaviour{
 
 	public Point2D.Double dir;
 	
+	/**
+	 * 
+	 * @param speed		The speed of object
+	 * @param towards	The position of player
+	 * @param pos		The position of mouse cursor
+	 */
 	public LinearMotion(double speed, Point2D.Double towards, Point2D.Double pos){
 		final double r = Math.sqrt((pos.x - towards.x)*(pos.x - towards.x) + (pos.y - towards.y)*(pos.y - towards.y));
 		dir = new Point2D.Double((towards.x-pos.x)*speed/r, (towards.y-pos.y)*speed/r);

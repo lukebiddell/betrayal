@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
+
+import audio.BGM;
 import menus.Mainframe;
 
 /*
@@ -20,7 +22,7 @@ import menus.Mainframe;
 //TODO
 //Finish general menu layout
 //Create and add graphics to new JButtons
-//Add events and sounds to button clicks
+//Add events and sounds to button clicks	//Farrah:added button click sound
 //Integrate into game
 //Add graphics to resources
 public class Audio extends JPanel
@@ -31,6 +33,13 @@ public class Audio extends JPanel
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 
+	public BGM click;
+	public JButton btnBack;
+	public JButton btnExit;
+	public JToggleButton tglbtnNewToggleButton;
+	
+	public String test = null; //for junit 
+	
 	public Audio(Mainframe m) 
 	{
 		super();
@@ -40,16 +49,20 @@ public class Audio extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
+		click = new BGM(10,"/Music/SFX_Click.wav");
+		
 		/*
 		 * Back button
 		 */
-		JButton btnBack = new JButton();
+		btnBack = new JButton();
 		btnBack.setBounds(10, 201, 90, 50);
 		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+				click.playOnce();
+				test="back";
 				m.setMenu(1);
 			}
 		});
@@ -58,19 +71,34 @@ public class Audio extends JPanel
 		/*
 		 * Exit button		
 		 */
-		JButton btnExit = new JButton();
+		btnExit = new JButton();
 		btnExit.setBounds(334, 201, 90, 50);
 		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
-		btnExit.addActionListener(e -> System.exit(0));
+//		btnExit.addActionListener(e -> System.exit(0));
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				test = "exit";
+				System.exit(0);
+			}
+		});
 		add(btnExit);
 		
 		
 		/*
 		 * To be completed
 		 */
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
+		tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
 		tglbtnNewToggleButton.setBounds(148, 36, 121, 23);
+		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				test = "mute";
+			}
+		});
 		add(tglbtnNewToggleButton);
 		
 		JSlider slider = new JSlider();

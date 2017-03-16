@@ -15,13 +15,20 @@ public class WeaponDrop extends Entity{
 	
 	public static final double size = 0.1;
 
+	/**
+	 * 
+	 * @param pos
+	 * @param weapon
+	 */
 	public WeaponDrop(Point2D.Double pos, Weapon weapon){
 		super();
 		this.weapon = weapon;
 		this.hitbox = new Circle(size, pos);
 	}
 	
-	
+	/**
+	 * Get the position of weapon dropped
+	 */
 	public Point2D.Double getPos(){
 		return hitbox.center;
 	}
@@ -30,10 +37,16 @@ public class WeaponDrop extends Entity{
 		return false;
 	}
 	
+	/**
+	 * Draw object on viewport
+	 */
 	public void draw(Graphics2D g, Viewport viewport){
 		viewport.drawCircle(hitbox.center, size, weapon.getDropColor(), g);
 	}
 	
+	/**
+	 * Change weapon
+	 */
 	public void playerInteracted(Player p, int event){
 		if(event == KeyEvent.VK_Q && p.hitbox.intersects(hitbox)){
 			weapon.player = p;
