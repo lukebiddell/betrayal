@@ -19,10 +19,8 @@ import network.Client;
 
 
 //TODO
-
-//Create and add graphics to new JButtons
-//Add events and sounds to button clicks	//Farrah:added button click sound
-//Integrate into game
+//Create and add graphics to new JButtons w/ Miruna
+//Add game music to 
 //Comment Start.java correctly
 //Add graphics to resources
 public class Start extends JPanel

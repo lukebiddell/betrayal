@@ -21,9 +21,7 @@ import menus.Mainframe;
 
 //TODO
 //Finish general menu layout
-//Create and add graphics to new JButtons
-//Add events and sounds to button clicks	//Farrah:added button click sound
-//Integrate into game
+//Create and add graphics to new JButtons w/ Miruna
 //Add graphics to resources
 public class Audio extends JPanel
 {

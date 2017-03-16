@@ -2,6 +2,12 @@ package menus;
 
 import javax.swing.JFrame;
 
+/*
+ * @author Jack Marshman
+ */
+
+//TODO
+//Comment correctly
 public class Mainframe extends JFrame
 {
 	/**
