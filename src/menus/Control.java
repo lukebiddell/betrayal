@@ -19,6 +19,7 @@ import menus.Mainframe;
 
 //TODO
 //Create and add graphics to new JButtons w/ Miruna
+//Update controls graphic to fix background graphic
 //Add graphics to resources
 public class Control extends JPanel
 {
@@ -82,7 +83,7 @@ public class Control extends JPanel
 		 */
 		JLabel titleLabel = new JLabel();
 		titleLabel.setBounds(108, 11, 213, 64);
-		ImageIcon titleIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
+		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		add(titleLabel);
 		
@@ -93,7 +94,7 @@ public class Control extends JPanel
 		int controlsHeight = 120;
 		JLabel controlsLabel = new JLabel();
 		controlsLabel.setBounds(44, 56, 363, 166);
-		ImageIcon controlsIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(controlsWidth, controlsHeight, Image.SCALE_DEFAULT));
+		ImageIcon controlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controls4.png").getImage().getScaledInstance(controlsWidth, controlsHeight, Image.SCALE_DEFAULT));
 		controlsLabel.setIcon(controlsIcon);
 		add(controlsLabel);	
 	}

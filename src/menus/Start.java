@@ -20,7 +20,6 @@ import network.Client;
 
 //TODO
 //Create and add graphics to new JButtons w/ Miruna
-//Add game music to 
 //Comment Start.java correctly
 //Add graphics to resources
 public class Start extends JPanel
@@ -69,7 +68,7 @@ public class Start extends JPanel
 		
 		btnControls = new JButton();
 		btnControls.setBounds(10, 201, 90, 50);
-		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
@@ -86,7 +85,7 @@ public class Start extends JPanel
 		 */
 		btnAudio = new JButton();
 		btnAudio.setBounds(171, 201, 90, 50);
-		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
@@ -123,7 +122,7 @@ public class Start extends JPanel
 		int logoIconHeight = 80;
 		JLabel logoLabel = new JLabel();
 		logoLabel.setBounds(96, 11, logoIconWidth, logoIconHeight);
-		ImageIcon logoIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(logoIconWidth, logoIconHeight, Image.SCALE_DEFAULT));
+		ImageIcon logoIcon = new ImageIcon(new ImageIcon("Resources/Images/betrayalLogo1.png").getImage().getScaledInstance(logoIconWidth, logoIconHeight, Image.SCALE_DEFAULT));
 		logoLabel.setIcon(logoIcon);
 		add(logoLabel);
 	}

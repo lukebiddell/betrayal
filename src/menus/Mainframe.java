@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 //TODO
 //Comment correctly
+//Add game music to Mainframe
 public class Mainframe extends JFrame
 {
 	/**
@@ -27,7 +28,10 @@ public class Mainframe extends JFrame
 	
 	/*
 	 * setMenu which treats each menu as a panel, and revalidates the
-	 * Menuframe when 
+	 * Menuframe when a button is pressed:
+	 * 1 = Start
+	 * 2 = Controls
+	 * 3 = Audio
 	 */
 	public void setMenu(int menuNum)
 	{

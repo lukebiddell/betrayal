@@ -112,7 +112,7 @@ public class Audio extends JPanel
 		 */
 		JLabel titleLabel = new JLabel();
 		titleLabel.setBounds(108, 11, 213, 64);
-		ImageIcon titleIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
+		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		add(titleLabel);
 	}
