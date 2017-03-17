@@ -40,12 +40,18 @@ public class Audio extends JPanel
 		super();
 		this.m = m;
 		this.bgm = bgm;
+		click = new BGM(10,"/Music/SFX_Click.wav");
 		
-		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		click = new BGM(10,"/Music/SFX_Click.wav");
+		/*
+		 * Background
+		 */
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/audio_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 		
 		/*
 		 * Back button

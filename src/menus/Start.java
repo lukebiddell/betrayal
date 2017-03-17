@@ -1,6 +1,7 @@
 package menus;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,9 +46,16 @@ public class Start extends JPanel
 		this.m = m;
 		click = new BGM(10,"/Music/SFX_Click.wav");
 		
-		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
+		
+		/*
+		 * Background
+		 */
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 		
 		/*
 		 * Find Game button
@@ -137,16 +145,7 @@ public class Start extends JPanel
 			}
 		});
 		add(btnExit);
+		revalidate();
 		
-		/*
-		 * Betrayal logo JLabel
-		 */
-		int logoIconWidth = 500;
-		int logoIconHeight = 160;
-		JLabel logoLabel = new JLabel();
-		logoLabel.setBounds(192, 11, logoIconWidth, logoIconHeight);
-		ImageIcon logoIcon = new ImageIcon(new ImageIcon("Resources/Images/betrayalLogo1.png").getImage().getScaledInstance(logoIconWidth, logoIconHeight, Image.SCALE_DEFAULT));
-		logoLabel.setIcon(logoIcon);
-		add(logoLabel);
 	}
 }

@@ -38,9 +38,13 @@ public class Control extends JPanel
 		this.m = m;
 		click = new BGM(10,"/Music/SFX_Click.wav");
 
-		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
+		
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/controls_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 		
 				
 		/*
