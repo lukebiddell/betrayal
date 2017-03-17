@@ -11,6 +11,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -21,12 +22,9 @@ import game.Spritesheet;
 import game.Viewport;
 import game.SpritesheetEnum;
 
-public abstract class Prop extends game.Entity {
+public abstract class Tile extends game.Entity {
 
-	private static final String imageFolder = "../Resources/Images/";
-	private String imageLocation; // e.g. "monster.png"
-
-	// private boolean hasHitbox;
+	private boolean collision;
 	// private double width; //internal width not number of pixels
 	// private double height;
 	// private boolean circleHitbox;
@@ -34,15 +32,19 @@ public abstract class Prop extends game.Entity {
 	// private Circle hitboxCircle;
 	// private Point2D.Double coordinates;
 
-	private BufferedImage image;
 	private Rectangle2D.Double dest;
 	private Spritesheet ss;
 	private Animation anim;
+	private ArrayList<Point2D> positions;
 
-	public Prop() {
-
+	public Tile() {
+		positions = new ArrayList<Point2D>();
 	}
 
+	public Tile(int col, int row) {
+		positions = new ArrayList<Point2D>();
+	}
+	
 	@Override
 	public Double getPos() {
 		// TODO Auto-generated method stub
@@ -73,14 +75,6 @@ public abstract class Prop extends game.Entity {
 		this.anim = anim;
 	}
 
-	protected static String getImagefolder() {
-		return imageFolder;
-	}
-
-	protected void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
 	public Spritesheet getSprite() {
 		return ss;
 	}
@@ -92,44 +86,7 @@ public abstract class Prop extends game.Entity {
 
 	@Override
 	public void draw(Graphics2D g, Viewport viewport) {
+		double height = viewport.game.roomH;
 		viewport.drawSprite(dest, anim, g);
 	}
-
-	public BufferedImage getImage() {
-		return image;
-	}
-
-	/**
-	 * @return the full address of imageLocation
-	 */
-	public String getImageLocationFull() {
-		return imageFolder + imageLocation;
-	}
-
-	/**
-	 * @param imageLocation
-	 *            the imageLocation to set
-	 */
-	public void setImageLocation(String imageLocation) {
-		this.imageLocation = imageLocation;
-	}
-
-	/**
-	 * @return the imageLocation
-	 */
-	public String getImageLocation() {
-		return imageLocation;
-	}
-
-	/*
-	 * /**
-	 * 
-	 * @param hitboxRight the hitboxRight to set
-	 *//*
-		 * public void setHitboxCoords(double hitboxTop, double hitboxBottom,
-		 * double hitboxLeft, double hitboxRight) { this.hitboxTop = hitboxTop;
-		 * this.hitboxBottom = hitboxBottom; this.hitboxLeft = hitboxLeft;
-		 * this.hitboxRight = hitboxRight; }
-		 */
-
 }
