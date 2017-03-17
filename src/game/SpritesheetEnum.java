@@ -12,8 +12,9 @@ public final class SpritesheetEnum {
 	public static final int WALL = 3;
 	public static final int DAWNOFTHEGODS = 4;
 	public static final int MONSTER2 = 5;
+	public static final int MONSTER3 = 6;
 	
-	public static final int ENUMSIZE = 6;
+	public static final int ENUMSIZE = 7;
 	
 	private static Spritesheet getSpritesheet(int val){
 		switch(val){
@@ -84,7 +85,19 @@ public final class SpritesheetEnum {
 					System.err.println(e.getStackTrace());
 					System.err.println(e.getMessage());
 					System.exit(1);
-				}	
+				}
+				
+			case MONSTER3:
+				try{
+				String path = "Resources/Images/monster2.png";
+				BufferedImage i = null;
+				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
+					return new Spritesheet(i,5,3, new int[]{5,4,4});
+				} catch (IOException e) {
+					System.err.println(e.getStackTrace());
+					System.err.println(e.getMessage());
+					System.exit(1);
+				}		
 		}
 		
 		
