@@ -16,7 +16,7 @@ import game.Viewport;
  * @author Luke
  *
  */
-public class Wall extends Tile {
+public class Wall extends Prop {
 
 	/**
 	 * 

@@ -20,7 +20,7 @@ import game.Viewport;
 
 public class Level {
 
-	private static final boolean dodebug = true;
+	private static final boolean debug = true;
 	private int difficulty;
 
 	private double roomW; // in game units
@@ -32,7 +32,7 @@ public class Level {
 	private int backgroundImageH;
 
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
-	private ArrayList<Tile> tileList = new ArrayList<Tile>();
+	private ArrayList<Prop> propList = new ArrayList<Prop>();
 
 	/*
 	 * public Level() { this.roomW = 20; this.roomH = 16; //
@@ -49,11 +49,6 @@ public class Level {
 		parseXML(xml);
 	}
 
-	private void debug(String s) {
-		if (dodebug)
-			System.out.println(s);
-
-	}
 
 	private void parseXML(String fileName) {
 		try {
@@ -65,76 +60,21 @@ public class Level {
 			Document doc = builder.parse(file);
 			doc.getDocumentElement().normalize();
 
-			NodeList tilesetNodes = doc.getElementsByTagName("tileset");
+			NodeList nodeList = doc.getChildNodes();
 
-			for (int i = 0; i < tilesetNodes.getLength(); i++) {
-				Node tilesetNode = tilesetNodes.item(i);
-				System.out.println("\nCurrent Element :" + tilesetNode.getNodeName());
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Node node = nodeList.item(i);
+				if (debug)
+					System.out.println("Exploring: " + node.getNodeName());
 
-				Element tilesetElement = (Element) tilesetNode;
-				boolean collision = tilesetElement.getAttribute("collision").trim().contentEquals("1");
-				System.out.println("Collision = " + collision);
-				NodeList tileNodes = tilesetElement.getElementsByTagName("tile");
-				;
+				switch (node.getNodeName()) {
+				case "map":
+					NodeList mapChildren = node.getChildNodes();
 
-				for (int j = 0; j < tileNodes.getLength(); j++) {
-					// System.out.println("\nCurrent Element :" +
-					// tilesetNode.getNodeName());
-					Node tileNode = tileNodes.item(j);
-					Element tileElement = (Element) tileNode;
-
-					debug(tileElement.getAttribute("name"));
-
-					int x = Integer.parseInt(tileElement.getAttribute("x").trim());
-					int y = Integer.parseInt(tileElement.getAttribute("y").trim());
-					char c = tileElement.getAttribute("char").charAt(0);
-
-					debug("x = " + String.valueOf(x));
-					debug("y = " + String.valueOf(y));
-					debug("c = " + String.valueOf(c));
-					debug("");
+					break;
+				case "monsters":
+					break;
 				}
-
-			}
-
-			NodeList mapNodes = doc.getElementsByTagName("map");
-
-			for (int i = 0; i < mapNodes.getLength(); i++) {
-				Node mapNode = mapNodes.item(i);
-				System.out.println("\nCurrent Element :" + mapNode.getNodeName());
-
-				Element mapElement = (Element) mapNode;
-				int layer = Integer.parseInt(mapElement.getAttribute("layer").trim());
-
-				System.out.println("Layer = " + layer);
-				String mapStr = mapElement.getTextContent();
-				debug(mapStr);
-				
-				
-				
-				String[] mapLines = mapStr.split("\\r?\\n");
-				for (int temp = 0; temp < mapLines.length; temp++){
-					System.out.println(mapLines[temp]);
-				}
-				
-				
-				/*
-				 * for (int j = 0; j < tileNodes.getLength(); j++) { //
-				 * System.out.println("\nCurrent Element :" + //
-				 * tilesetNode.getNodeName()); Node tileNode =
-				 * tileNodes.item(j); Element tileElement = (WElement) tileNode;
-				 * 
-				 * debug(tileElement.getAttribute("name"));
-				 * 
-				 * int x =
-				 * Integer.parseInt(tileElement.getAttribute("x").trim()); int y
-				 * = Integer.parseInt(tileElement.getAttribute("y").trim());
-				 * char c = tileElement.getAttribute("char").charAt(0);
-				 * 
-				 * debug("x = " + String.valueOf(x)); debug("y = " +
-				 * String.valueOf(y)); debug("c = " + String.valueOf(c));
-				 * debug(""); }
-				 */
 
 			}
 
@@ -154,13 +94,13 @@ public class Level {
 
 	}
 
-	protected void addTile(Tile t) {
-		tileList.add(t);
+	protected void addProp(Prop p) {
+		propList.add(p);
 	}
 
 	public void draw(Graphics2D g, Viewport vp) {
-		for (Tile t : tileList) {
-			t.draw(g, vp);
+		for (Prop p : propList) {
+			p.draw(g, vp);
 		}
 		return;
 	}
@@ -204,8 +144,8 @@ public class Level {
 	 * @return true if valid position
 	 */
 	public Boolean validPos(Circle c) {
-		for (Tile t : tileList) {
-			if (c.intersects(t.getDestination()))
+		for (Prop p : propList) {
+			if (c.intersects(p.getDestination()))
 				return false;
 		}
 

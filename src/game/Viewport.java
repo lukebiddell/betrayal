@@ -6,7 +6,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import network.Server;
-import levels.Tile;
+import levels.Prop;
 
 public class Viewport{
 	private Point2D.Double pos;
@@ -203,7 +203,7 @@ public class Viewport{
 	}
 	
 	
-/*	public void drawProp(Tile p, Graphics2D g){
+/*	public void drawProp(Prop p, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(p.getCoordinates().x, p.getCoordinates().y));
 		g.drawImage(p.getImage(), coord.x, coord.y, null);
 	}*/
