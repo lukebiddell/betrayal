@@ -30,30 +30,31 @@ public class Start extends JPanel
 	 */
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
-	
 	public JButton btnFindGame;
+	public JButton btnJoinGame;
 	public JButton btnControls;
 	public JButton btnAudio;
 	public JButton btnExit;
-	
 	private BGM click;
-	public String test = null;
+	public String test = null; //JUnit
 	
 	public Start(Mainframe m)
 	{
 		
 		super();
 		this.m = m;
+		click = new BGM(10,"/Music/SFX_Click.wav");
 		
 		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		click = new BGM(10,"/Music/SFX_Click.wav");
-		
+		/*
+		 * Find Game button
+		 */
 		btnFindGame = new JButton();
-		btnFindGame.setBounds(10, 88, 414, 50);
-		ImageIcon btnFindGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnFindGame.setBounds(42, 176, 360, 100);
+		ImageIcon btnFindGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
@@ -66,9 +67,27 @@ public class Start extends JPanel
 		});
 		add(btnFindGame);
 		
+		/*
+		 * Join Game button
+		 */
+		btnJoinGame = new JButton();
+		btnJoinGame.setBounds(486, 176, 360, 100);
+		ImageIcon btnJoinGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		btnFindGame.setIcon(btnJoinGameIcon);
+		btnJoinGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				
+			}
+		});
+		add(btnJoinGame);
+		
+		/*
+		 * Controls button
+		 */
 		btnControls = new JButton();
-		btnControls.setBounds(10, 201, 90, 50);
-		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnControls.setBounds(20, 450, 180, 100);
+		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
@@ -84,8 +103,8 @@ public class Start extends JPanel
 		 * Audio button
 		 */
 		btnAudio = new JButton();
-		btnAudio.setBounds(171, 201, 90, 50);
-		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnAudio.setBounds(351, 450, 180, 100);
+		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
@@ -101,8 +120,8 @@ public class Start extends JPanel
 		 * Exit button
 		 */
 		btnExit = new JButton();
-		btnExit.setBounds(334, 201, 90, 50);
-		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnExit.setBounds(694, 450, 180, 100);
+		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
 //		btnExit.addActionListener(e -> System.exit(0));
 		btnExit.addActionListener(new ActionListener() {
@@ -118,10 +137,10 @@ public class Start extends JPanel
 		/*
 		 * Betrayal logo JLabel
 		 */
-		int logoIconWidth = 250;
-		int logoIconHeight = 80;
+		int logoIconWidth = 500;
+		int logoIconHeight = 160;
 		JLabel logoLabel = new JLabel();
-		logoLabel.setBounds(96, 11, logoIconWidth, logoIconHeight);
+		logoLabel.setBounds(192, 11, logoIconWidth, logoIconHeight);
 		ImageIcon logoIcon = new ImageIcon(new ImageIcon("Resources/Images/betrayalLogo1.png").getImage().getScaledInstance(logoIconWidth, logoIconHeight, Image.SCALE_DEFAULT));
 		logoLabel.setIcon(logoIcon);
 		add(logoLabel);

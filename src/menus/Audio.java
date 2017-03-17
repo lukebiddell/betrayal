@@ -53,8 +53,8 @@ public class Audio extends JPanel
 		 * Back button
 		 */
 		btnBack = new JButton();
-		btnBack.setBounds(10, 201, 90, 50);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnBack.setBounds(20, 450, 180, 100);
+		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
@@ -70,8 +70,8 @@ public class Audio extends JPanel
 		 * Exit button		
 		 */
 		btnExit = new JButton();
-		btnExit.setBounds(334, 201, 90, 50);
-		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnExit.setBounds(694, 450, 180, 100);
+		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
 //		btnExit.addActionListener(e -> System.exit(0));
 		btnExit.addActionListener(new ActionListener() {
@@ -99,6 +99,9 @@ public class Audio extends JPanel
 		});
 		add(tglbtnNewToggleButton);
 		
+		/*
+		 * To be completed
+		 */
 		JSlider slider = new JSlider();
 		slider.setToolTipText("50");
 		slider.setPaintTicks(true);
@@ -111,8 +114,8 @@ public class Audio extends JPanel
 		 * Audio title graphic
 		 */
 		JLabel titleLabel = new JLabel();
-		titleLabel.setBounds(108, 11, 213, 64);
-		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(200,64, Image.SCALE_DEFAULT));
+		titleLabel.setBounds(246, 11, 426, 128);
+		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(426, 128, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		add(titleLabel);
 	}

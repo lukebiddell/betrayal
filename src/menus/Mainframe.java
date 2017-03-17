@@ -20,9 +20,10 @@ public class Mainframe extends JFrame
 	{
 		
 		super();
-		this.setBounds(100, 100, 450, 300);
+		this.setBounds(100, 100, 900, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(new Start(this));
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 	
