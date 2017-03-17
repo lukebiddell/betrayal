@@ -68,7 +68,9 @@ public final class SpritesheetEnum {
 				try{	String path = "Resources/Images/dawn_of_the_gods.png";
 				BufferedImage i = null;
 				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,1,1, new int[]{1});
+					int[] colsInRow = new int[32];
+					for (int row : colsInRow) {row = 32;}
+					return new Spritesheet(i,0,0, colsInRow);
 				} catch (IOException e) {
 					System.err.println(e.getStackTrace());
 					System.err.println(e.getMessage());
