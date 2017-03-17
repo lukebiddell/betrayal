@@ -104,8 +104,8 @@ public class Game{
 		arena = new Animation(SpritesheetEnum.ARENA,0,0,1,Animation.AnimationMode.LOOP);
 		
 		rand = new Random();
-		maxSpawnTime = 4.3;
-		minSpawnTime = 1.1;
+		maxSpawnTime = 5.0;
+		minSpawnTime = 1.0;
 	}
 	
 	public void update(double delta){
@@ -128,6 +128,7 @@ public class Game{
 			{
 				timeUntilSpawn = minSpawnTime + rand.nextDouble()*(maxSpawnTime - minSpawnTime);
 				spawnMonster(new DefaultMonster(this, new Point2D.Double(rand.nextDouble()*roomW, rand.nextDouble()*roomH)));
+				if(monsters.size()%4==0) {spawnMonster(new Monster2(this, new Point2D.Double(rand.nextDouble()*roomW, rand.nextDouble()*roomH)));}
 			}
 			else timeUntilSpawn -= delta;
 		}
