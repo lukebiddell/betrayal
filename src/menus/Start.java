@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.BGM;
+import game.Main;
 import network.Client;
 
 /*
@@ -70,8 +71,6 @@ public class Start extends JPanel
 			{
 				click.playOnce();
 				//test="find";
-				String[] args = new String[] {"localhost", "4444"};
-				Client.main(args);
 				m.setMenu(5);
 			}
 		});
@@ -89,8 +88,10 @@ public class Start extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
-				m.setMenu(5);
-			}
+				Main.main(null);
+				String[] args = new String[] {"localhost", "4444"};
+			
+						}
 		});
 		add(btnJoinGame);
 		

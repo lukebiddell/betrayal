@@ -28,6 +28,7 @@ public class Mainframe extends JFrame
 		this.setResizable(false);
 		this.setVisible(true);
 		this.bgm.play();
+		this.revalidate();
 	}
 	
 	/*
@@ -71,15 +72,19 @@ public class Mainframe extends JFrame
 			
 			case 4:
 			{
+				System.out.println("got case 4");
 				this.getContentPane().removeAll();
 				this.setContentPane(new Host(this));
+				this.revalidate();
 				break;
 			}
 			
 			case 5:
 			{
+				System.out.println("got case 5");
 				this.getContentPane().removeAll();
 				this.setContentPane(new Find(this));
+				this.revalidate();
 				break;
 			}
 		}

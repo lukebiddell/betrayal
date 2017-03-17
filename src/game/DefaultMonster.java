@@ -11,7 +11,7 @@ public class DefaultMonster extends Monster{
 			if(towards == null) throw new NoSuchElementException();
 				addBehaviour(new LinearHome(0.18, towards.getPos()));
 		}
-		catch(NoSuchElementException e){}
+		catch(NoSuchElementException e){System.err.println("please dont leave exceptions empty");}
 		
 		addBehaviour(new JumpAround(2.8, 0.4));
 	}

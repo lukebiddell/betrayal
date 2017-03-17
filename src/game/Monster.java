@@ -109,7 +109,7 @@ public class Monster extends Projectile{
 					game.spawnEntity(new WeaponDrop((Point2D.Double)(getPos().clone()),w));
 				}
 			}
-			catch(NullPointerException e){}
+			catch(NullPointerException e){System.err.println("please dont leave exceptions empty");}
 		}
 		
 		super.update(delta, game);

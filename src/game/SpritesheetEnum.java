@@ -1,9 +1,11 @@
 package game;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
 public final class SpritesheetEnum {
 
 	public static final int MONSTER = 0;
@@ -13,109 +15,140 @@ public final class SpritesheetEnum {
 	public static final int DAWNOFTHEGODS = 4;
 	public static final int MONSTER2 = 5;
 	public static final int MONSTER3 = 6;
-	
+
 	public static final int ENUMSIZE = 7;
-	
-	private static Spritesheet getSpritesheet(int val){
-		switch(val){
-			case MONSTER:
-				try{
+
+	private static Spritesheet getSpritesheet(int val) {
+		switch (val) {
+		case MONSTER:
+			try {
 				String path = "Resources/Images/monster_bird.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,4,4, new int[]{4,4,4,2});
+				try {
+					i = ImageIO.read(new File(path));
+					System.out.println("we have read an image");
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
+					i = ImageIO.read(new File("../" + path));
 				}
-				
-				
-			case PLAYER:
-				try{	String path = "Resources/Images/player.png";
+				return new Spritesheet(i, 4, 4, new int[] { 4, 4, 4, 2 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case PLAYER:
+			try {
+				String path = "Resources/Images/player.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,3,3, new int[]{3,3,1});
+				try {
+					i = ImageIO.read(new File(path));
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
+					i = ImageIO.read(new File("../" + path));
 				}
-				
-			case ARENA:
-				try{	String path = "Resources/Images/arena.png";
+				return new Spritesheet(i, 3, 3, new int[] { 3, 3, 1 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case ARENA:
+			try {
+				String path = "Resources/Images/arena.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,1,1, new int[]{1});
+				try {
+					i = ImageIO.read(new File(path));
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
+					i = ImageIO.read(new File("../" + path));
 				}
-				
-			case WALL:
-				try{	String path = "Resources/Images/wall.png";
+				return new Spritesheet(i, 1, 1, new int[] { 1 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case WALL:
+			try {
+				String path = "Resources/Images/wall.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,1,1, new int[]{1});
+				try {
+					i = ImageIO.read(new File(path));
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
-				}	
-				
-			case DAWNOFTHEGODS:
-				try{	String path = "Resources/Images/dawn_of_the_gods.png";
-				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,1,1, new int[]{1});
-				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
+					i = ImageIO.read(new File("../" + path));
 				}
-				
-			case MONSTER2:
-				try{
+				return new Spritesheet(i, 1, 1, new int[] { 1 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case DAWNOFTHEGODS:
+			try {
+				String path = "Resources/Images/dawn_of_the_gods.png";
+				BufferedImage i = null;
+				try {
+					i = ImageIO.read(new File(path));
+				} catch (IOException e) {
+					i = ImageIO.read(new File("../" + path));
+				}
+				return new Spritesheet(i, 1, 1, new int[] { 1 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case MONSTER2:
+			try {
 				String path = "Resources/Images/monster2.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,5,3, new int[]{5,4,4});
+				try {
+					i = ImageIO.read(new File(path));
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
+					i = ImageIO.read(new File("../" + path));
 				}
-				
-			case MONSTER3:
-				try{
+				return new Spritesheet(i, 5, 3, new int[] { 5, 4, 4 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
+
+		case MONSTER3:
+			try {
 				String path = "Resources/Images/monster2.png";
 				BufferedImage i = null;
-				try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
-					return new Spritesheet(i,5,3, new int[]{5,4,4});
+				try {
+					i = ImageIO.read(new File(path));
 				} catch (IOException e) {
-					System.err.println(e.getStackTrace());
-					System.err.println(e.getMessage());
-					System.exit(1);
-				}		
+					i = ImageIO.read(new File("../" + path));
+				}
+				return new Spritesheet(i, 5, 3, new int[] { 5, 4, 4 });
+			} catch (IOException e) {
+				System.err.println(e.getStackTrace());
+				System.err.println(e.getMessage());
+				System.exit(1);
+			}
 		}
-		
-		
+
 		return null;
-		
+
 	}
-	
-	
-	
+
 	private static Spritesheet[] sprites = new Spritesheet[ENUMSIZE];
-	
-	public static Spritesheet getSprite(int val){
-		try{
-			if(sprites[val]==null){
+
+	public static Spritesheet getSprite(int val) {
+		try {
+			if (sprites[val] == null) {
 				sprites[val] = getSpritesheet(val);
 			}
-		} catch(Exception e){}
-		
+		} catch (Exception e) {
+			System.err.println("please dont leave exceptions empty");
+		}
+
 		return sprites[val];
 	}
 }
