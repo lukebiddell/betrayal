@@ -36,6 +36,8 @@ public class Mainframe extends JFrame
 	 * 1 = Start
 	 * 2 = Controls
 	 * 3 = Audio
+	 * 4 = Host
+	 * 5 = Find
 	 */
 	public void setMenu(int menuNum)
 	{
@@ -65,7 +67,21 @@ public class Mainframe extends JFrame
 				this.setContentPane(new Audio(this, bgm));
 				this.revalidate();
 				break;
-			}		
+			}	
+			
+			case 4:
+			{
+				this.getContentPane().removeAll();
+				this.setContentPane(new Host(this));
+				break;
+			}
+			
+			case 5:
+			{
+				this.getContentPane().removeAll();
+				this.setContentPane(new Find(this));
+				break;
+			}
 		}
 	}
 	

@@ -69,15 +69,16 @@ public class Start extends JPanel
 			public void actionPerformed(ActionEvent arg0)
 			{
 				click.playOnce();
-				test="find";
+				//test="find";
 				String[] args = new String[] {"localhost", "4444"};
 				Client.main(args);
+				m.setMenu(5);
 			}
 		});
 		add(btnFindGame);
 		
 		/*
-		 * Join Game button
+		 * Host Game button
 		 */
 		btnJoinGame = new JButton();
 		btnJoinGame.setBounds(486, 176, 360, 100);
@@ -87,7 +88,8 @@ public class Start extends JPanel
 		btnJoinGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				click.playOnce();
+				m.setMenu(5);
 			}
 		});
 		add(btnJoinGame);
@@ -145,7 +147,7 @@ public class Start extends JPanel
 			}
 		});
 		add(btnExit);
-		revalidate();
+		
 		
 	}
 }
