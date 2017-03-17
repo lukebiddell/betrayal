@@ -1,6 +1,7 @@
 package menus;
 
 import javax.swing.JFrame;
+import audio.BGM;
 
 /*
  * @author Jack Marshman
@@ -8,13 +9,14 @@ import javax.swing.JFrame;
 
 //TODO
 //Comment correctly
-//Add game music to Mainframe
 public class Mainframe extends JFrame
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public BGM bgm = new BGM(50, "/Music/BGM_Asian_Gravedrum.wav");
+	//public BGM bgm = new BGM(50, "/Music/Mask Off.wav");
 	
 	public  Mainframe()
 	{
@@ -25,6 +27,7 @@ public class Mainframe extends JFrame
 		this.setContentPane(new Start(this));
 		this.setResizable(false);
 		this.setVisible(true);
+		this.bgm.play();
 	}
 	
 	/*
@@ -59,13 +62,12 @@ public class Mainframe extends JFrame
 			case 3:
 			{
 				this.getContentPane().removeAll();
-				this.setContentPane(new Audio(this));
+				this.setContentPane(new Audio(this, bgm));
 				this.revalidate();
 				break;
 			}		
 		}
 	}
-	
 	
 	public static void main(String[] args)
 	{

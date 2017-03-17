@@ -36,20 +36,21 @@ public class Control extends JPanel
 		
 		super();
 		this.m = m;
-		
+		click = new BGM(10,"/Music/SFX_Click.wav");
+
 		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		click = new BGM(10,"/Music/SFX_Click.wav");
-		
+				
 		/*
 		 * Back button
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
+		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
@@ -65,9 +66,9 @@ public class Control extends JPanel
 		 */		
 		btnExit = new JButton();
 		btnExit.setBounds(694, 450, 180, 100);
-		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("Resources/Images/exit_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnExit.setIcon(btnExitIcon);
-//		btnExit.addActionListener(e -> System.exit(0));
+		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
