@@ -22,7 +22,7 @@ import game.Spritesheet;
 import game.Viewport;
 import game.SpritesheetEnum;
 
-public abstract class Tile extends game.Entity {
+public class Tile extends game.Entity {
 
 	private boolean collision;
 	// private double width; //internal width not number of pixels

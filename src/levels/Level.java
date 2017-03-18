@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.sql.rowset.CachedRowSet;
@@ -32,8 +34,11 @@ public class Level {
 	private int backgroundImageH;
 
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
-	private ArrayList<Tile> tileList = new ArrayList<Tile>();
+	private ArrayList<Tile> backgroundTiles = new ArrayList<Tile>();
+	private ArrayList<Tile> foregroundTiles = new ArrayList<Tile>();
 
+	private TreeSet<ArrayList<Tile>> layers = new TreeSet<ArrayList<Tile>()>();
+	
 	/*
 	 * public Level() { this.roomW = 20; this.roomH = 16; //
 	 * this.propList.add(new CardboardBox()); // CardboardBox cb = new
@@ -75,7 +80,7 @@ public class Level {
 				boolean collision = tilesetElement.getAttribute("collision").trim().contentEquals("1");
 				System.out.println("Collision = " + collision);
 				NodeList tileNodes = tilesetElement.getElementsByTagName("tile");
-				;
+				
 
 				for (int j = 0; j < tileNodes.getLength(); j++) {
 					// System.out.println("\nCurrent Element :" +
@@ -113,8 +118,9 @@ public class Level {
 				
 				
 				String[] mapLines = mapStr.split("\\r?\\n");
+				
 				for (int temp = 0; temp < mapLines.length; temp++){
-					System.out.println(mapLines[temp]);
+					debug(mapLines[temp]);
 				}
 				
 				
