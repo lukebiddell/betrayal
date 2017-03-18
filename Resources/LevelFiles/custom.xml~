@@ -9,13 +9,13 @@
 		<tile char="b" x="31" y="25" name="a nice boulder"/>
 	</tileset>
 	<map layer="0">
-mmbmmmbmbmmmmbmb;
-bmmmmmmmmmmbmmmm;
-mmbmmmbmbmmmmbmb;
-bmmmmmmmmmmbmmmm;
-mmbmmmbmbmmmmbmb;
-bmmmmmmmmmmbmmmm;
-mmbmmmbmbmmmmbmb;
-bmmmmmmmmmmbmmmm;
+mmbmmmbmbmmmmbmb
+bmmmmmmmmmmbmmmm
+mmbmmmbmbmmmmbmb
+bmmmmmmmmmmbmmmm
+mmbmmmbmbmmmmbmb
+bmmmmmmmmmmbmmmm
+mmbmmmbmbmmmmbmb
+bmmmmmmmmmmbmmmm
 	</map>
 </level>

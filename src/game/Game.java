@@ -155,7 +155,7 @@ public class Game{
 		//Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
-		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
+		//viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
 		level.draw(g, viewport);
 		

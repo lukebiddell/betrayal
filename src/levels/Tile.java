@@ -35,18 +35,24 @@ public class Tile extends game.Entity {
 	private Rectangle2D.Double dest;
 	private Spritesheet ss;
 	private Animation anim;
-	private ArrayList<Point2D> positions;
+	private Point2D pos;
 
 	public Tile() {
-		positions = new ArrayList<Point2D>();
+		
 	}
 
-	public Tile(int col, int row) {
-		positions = new ArrayList<Point2D>();
+	public Tile(int x, int y, Animation anim) {
+		this.anim = anim;
+		pos = new Point2D.Double(x, y);
+		setDestination(x, y);
 	}
-	
+
+	public String toString() {
+		return pos.toString();
+	}
+
 	@Override
-	public Double getPos() {
+	public Point2D.Double getPos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -55,8 +61,8 @@ public class Tile extends game.Entity {
 		return dest;
 	}
 
-	protected void setDestination(Rectangle2D.Double dest) {
-		this.dest = dest;
+	private void setDestination(int x, int y) {
+		dest = new Rectangle2D.Double(x, y, 1, 1);
 	}
 
 	protected Spritesheet getSpritesheet() {
