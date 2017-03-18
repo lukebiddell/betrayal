@@ -49,7 +49,7 @@ public class Level {
 																// of
 																// monsters/players
 
-	private int spritesheetVal = SpritesheetEnum.DAWNOFTHEGODS;
+	private int spritesheetVal = SpritesheetEnum.TERRAIN;
 
 	/*
 	 * public Level() { this.roomW = 20; this.roomH = 16; //
@@ -151,15 +151,14 @@ public class Level {
 					if (mapLines[j].length() != roomW) {
 						throw new IllegalArgumentException("Widths are not consistent");
 					}
-					System.out.println("Hi");
 					debug(mapLines[j]);
 					System.out.println(mapLines[j].length());
 
 					for (int k = 1; k < roomW; k++) {
 						char currentChar = mapLines[j].charAt(k);
 
-						if (charAnimationMap.containsKey(currentChar)) {
-							throw new IllegalArgumentException("Character not declared as tile in tileset");
+						if (!charAnimationMap.containsKey(currentChar)) {
+							throw new IllegalArgumentException("Character not declared as tile in tileset: " + currentChar);
 						}
 
 						int x = k - 1;
@@ -228,10 +227,10 @@ public class Level {
 		// tileList.add(t);
 	}
 
-	public void draw(Graphics2D g, Viewport vp) {
-		/*
-		 * for (Tile t : tileList) { t.draw(g, vp); }
-		 */
+	public void drawBackTiles(Graphics2D g, Viewport vp) {
+		
+		for (Tile t : backTiles) { t.draw(g, vp); }
+		
 		return;
 	}
 

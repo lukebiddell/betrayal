@@ -44,7 +44,8 @@ public class Tile extends game.Entity {
 	public Tile(int x, int y, Animation anim) {
 		this.anim = anim;
 		pos = new Point2D.Double(x, y);
-		setDestination(x, y);
+		//setDestination((double)x, (double)y);
+		dest = new Rectangle2D.Double((double) x, (double) y, (double)1, (double)1);
 	}
 
 	public String toString() {
@@ -59,10 +60,6 @@ public class Tile extends game.Entity {
 
 	protected Rectangle2D.Double getDestination() {
 		return dest;
-	}
-
-	private void setDestination(int x, int y) {
-		dest = new Rectangle2D.Double(x, y, 1, 1);
 	}
 
 	protected Spritesheet getSpritesheet() {
@@ -92,7 +89,7 @@ public class Tile extends game.Entity {
 
 	@Override
 	public void draw(Graphics2D g, Viewport viewport) {
-		double height = viewport.game.roomH;
+		//double height = viewport.game.roomH;
 		viewport.drawSprite(dest, anim, g);
 	}
 }

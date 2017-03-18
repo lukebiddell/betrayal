@@ -27,7 +27,7 @@ public class Viewport{
 		w = 0;
 		h = 0;
 		
-		ppu = 180.0;
+		ppu = 32.0;
 		screenW = 0;
 		screenH = 0;
 		

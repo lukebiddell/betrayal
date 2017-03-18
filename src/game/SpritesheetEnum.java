@@ -3,6 +3,7 @@ package game;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -12,7 +13,7 @@ public final class SpritesheetEnum {
 	public static final int PLAYER = 1;
 	public static final int ARENA = 2;
 	public static final int WALL = 3;
-	public static final int DAWNOFTHEGODS = 4;
+	public static final int TERRAIN = 4;
 	public static final int MONSTER2 = 5;
 	public static final int MONSTER3 = 6;
 
@@ -85,16 +86,13 @@ public final class SpritesheetEnum {
 				System.exit(1);
 			}
 
-		case DAWNOFTHEGODS:
-			try {
-				String path = "Resources/Images/dawn_of_the_gods.png";
-				BufferedImage i = null;
-				try {
-					i = ImageIO.read(new File(path));
-				} catch (IOException e) {
-					i = ImageIO.read(new File("../" + path));
-				}
-				return new Spritesheet(i, 1, 1, new int[] { 1 });
+		case TERRAIN:
+			try{	String path = "Resources/Images/terrain.png";
+			BufferedImage i = null;
+			int[] colsInRow = new int[32];
+			Arrays.fill(colsInRow, 32);
+			try{i = ImageIO.read(new File(path));}catch(IOException e){i = ImageIO.read(new File("../"+path));}
+				return new Spritesheet(i,32,32, colsInRow);
 			} catch (IOException e) {
 				System.err.println(e.getStackTrace());
 				System.err.println(e.getMessage());

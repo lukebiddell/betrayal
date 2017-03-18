@@ -50,7 +50,7 @@ public class Game{
 	
 	Animation arena;
 	
-	private Level level = new TestLevel(roomW, roomH);
+	private Level level;
 	
 	public Random rand;
 	
@@ -82,10 +82,14 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entitiesWaiting = new LinkedList<Entity>();
 		
-		roomW = 5.0;
-		roomH = 3.0;
+		roomW = 16.0;
+		roomH = 8.0;
 		
-		
+		try {
+			level = new Level("Resources/LevelFiles/custom.xml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		/*Player p = new Player(this, keyboard, mouse);
 		p.viewport = new Viewport(this, p);
 		players.add(p);
@@ -114,6 +118,7 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entities.addAll(entitiesWaiting);
 		entitiesWaiting = new LinkedList<Entity>();
+		
 		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){Player p = pit.next(); p.update(delta, this); if(p.disposable()) pit.remove();}
@@ -155,9 +160,9 @@ public class Game{
 		//Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
-		//viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
+		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
-		level.draw(g, viewport);
+		level.drawBackTiles(g, viewport);
 		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext())pit.next().draw(g, viewport);
