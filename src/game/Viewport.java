@@ -27,7 +27,7 @@ public class Viewport{
 		w = 0;
 		h = 0;
 		
-		ppu = 32.0;
+		ppu = 128.0;
 		screenW = 0;
 		screenH = 0;
 		
@@ -176,8 +176,10 @@ public class Viewport{
 		server.addToQueue(a.ss);
 		server.addToQueue(coord.x);
 		server.addToQueue(coord.y);
-		server.addToQueue(coord.x + scaleToScreen(dest.width) - 1);
-		server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
+		//server.addToQueue(coord.x + scaleToScreen(dest.width) - 1);
+		//server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
+		server.addToQueue(coord.x + scaleToScreen(dest.width));
+		server.addToQueue(coord.y + scaleToScreen(dest.height));
 		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
 		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
 		server.addToQueue(0);
@@ -212,7 +214,7 @@ public class Viewport{
 	}*/
 	
 	public int scaleToScreen(double val) {
-		return (int) (val * ppu);
+		return (int) Math.round(val * ppu);
 	}
 
 	public double scaleToGame(int val) {
