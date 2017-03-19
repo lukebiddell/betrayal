@@ -6,7 +6,7 @@
 		<tile char="o" x="0" y="5" name="yellow mud with stain"/>
 	</tileset>
 	<tileset collision="1">
-		<tile char="b" x="31" y="25" name="a nice boulder"/>
+		<tile char="b" x="30" y="14" name="a nice boulder"/>
 	</tileset>
 	<map layer="0">
 mmomnmomommnmono
@@ -17,5 +17,25 @@ mmommmomommmmomo
 ommmmnmmmmmommnm
 mmommmomommmmomo
 ommnmmmnmmmommmm
+	</map>
+	<map layer="1">
+                
+  b       b     
+                
+      b         
+                
+                
+   b      b     
+                
+	</map>
+	<map layer="2">
+                
+                
+                
+                
+                
+                
+                
+                
 	</map>
 </level>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level title="Test Level">
 	<tileset collision="0">
-		<tile char="m" x="3" y="6" name="yellow mud"/>
-		<tile char="n" x="2" y="6" name="yellow mud with crack"/>
-		<tile char="o" x="1" y="6" name="yellow mud with stain"/>
+		<tile char="m" x="2" y="5" name="yellow mud"/>
+		<tile char="n" x="1" y="5" name="yellow mud with crack"/>
+		<tile char="o" x="0" y="5" name="yellow mud with stain"/>
 	</tileset>
 	<tileset collision="1">
-		<tile char="b" x="31" y="25" name="a nice boulder"/>
+		<tile char="b" x="30" y="14" name="a nice boulder"/>
 	</tileset>
 	<map layer="0">
 mmomnmomommnmono
@@ -17,5 +17,15 @@ mmommmomommmmomo
 ommmmnmmmmmommnm
 mmommmomommmmomo
 ommnmmmnmmmommmm
+	</map>
+	<map layer="1">
+                
+  b       b     
+                
+      b         
+                
+                
+   b      b     
+                
 	</map>
 </level>
