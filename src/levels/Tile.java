@@ -22,7 +22,7 @@ import game.Spritesheet;
 import game.Viewport;
 import game.SpritesheetEnum;
 
-public abstract class Tile extends game.Entity {
+public class Tile extends game.Entity {
 
 	private boolean collision;
 	// private double width; //internal width not number of pixels
@@ -35,28 +35,37 @@ public abstract class Tile extends game.Entity {
 	private Rectangle2D.Double dest;
 	private Spritesheet ss;
 	private Animation anim;
-	private ArrayList<Point2D> positions;
+	private Point2D pos;
 
 	public Tile() {
-		positions = new ArrayList<Point2D>();
+		
 	}
 
-	public Tile(int col, int row) {
-		positions = new ArrayList<Point2D>();
+	public Tile(int x, int y, Animation anim) {
+		this.anim = anim;
+		pos = new Point2D.Double(x, y);
+		//setDestination((double)x, (double)y);
+		double width = 1 + (double) 1 / (double) 32;
+		double height = 1 + (double) 1 / (double) 32;
+		//width += (double) 1 / (double) 32;
+		//width = (double)1 + (double) (1/32);
+		//System.out.println("Width: " + width);
+		dest = new Rectangle2D.Double((double) x, (double) y, width, height);
+		System.out.println("Dest rect = " + dest.toString());
 	}
-	
+
+	public String toString() {
+		return pos.toString();
+	}
+
 	@Override
-	public Double getPos() {
+	public Point2D.Double getPos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	protected Rectangle2D.Double getDestination() {
 		return dest;
-	}
-
-	protected void setDestination(Rectangle2D.Double dest) {
-		this.dest = dest;
 	}
 
 	protected Spritesheet getSpritesheet() {
@@ -86,7 +95,7 @@ public abstract class Tile extends game.Entity {
 
 	@Override
 	public void draw(Graphics2D g, Viewport viewport) {
-		double height = viewport.game.roomH;
+		//double height = viewport.game.roomH;
 		viewport.drawSprite(dest, anim, g);
 	}
 }

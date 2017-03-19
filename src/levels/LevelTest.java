@@ -1,5 +1,7 @@
 package levels;
 
+import java.util.Arrays;
+
 import javax.xml.parsers.ParserConfigurationException;
 
 public class LevelTest {
@@ -10,7 +12,6 @@ public class LevelTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

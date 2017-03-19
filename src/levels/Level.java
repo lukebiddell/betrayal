@@ -5,6 +5,9 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.sql.rowset.CachedRowSet;
@@ -15,7 +18,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.*;
 import java.io.*;
 
+import game.Animation;
 import game.Circle;
+import game.SpritesheetEnum;
 import game.Viewport;
 
 public class Level {
@@ -32,7 +37,19 @@ public class Level {
 	private int backgroundImageH;
 
 	private ArrayList<Wave> waveList = new ArrayList<Wave>();
-	private ArrayList<Tile> tileList = new ArrayList<Tile>();
+	private ArrayList<Tile> backTiles = new ArrayList<Tile>(); // tiles behind
+																// all others
+	private ArrayList<Tile> middleTiles = new ArrayList<Tile>(); // tiles on top
+																	// of
+																	// background
+																	// but
+																	// behind
+																	// monsters/players
+	private ArrayList<Tile> frontTiles = new ArrayList<Tile>(); // tiles on top
+																// of
+																// monsters/players
+
+	private int spritesheetVal = SpritesheetEnum.TERRAIN;
 
 	/*
 	 * public Level() { this.roomW = 20; this.roomH = 16; //
@@ -56,6 +73,9 @@ public class Level {
 	}
 
 	private void parseXML(String fileName) {
+		HashMap<Character, Animation> charAnimationMap = new HashMap<Character, Animation>();
+		ArrayList<Character> charCollisionList = new ArrayList<Character>();
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -75,7 +95,6 @@ public class Level {
 				boolean collision = tilesetElement.getAttribute("collision").trim().contentEquals("1");
 				System.out.println("Collision = " + collision);
 				NodeList tileNodes = tilesetElement.getElementsByTagName("tile");
-				;
 
 				for (int j = 0; j < tileNodes.getLength(); j++) {
 					// System.out.println("\nCurrent Element :" +
@@ -87,15 +106,23 @@ public class Level {
 
 					int x = Integer.parseInt(tileElement.getAttribute("x").trim());
 					int y = Integer.parseInt(tileElement.getAttribute("y").trim());
-					char c = tileElement.getAttribute("char").charAt(0);
+					Character c = tileElement.getAttribute("char").charAt(0);
 
 					debug("x = " + String.valueOf(x));
 					debug("y = " + String.valueOf(y));
 					debug("c = " + String.valueOf(c));
 					debug("");
+
+					charAnimationMap.put(c, new Animation(spritesheetVal, x, y, 0, Animation.AnimationMode.PLAYONCE));
+
+					if (collision) {
+						charCollisionList.add(c);
+					}
 				}
 
 			}
+
+			System.out.print(charAnimationMap.toString());
 
 			NodeList mapNodes = doc.getElementsByTagName("map");
 
@@ -109,15 +136,58 @@ public class Level {
 				System.out.println("Layer = " + layer);
 				String mapStr = mapElement.getTextContent();
 				debug(mapStr);
-				
-				
-				
+
 				String[] mapLines = mapStr.split("\\r?\\n");
-				for (int temp = 0; temp < mapLines.length; temp++){
-					System.out.println(mapLines[temp]);
+
+				// roomW = mapLines.
+				if (mapLines.length <= 2) {
+					throw new IllegalArgumentException("No map found");
 				}
-				
-				
+
+				roomH = mapLines.length - 2;
+				roomW = mapLines[1].length();
+
+				for (int j = 1; j <= roomH; j++) {
+					if (mapLines[j].length() != roomW) {
+						throw new IllegalArgumentException("Widths are not consistent");
+					}
+					debug(mapLines[j]);
+					System.out.println(mapLines[j].length());
+
+					for (int k = 0; k < roomW; k++) {
+						System.out.println(k);
+						char currentChar = mapLines[j].charAt(k);
+
+						if (!charAnimationMap.containsKey(currentChar)) {
+							throw new IllegalArgumentException("Character not declared as tile in tileset: " + currentChar);
+						}
+
+						int x = k;
+						int y = j - 1;
+						Animation anim = charAnimationMap.get(currentChar);
+						Tile tile = new Tile(x, y, anim);
+
+						switch (layer) {
+						case 0:
+							backTiles.add(tile);
+							break;
+						case 1:
+							middleTiles.add(tile);
+							break;
+						case 2:
+							frontTiles.add(tile);
+							break;
+						default:
+							throw new IllegalArgumentException("Map layer must be in the range 0-2");
+						}
+						
+						if(charCollisionList.contains(currentChar)){
+							//TODO Add position to a list of collisions
+						}
+
+					}
+				}
+
 				/*
 				 * for (int j = 0; j < tileNodes.getLength(); j++) { //
 				 * System.out.println("\nCurrent Element :" + //
@@ -155,13 +225,13 @@ public class Level {
 	}
 
 	protected void addTile(Tile t) {
-		tileList.add(t);
+		// tileList.add(t);
 	}
 
-	public void draw(Graphics2D g, Viewport vp) {
-		for (Tile t : tileList) {
-			t.draw(g, vp);
-		}
+	public void drawBackTiles(Graphics2D g, Viewport vp) {
+		
+		for (Tile t : backTiles) { t.draw(g, vp); }
+		
 		return;
 	}
 
@@ -204,10 +274,10 @@ public class Level {
 	 * @return true if valid position
 	 */
 	public Boolean validPos(Circle c) {
-		for (Tile t : tileList) {
-			if (c.intersects(t.getDestination()))
-				return false;
-		}
+		/*
+		 * for (Tile t : tileList) { if (c.intersects(t.getDestination()))
+		 * return false; }
+		 */
 
 		return true;
 
