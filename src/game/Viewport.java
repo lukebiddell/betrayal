@@ -163,6 +163,9 @@ public class Viewport{
 	
 	public void drawSprite(Rectangle2D.Double dest, Animation a, Graphics2D g){
 		Point coord = toScreenCoord(new Point2D.Double(dest.x, dest.y));
+		if(dest.x == 1.0 && dest.y == 1.0 && dest.width == 1.0 && dest.height == 1.0){
+			System.out.println(coord.toString());
+		}
 		
 		/*Spritesheet ss = SpritesheetEnum.getSprite(a.ss);
 		
@@ -208,6 +211,11 @@ public class Viewport{
 		g.drawImage(p.getImage(), coord.x, coord.y, null);
 	}*/
 	
-	public int scaleToScreen(double val){return (int)(val*ppu);}
-	public double scaleToGame(int val){return val/ppu;}
+	public int scaleToScreen(double val) {
+		return (int) (val * ppu);
+	}
+
+	public double scaleToGame(int val) {
+		return val / ppu;
+	}
 }

@@ -45,7 +45,13 @@ public class Tile extends game.Entity {
 		this.anim = anim;
 		pos = new Point2D.Double(x, y);
 		//setDestination((double)x, (double)y);
-		dest = new Rectangle2D.Double((double) x, (double) y, (double)1, (double)1);
+		double width = 1 + (double) 1 / (double) 32;
+		double height = 1 + (double) 1 / (double) 32;
+		//width += (double) 1 / (double) 32;
+		//width = (double)1 + (double) (1/32);
+		//System.out.println("Width: " + width);
+		dest = new Rectangle2D.Double((double) x, (double) y, width, height);
+		System.out.println("Dest rect = " + dest.toString());
 	}
 
 	public String toString() {

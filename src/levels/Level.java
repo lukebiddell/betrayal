@@ -154,14 +154,15 @@ public class Level {
 					debug(mapLines[j]);
 					System.out.println(mapLines[j].length());
 
-					for (int k = 1; k < roomW; k++) {
+					for (int k = 0; k < roomW; k++) {
+						System.out.println(k);
 						char currentChar = mapLines[j].charAt(k);
 
 						if (!charAnimationMap.containsKey(currentChar)) {
 							throw new IllegalArgumentException("Character not declared as tile in tileset: " + currentChar);
 						}
 
-						int x = k - 1;
+						int x = k;
 						int y = j - 1;
 						Animation anim = charAnimationMap.get(currentChar);
 						Tile tile = new Tile(x, y, anim);

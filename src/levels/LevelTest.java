@@ -12,15 +12,6 @@ public class LevelTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		int[] colsInRow = new int[32];
-		Arrays.fill(colsInRow, 32);
-		System.out.println(colsInRow);
-
-		for(int i = 0; i < colsInRow.length; i++){
-			System.out.println(colsInRow[i]);
-		}
-
 	}
 
 }
