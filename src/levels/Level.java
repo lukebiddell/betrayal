@@ -6,6 +6,8 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -48,7 +50,8 @@ public class Level {
 	private ArrayList<Tile> frontTiles = new ArrayList<Tile>(); // tiles on top
 																// of
 																// monsters/players
-
+	private Set<Point2D.Double> collisionCoords = new HashSet<Point2D.Double>();
+	
 	private int spritesheetVal = SpritesheetEnum.TERRAIN;
 
 	/*
@@ -183,6 +186,8 @@ public class Level {
 						
 						if(charCollisionList.contains(currentChar)){
 							//TODO Add position to a list of collisions
+							collisionCoords.add(new Point2D.Double(x, y));
+							
 						}
 
 					}
