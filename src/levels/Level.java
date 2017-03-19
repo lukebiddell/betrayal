@@ -27,6 +27,7 @@ import game.Viewport;
 
 public class Level {
 
+	private static final double width = 0.25;
 	private static final boolean dodebug = true;
 	private int difficulty;
 
@@ -50,8 +51,8 @@ public class Level {
 	private ArrayList<Tile> frontTiles = new ArrayList<Tile>(); // tiles on top
 																// of
 																// monsters/players
-	private Set<Point2D.Double> collisionCoords = new HashSet<Point2D.Double>();
-	
+	private Set<Tile> collisionTiles = new HashSet<Tile>();
+
 	private int spritesheetVal = SpritesheetEnum.TERRAIN;
 
 	/*
@@ -161,33 +162,37 @@ public class Level {
 						System.out.println(k);
 						char currentChar = mapLines[j].charAt(k);
 
-						if (!charAnimationMap.containsKey(currentChar)) {
-							throw new IllegalArgumentException("Character not declared as tile in tileset: " + currentChar);
-						}
+						if (currentChar != ' ') {
 
-						int x = k;
-						int y = j - 1;
-						Animation anim = charAnimationMap.get(currentChar);
-						Tile tile = new Tile(x, y, anim);
+							if (!charAnimationMap.containsKey(currentChar)) {
+								throw new IllegalArgumentException(
+										"Character not declared as tile in tileset: " + currentChar);
+							}
 
-						switch (layer) {
-						case 0:
-							backTiles.add(tile);
-							break;
-						case 1:
-							middleTiles.add(tile);
-							break;
-						case 2:
-							frontTiles.add(tile);
-							break;
-						default:
-							throw new IllegalArgumentException("Map layer must be in the range 0-2");
-						}
-						
-						if(charCollisionList.contains(currentChar)){
-							//TODO Add position to a list of collisions
-							collisionCoords.add(new Point2D.Double(x, y));
-							
+							int x = k;
+							int y = j - 1;
+							Animation anim = charAnimationMap.get(currentChar);
+							Tile tile = new Tile(x, y, anim);
+
+							switch (layer) {
+							case 0:
+								backTiles.add(tile);
+								break;
+							case 1:
+								middleTiles.add(tile);
+								break;
+							case 2:
+								frontTiles.add(tile);
+								break;
+							default:
+								throw new IllegalArgumentException("Map layer must be in the range 0-2");
+							}
+
+							if (charCollisionList.contains(currentChar)) {
+								// TODO Add position to a list of collisions
+								collisionTiles.add(tile);
+
+							}
 						}
 
 					}
@@ -234,9 +239,23 @@ public class Level {
 	}
 
 	public void drawBackTiles(Graphics2D g, Viewport vp) {
-		
-		for (Tile t : backTiles) { t.draw(g, vp); }
-		
+		for (Tile t : backTiles) {
+			t.draw(g, vp);
+		}
+		return;
+	}
+	
+	public void drawMiddleTiles(Graphics2D g, Viewport vp) {
+		for (Tile t : middleTiles) {
+			t.draw(g, vp);
+		}
+		return;
+	}
+	
+	public void drawFrontTiles(Graphics2D g, Viewport vp) {
+		for (Tile t : frontTiles) {
+			t.draw(g, vp);
+		}
 		return;
 	}
 
@@ -279,10 +298,20 @@ public class Level {
 	 * @return true if valid position
 	 */
 	public Boolean validPos(Circle c) {
+
 		/*
-		 * for (Tile t : tileList) { if (c.intersects(t.getDestination()))
-		 * return false; }
+		 * double x = c.getCenter().getX(); double y = c.getCenter().getY();
+		 * double radius = c.getRadius();
+		 * 
+		 * int left = (int) Math.round((x - radius)/width); double right = x +
+		 * radius; double top = y - radius; double bottom = y + radius;
 		 */
+
+		for (Tile t : collisionTiles) {
+			if (c.intersects(t.getDestination())) {
+				return false;
+			}
+		}
 
 		return true;
 

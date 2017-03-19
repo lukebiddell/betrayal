@@ -163,6 +163,9 @@ public class Game{
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
 		level.drawBackTiles(g, viewport);
+		level.drawMiddleTiles(g, viewport);
+		
+		
 		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext())pit.next().draw(g, viewport);
@@ -170,6 +173,8 @@ public class Game{
 		while(mit.hasNext())mit.next().draw(g, viewport);
 		ListIterator<Entity> eit = entities.listIterator(0);
 		while(eit.hasNext())eit.next().draw(g, viewport);
+		
+		level.drawFrontTiles(g, viewport);
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
