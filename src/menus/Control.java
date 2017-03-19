@@ -41,10 +41,7 @@ public class Control extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		JLabel background = new JLabel();
-		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/controls_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
-		add(background);
+		
 		
 				
 		/*
@@ -86,11 +83,13 @@ public class Control extends JPanel
 		/*
 		 * Controls title graphic
 		 */
+		/*
 		JLabel titleLabel = new JLabel();
 		titleLabel.setBounds(246, 11, 426, 128);
 		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(426, 128, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		add(titleLabel);
+		*/
 		
 		/*
 		 * Controls graphic
@@ -102,5 +101,10 @@ public class Control extends JPanel
 		ImageIcon controlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controls4.png").getImage().getScaledInstance(controlsWidth, controlsHeight, Image.SCALE_DEFAULT));
 		controlsLabel.setIcon(controlsIcon);
 		add(controlsLabel);	
+		
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/controls_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 	}
 }

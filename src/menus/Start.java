@@ -50,13 +50,7 @@ public class Start extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		/*
-		 * Background
-		 */
-		JLabel background = new JLabel();
-		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
-		add(background);
+		
 		
 		/*
 		 * Find Game button
@@ -148,6 +142,14 @@ public class Start extends JPanel
 			}
 		});
 		add(btnExit);
+		
+		/*
+		 * Background
+		 */
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 		
 		
 	}

@@ -45,13 +45,7 @@ public class Audio extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		/*
-		 * Background
-		 */
-		JLabel background = new JLabel();
-		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/audio_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
-		add(background);
+		
 		
 		/*
 		 * Back button
@@ -99,10 +93,19 @@ public class Audio extends JPanel
 		/*
 		 * Audio title graphic
 		 */
+		/*
 		JLabel titleLabel = new JLabel();
 		titleLabel.setBounds(246, 11, 426, 128);
 		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/audioLogo1.png").getImage().getScaledInstance(426, 128, Image.SCALE_DEFAULT));
 		titleLabel.setIcon(titleIcon);
 		add(titleLabel);
+		*/
+		/*
+		 * Background
+		 */
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/audio_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 	}
 }
