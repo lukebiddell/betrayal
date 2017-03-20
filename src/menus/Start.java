@@ -81,10 +81,8 @@ public class Start extends JPanel
 		btnJoinGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				click.playOnce();
-				Main.main(null);
-				String[] args = new String[] {"localhost", "4444"};
-			
+				click.playOnce();	
+				m.setMenu(5);
 						}
 		});
 		add(btnJoinGame);
