@@ -95,6 +95,9 @@ public class Tile extends game.Entity {
 	@Override
 	public void draw(Graphics2D g, Viewport viewport) {
 		//double height = viewport.game.roomH;
+		double dif = 2/viewport.ppu;
+		Rectangle2D.Double d = new Rectangle2D.Double(dest.x + dif, dest.y + dif, dest.width, dest.height);
+		viewport.drawSprite(d, anim, g);
 		viewport.drawSprite(dest, anim, g);
 	}
 }

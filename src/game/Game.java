@@ -82,11 +82,11 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entitiesWaiting = new LinkedList<Entity>();
 		
-		roomW = 4.0;
-		roomH = 2.0;
+		roomW = 25.0;
+		roomH = 25.0;
 		
 		try {
-			level = new Level("Resources/LevelFiles/custom.xml");
+			level = new Level("Resources/LevelFiles/lavamap.xml");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
