@@ -97,4 +97,8 @@ public class Tile extends game.Entity {
 		//double height = viewport.game.roomH;
 		viewport.drawSprite(dest, anim, g);
 	}
+	
+	public game.Entity clone(){
+		return this;
+	}
 }

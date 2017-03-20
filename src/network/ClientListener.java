@@ -19,8 +19,10 @@ public class ClientListener extends Thread {
 	private DataInputStream in;
 	public ClientWindow panel;
 	public Graphics2D g;
+	public int[] info;
 
 	public static final int inputSize = 10;
+	public static final int infoSize = 2;
 	int[] input;
 
 	public ClientListener(DataInputStream in, ClientWindow panel) {
@@ -28,11 +30,14 @@ public class ClientListener extends Thread {
 		this.panel = panel;
 		
 		input = new int[inputSize];
+		info = new int[infoSize];
 	}
 
 	public void run() {
 		try {
 			while (true) {
+				//while(g == null);
+				
 				for(int i=0;i<inputSize;i++) input[i] = in.readInt();
 				
 				if(input[0]>=0){
@@ -45,7 +50,15 @@ public class ClientListener extends Thread {
 						null);
 				}
 					
-				else if(input[0]==-1) panel.paintImmediately(panel.getBounds());
+				else if(input[0]==-1) {
+					
+					g.setColor(Color.WHITE);
+					g.setFont(new Font("TimesRoman", Font.PLAIN, 8));
+					g.drawString("Global killcount: " + info[0], 30, 30);
+					g.drawString("Experience: " + info[1], 30, 80);
+		
+					panel.paintImmediately(panel.getBounds());
+				}
 				else if(input[0]==-2){
 					g.setColor(new Color(input[1], input[2], input[3]));
 					g.fillOval(input[4], input[5], input[6], input[7]);
@@ -57,6 +70,9 @@ public class ClientListener extends Thread {
 				else if(input[0]==-4){
 					g.setColor(new Color(input[1], input[2], input[3]));
 					g.fillArc(input[4], input[5], input[6], input[7], input[8], input[9]);
+				}
+				else if(input[0]==-5){
+					info[input[1]]=input[2];
 				}
 			}
 		}

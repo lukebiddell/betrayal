@@ -44,6 +44,7 @@ public class Client {
 			window = new ClientWindow(sender);
 			listener = new ClientListener(new DataInputStream(server.getInputStream()), window);
 			window.cl = listener;
+			window.paintImmediately(window.getBounds());
 			sender.start();
 			listener.start();
 			return true;

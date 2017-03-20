@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 import game.Animation.AnimationMode;
 
-import audio.BGM;
+import audio.SFX;
 
 public class Player extends Entity {
 	public KeyboardInput keyboard;
@@ -35,8 +35,22 @@ public class Player extends Entity {
 	public double exp;
 	
 	public Weapon[] weapon;
+	
+	public void setExp(int exp){
+		this.exp = exp;
+		viewport.server.addToQueue(-5);
+		viewport.server.addToQueue(1);
+		viewport.server.addToQueue(exp);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+		viewport.server.addToQueue(0);
+	}
 
-	public BGM sword_swing, pew_pew, scream;
+	public SFX sword_swing, pew_pew;
 	
 	private static final double sqrt2 = Math.sqrt(2);
 
@@ -66,9 +80,8 @@ public class Player extends Entity {
 		anim = new Animation(SpritesheetEnum.PLAYER, 0, 0, 0.1, Animation.AnimationMode.LOOP);
 		exp = 0;
 
-		sword_swing = new BGM(50, "/Music/SFX_Swoosh.mp3");
-		pew_pew = new BGM(50, "/Music/SFX_Hit_2.wav");
-		scream = new BGM(50, "/Music/SFX_Man_Scream_1.wav");
+		sword_swing = new SFX(50, "/Music/SFX_Swoosh.mp3");
+		pew_pew = new SFX(50, "/Music/SFX_Hit_2.wav");
 	}
 
 	@Override
@@ -168,12 +181,12 @@ public class Player extends Entity {
 			if (mouse.isPressed(0) && hp > 0) {
 				weapon[0].use(viewport.toGameCoord(mouse.getPos()));
 
-				sword_swing.playOnce();
+				sword_swing.play();
 			}
 			if (mouse.isPressed(1) && hp > 0) {
 				weapon[1].use(viewport.toGameCoord(mouse.getPos()));
 
-				pew_pew.playOnce();
+				pew_pew.play();
 			}
 
 			int l = weapon.length;
@@ -183,8 +196,8 @@ public class Player extends Entity {
 			if (immunityTime > 0)
 				immunityTime -= delta;
 		} else {
-			
-			scream.playOnce();
+			SFX scream = new SFX(50, "/Music/SFX_Man_Scream_1.wav");
+			scream.play();
 		}
 		
 	}
@@ -192,6 +205,9 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics2D g, Viewport vp) {
 		vp.drawCircleSprite(pos, size, anim, g);
+		if(vp == viewport){
+			vp.drawCircle(new Point2D.Double(pos.x, pos.y-size), size/4, Color.WHITE, g);
+		}
 	}
 
 	@Override
@@ -212,6 +228,10 @@ public class Player extends Entity {
 				immunityTime = maxImmunityTime;
 			}
 		}
+	}
+	
+	public Entity clone(){
+		return this;
 	}
 	
 }

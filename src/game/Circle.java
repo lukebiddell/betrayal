@@ -102,4 +102,8 @@ public class Circle implements Shape {
 		}
 		return false;
 	}
+	
+	public Shape clone(){
+		return new Circle(radius, (Point2D.Double)(center.clone()));
+	}
 }
