@@ -52,8 +52,8 @@ public class Player extends Entity {
 		this.mouse = mouse;
 		// this.viewport = viewport;
 		this.keyboard = keyboard;
-		pos = new Point2D.Double(2.0, 2.0);
-		size = 0.14; // used to be 0.28
+		pos = new Point2D.Double(12.5, 12.5);
+		size = 0.125; // used to be 0.28
 		speed = 1.0;
 		weapon = new Weapon[2];
 		weapon[0] = new Gun(game, this);
