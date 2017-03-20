@@ -176,21 +176,24 @@ public class Level {
 
 							int x = k;
 							int y = j - 1;
-							int spriteX = (currentInt - 1) % 32;
-							int spriteY = (currentInt - 1) / 32;
+							int spriteX = (currentInt -1) % 32;
+							int spriteY = (currentInt -1) / 32;
 							// int x = k;
 							// int y = j - 1;
 							Animation anim;
 							if (intAnimationMap.containsKey(currentInt)) {
 								anim = intAnimationMap.get(currentInt);
 							} else {
-								anim = new Animation(spritesheetVal, spriteX, spriteY, 0, Animation.AnimationMode.PLAYONCE);
+								anim = new Animation(spritesheetVal, spriteX, spriteY, 1, Animation.AnimationMode.PLAYONCE);
 								intAnimationMap.put(currentInt, anim);
 							}
 							
 							Tile tile = new Tile(x, y, anim);
 
 							switch (layer) {
+							case -1:
+								collisionTiles.add(tile);
+								break;
 							case 0:
 								backTiles.add(tile);
 								break;

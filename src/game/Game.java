@@ -82,8 +82,8 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entitiesWaiting = new LinkedList<Entity>();
 		
-		roomW = 25.0;
-		roomH = 25.0;
+		roomW = 16.0;
+		roomH = 17.0;
 		
 		try {
 			level = new Level("Resources/LevelFiles/lavamap.xml");
