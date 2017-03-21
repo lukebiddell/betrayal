@@ -1,6 +1,7 @@
 package audio;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -21,8 +22,9 @@ public class BGM
 	private int value;
 	private Clip clip;
 	public FloatControl volume;
-	public BooleanControl muteControl;private String file = "../Resources";
-
+	public BooleanControl muteControl;
+	private String linuxfile = "../Resources";
+	private String windowsfile  = "../b4/Resources";
 	
 	/**
 	 * Read the audio file and opens the clip
@@ -55,11 +57,19 @@ public class BGM
 //			clip = AudioSystem.getClip();
 //			clip.open(dais);
 //			
-	
-			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(file + s));
 			clip = AudioSystem.getClip();
+				if(new File(windowsfile + s).exists()){
+					
+				AudioInputStream ais = AudioSystem.getAudioInputStream(new File(windowsfile + s));
+				clip.open(ais);
+				} else {
+				
+				AudioInputStream ais = AudioSystem.getAudioInputStream(new File(linuxfile + s));
+				clip.open(ais);
+				}
 			
-			clip.open(ais);
+			
+			
 			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);			
 			muteControl = (BooleanControl)clip.getControl(BooleanControl.Type.MUTE);
 			
