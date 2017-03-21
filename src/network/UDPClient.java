@@ -7,7 +7,46 @@ import java.net.Socket;
 
 import game.ClientWindow;
 
-public class Client {
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import game.ClientWindow;
+
+public class UDPClient {
+
+	private DatagramSocket socket;
+	private int port;
+	private InetAddress inetAddress;
+	private ClientSender sender;
+	private ClientListener listener;
+	private ClientWindow window;
+
+	public UDPClient(DatagramSocket socket, int serverPort, InetAddress serverAddress) {
+		this.socket = socket;
+		this.port = serverPort;
+		this.inetAddress = serverAddress;
+		this.sender = new ClientSender(serverPort, inetAddress, socket);
+		this.window = new ClientWindow(this.sender);
+		this.listener = new ClientListener(socket, window);
+		this.window.cl = listener;
+		sender.start();
+		listener.start();
+	}
+	
+	public void addToQueue(int[] ints) {
+		sender.addToQueue(ints);
+	}
+
+
+}
+
+/*public class UDPClient {
 
 	private Sender sender;
 	private ClientListener listener;
@@ -15,10 +54,7 @@ public class Client {
 
 	private ClientWindow window;
 
-	/**
-	 * 
-	 */
-	public Client() {
+	public UDPClient() {
 		this.sender = null;
 		this.listener = null;
 		this.server = null;
@@ -35,7 +71,7 @@ public class Client {
 	 *            The name of the server on the network
 	 * @return returns true if a connection is successfully established. False
 	 *         otherwise.
-	 */
+	 *//*
 	public boolean connect(String name, int port) {
 		try {
 
@@ -62,9 +98,10 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		Client c = new Client();
+		UDPClient c = new UDPClient();
 		c.connect(args[0], Integer.parseInt(args[1]));
 	}
 
 }
 
+*/

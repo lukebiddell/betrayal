@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import levels.Level;
 import levels.TestLevel;
-import network.Listener;
+import network.ServerListener;
 import network.ClientListener;
 import network.Server;
 import network.MainServer;
@@ -73,16 +73,29 @@ public class Game{
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){
 			Player pl = pit.next();
-			pl.viewport.server.addToQueue(-5);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(score);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
-			pl.viewport.server.addToQueue(0);
+			int[] ints = new int[]{
+					-5,
+					0,
+					score,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			};
+			pl.viewport.server.addToQueue(ints);
+//			pl.viewport.server.addToQueue(-5);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(score);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
 		}
 	}
 	
@@ -163,8 +176,10 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
+		int ints[] = new int[10];
 		for(int i=0;i<ClientListener.inputSize;i++)
-			viewport.server.addToQueue(-1);
+			ints[i] = -1;
+			viewport.server.addToQueue(ints);
 	
 	
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);
