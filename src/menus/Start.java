@@ -33,7 +33,7 @@ public class Start extends JPanel
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 	public JButton btnFindGame;
-	public JButton btnJoinGame;
+	public JButton btnHostGame;
 	public JButton btnControls;
 	public JButton btnAudio;
 	public JButton btnExit;
@@ -73,19 +73,19 @@ public class Start extends JPanel
 		/*
 		 * Host Game button
 		 */
-		btnJoinGame = new JButton();
-		btnJoinGame.setBounds(486, 176, 360, 100);
-		ImageIcon btnJoinGameIcon = new ImageIcon(new ImageIcon("Resources/Images/join_game_button.png").getImage().getScaledInstance(360, 100, Image.SCALE_DEFAULT));
-		btnJoinGame.setIcon(btnJoinGameIcon);
-		btnJoinGame.setBorderPainted(false);
-		btnJoinGame.addActionListener(new ActionListener() {
+		btnHostGame = new JButton("Host Game");
+		btnHostGame.setBounds(486, 176, 360, 100);
+		ImageIcon btnHostGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(360, 100, Image.SCALE_DEFAULT));
+		btnHostGame.setIcon(btnHostGameIcon);
+		btnHostGame.setBorderPainted(false);
+		btnHostGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();	
-				m.setMenu(5);
-						}
+				m.setMenu(4);
+			}
 		});
-		add(btnJoinGame);
+		add(btnHostGame);
 		
 		/*
 		 * Controls button

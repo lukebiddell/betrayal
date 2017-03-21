@@ -11,9 +11,6 @@ import audio.BGM;
 //Comment correctly
 public class Mainframe extends JFrame
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public BGM bgm = new BGM(50, "/Music/BGM_Asian_Gravedrum.wav");
 	//public BGM bgm = new BGM(50, "/Music/Mask Off.wav");
@@ -27,7 +24,7 @@ public class Mainframe extends JFrame
 		this.setContentPane(new Start(this));
 		this.setResizable(false);
 		this.setVisible(true);
-		this.bgm.play();
+		//this.bgm.play();
 		this.revalidate();
 	}
 	
@@ -39,6 +36,10 @@ public class Mainframe extends JFrame
 	 * 3 = Audio
 	 * 4 = Host
 	 * 5 = Find
+	 * 6 = Pause
+	 */
+	/*
+	 * Not sure about the System.out.println's so I've just commented them out for now - JM
 	 */
 	public void setMenu(int menuNum)
 	{
@@ -51,7 +52,6 @@ public class Mainframe extends JFrame
 				this.revalidate();
 				break;
 			}
-			
 				
 			case 2:
 			{
@@ -61,7 +61,6 @@ public class Mainframe extends JFrame
 				break;
 			}
 				
-			
 			case 3:
 			{
 				this.getContentPane().removeAll();
@@ -72,7 +71,7 @@ public class Mainframe extends JFrame
 			
 			case 4:
 			{
-				System.out.println("got case 4");
+				//System.out.println("got case 4");
 				this.getContentPane().removeAll();
 				this.setContentPane(new Host(this));
 				this.revalidate();
@@ -81,9 +80,17 @@ public class Mainframe extends JFrame
 			
 			case 5:
 			{
-				System.out.println("got case 5");
+				//System.out.println("got case 5");
 				this.getContentPane().removeAll();
 				this.setContentPane(new Find(this));
+				this.revalidate();
+				break;
+			}
+			
+			case 6:
+			{
+				this.getContentPane().removeAll();
+				this.setContentPane(new Pause(this));
 				this.revalidate();
 				break;
 			}

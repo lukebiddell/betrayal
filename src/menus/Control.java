@@ -41,8 +41,6 @@ public class Control extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		
-		
 				
 		/*
 		 * Back button
@@ -81,17 +79,6 @@ public class Control extends JPanel
 		add(btnExit);
 		
 		/*
-		 * Controls title graphic
-		 */
-		/*
-		JLabel titleLabel = new JLabel();
-		titleLabel.setBounds(246, 11, 426, 128);
-		ImageIcon titleIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(426, 128, Image.SCALE_DEFAULT));
-		titleLabel.setIcon(titleIcon);
-		add(titleLabel);
-		*/
-		
-		/*
 		 * Controls graphic
 		 */
 		int controlsWidth = 700;
@@ -102,6 +89,9 @@ public class Control extends JPanel
 		controlsLabel.setIcon(controlsIcon);
 		add(controlsLabel);	
 		
+		/*
+		 * Background JLabel
+		 */
 		JLabel background = new JLabel();
 		background.setBounds(0, 0, 900, 600);
 		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/controls_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));

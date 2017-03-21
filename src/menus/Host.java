@@ -5,24 +5,26 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import audio.BGM;
 
+/*
+ * @author Jack Marshman
+ */
 public class Host extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 	private BGM click;
-	public JButton btnBack;
 	public JButton btnStartGame;
+	public JButton btnBack;
 	public JLabel lblLocalIP;
 	public JLabel lblPlayers;
+	public JLabel background;
 
 	public Host(Mainframe m)
 	{
@@ -34,55 +36,67 @@ public class Host extends JPanel
 		setLayout(null);
 		
 		/*
+		 * StartGame button
+		 */
+		btnStartGame = new JButton("Start Game");
+		btnStartGame.setBounds(694, 450, 180, 100);
+		ImageIcon btnStartGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		btnStartGame.setIcon(btnStartGameIcon);
+		btnStartGame.setBorderPainted(false);
+		btnStartGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				//TO BE IMPLEMENTED.
+			}
+		});
+		add(btnStartGame);
+		
+		/*
 		 * Back button
 		 */
 		btnBack = new JButton();
-		btnBack.setText("Back");
-		btnBack.setBounds(10, 200, 90, 50);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnBack.setBounds(20, 450, 180, 100);
+		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
 				click.playOnce();
 				//test = "back";
 				m.setMenu(1);
-		
 			}
 		});
 		add(btnBack);
 		
 		/*
-		 * StartGame button
+		 * JLabel which shows the host's IP address for connecting
 		 */
-		JButton btnStartGame = new JButton();
-		btnStartGame.setText("Start Game");
-		btnStartGame.setBorderPainted(false);
-		btnStartGame.setBounds(334, 200, 90, 50);
-		btnStartGame.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
-				click.playOnce();
-				//m.setMenu(4);
-			}
-		});
-		add(btnStartGame);
-		
-		JLabel lblLocalIP = new JLabel("Local IP:[###.###.#.#]");
+		lblLocalIP = new JLabel("Local IP:[###.###.#.#]");
 		lblLocalIP.setForeground(Color.WHITE);
 		lblLocalIP.setBackground(Color.BLACK);
 		lblLocalIP.setFont(new Font("Calibri", Font.BOLD, 20));
 		lblLocalIP.setBounds(124, 68, 183, 39);
 		add(lblLocalIP);
 		
+		/*
+		 * JLabel which shows the current connected players
+		 */
 		lblPlayers = new JLabel("Players:[             ]");
-		setForeground(Color.WHITE);
-		setFont(new Font("Calibri", Font.BOLD, 20));
-		setBackground(Color.BLACK);
-		setBounds(124, 94, 183, 112);
+		lblPlayers.setForeground(Color.WHITE);
+		lblPlayers.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblPlayers.setBackground(Color.BLACK);
+		lblPlayers.setBounds(124, 94, 183, 112);
 		add(lblPlayers);
+		
+		/*
+		 * Background JLabel
+		 */
+		background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		add(background);
 	}
 
 }
