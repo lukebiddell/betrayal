@@ -21,7 +21,7 @@ public class BGM
 	private int value;
 	private Clip clip;
 	public FloatControl volume;
-	public BooleanControl muteControl;private String file = "../b4/Resources";
+	public BooleanControl muteControl;private String file = "../Resources";
 
 	
 	/**
