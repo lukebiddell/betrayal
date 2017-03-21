@@ -3,6 +3,7 @@ package menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -42,7 +43,7 @@ public class Find extends JPanel
 		 */
 		btnJoinGame = new JButton();
 		btnJoinGame.setBounds(694, 450, 180, 100);
-		ImageIcon btnJoinGameIcon = new ImageIcon(new ImageIcon("Resources/Images/join_game_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnJoinGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/join_game_button.png", 180, 100);
 		btnJoinGame.setIcon(btnJoinGameIcon);
 		btnJoinGame.setBorderPainted(false);
 		btnJoinGame.addActionListener(new ActionListener() {
@@ -67,7 +68,7 @@ public class Find extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -99,7 +100,8 @@ public class Find extends JPanel
 		 */
 		JLabel background = new JLabel();
 		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		ImageIcon backgroundIcon = MenuButtonHandler.loadImageIcon("Resources/Images/betrayal_background.png", 900, 600);
+		background.setIcon(backgroundIcon);
 		add(background);
 	}
 

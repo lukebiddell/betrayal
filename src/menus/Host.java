@@ -40,7 +40,7 @@ public class Host extends JPanel
 		 */
 		btnStartGame = new JButton("Start Game");
 		btnStartGame.setBounds(694, 450, 180, 100);
-		ImageIcon btnStartGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnStartGameIcon = MenuButtonHandler.loadImageIcon("", 180, 100);
 		btnStartGame.setIcon(btnStartGameIcon);
 		btnStartGame.setBorderPainted(false);
 		btnStartGame.addActionListener(new ActionListener() {
@@ -57,7 +57,7 @@ public class Host extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
