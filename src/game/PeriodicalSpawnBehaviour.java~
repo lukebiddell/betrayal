@@ -49,13 +49,7 @@ public class PeriodicalSpawnBehaviour implements Behaviour{
 				le = llit.next();
 				if(prob<0){
 					lit = le.listIterator();
-					while(lit.hasNext()){
-						Entity ent = lit.next().clone();
-						Point2D.Double pp = ent.getPos();
-						pp.x = pos.x;
-						pp.y = pos.y;
-						game.spawnEntity(ent); System.out.println("Ooga-Booga-Booga");
-					}
+					while(lit.hasNext()){Entity ent = lit.next().clone(); Point2D.Double pp = ent.getPos(); pp.x = pos.x; pp.y = pos.y; game.spawnEntity(ent); System.out.println("Ooga-Booga-Booga");}
 					break;
 				}
 			}

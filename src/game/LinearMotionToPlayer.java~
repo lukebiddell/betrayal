@@ -27,8 +27,4 @@ public class LinearMotionToPlayer extends LinearMotion{
 		pos.x += dir.x*delta;
 		pos.y += dir.y*delta;
 	}
-	
-	public Behaviour clone(){
-		return new LinearMotionToPlayer(speed, new Point2D.Double(), new Point2D.Double());
-	}
 }
