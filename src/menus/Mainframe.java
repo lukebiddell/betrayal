@@ -1,6 +1,10 @@
 package menus;
 
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import audio.BGM;
 
 /*
@@ -14,15 +18,36 @@ public class Mainframe extends JFrame
 	private static final long serialVersionUID = 1L;
 	public BGM bgm = new BGM(50, "/Music/BGM_Asian_Gravedrum.wav");
 	//public BGM bgm = new BGM(50, "/Music/Mask Off.wav");
-	
+	private JPanel cardPanel;
+	private CardLayout cardLayout = new CardLayout();
+	private Start start;
+	private Control controls;
+	private Audio audio;
+	private Host host;
+	private Find find;
+	private Pause pause;
 	public  Mainframe()
 	{
 		
 		super();
+		this.start = new Start(this);
+		this.controls = new Control(this);
+		this.audio = new Audio(this, bgm);
+		this.host = new Host(this);
+		this.find = new Find(this);
+		this.pause = new Pause(this);
 		this.setBounds(100, 100, 900, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setContentPane(new Start(this));
+		
 		this.setResizable(false);
+		this.cardPanel = new JPanel(cardLayout);
+		cardPanel.add(start, "1");
+		cardPanel.add(controls, "2");
+		cardPanel.add(audio, "3");
+		cardPanel.add(host, "4");
+		cardPanel.add(find, "5");
+		cardPanel.add(pause, "6");
+		this.setContentPane(cardPanel);
 		this.setVisible(true);
 		//this.bgm.play();
 		this.revalidate();
@@ -47,24 +72,21 @@ public class Mainframe extends JFrame
 		{
 			case 1:
 			{
-				this.getContentPane().removeAll();
-				this.setContentPane(new Start(this));
+				cardLayout.show(cardPanel, "1");
 				this.revalidate();
 				break;
 			}
 				
 			case 2:
 			{
-				this.getContentPane().removeAll();
-				this.setContentPane(new Control(this));
+				cardLayout.show(cardPanel, "2");
 				this.revalidate();
 				break;
 			}
 				
 			case 3:
 			{
-				this.getContentPane().removeAll();
-				this.setContentPane(new Audio(this, bgm));
+				cardLayout.show(cardPanel, "3");
 				this.revalidate();
 				break;
 			}	
@@ -72,8 +94,7 @@ public class Mainframe extends JFrame
 			case 4:
 			{
 				//System.out.println("got case 4");
-				this.getContentPane().removeAll();
-				this.setContentPane(new Host(this));
+				cardLayout.show(cardPanel, "4");
 				this.revalidate();
 				break;
 			}
@@ -81,16 +102,15 @@ public class Mainframe extends JFrame
 			case 5:
 			{
 				//System.out.println("got case 5");
-				this.getContentPane().removeAll();
-				this.setContentPane(new Find(this));
+				cardLayout.show(cardPanel, "5");
 				this.revalidate();
 				break;
 			}
 			
 			case 6:
 			{
-				this.getContentPane().removeAll();
-				this.setContentPane(new Pause(this));
+
+				cardLayout.show(cardPanel, "6");
 				this.revalidate();
 				break;
 			}
