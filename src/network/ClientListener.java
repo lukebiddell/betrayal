@@ -98,6 +98,8 @@ public class ClientListener extends Thread {
 			
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (ClassCastException e2) {
+			 System.out.println("caught classcastException");
 			}
 		}
 	}
