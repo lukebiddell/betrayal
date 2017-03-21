@@ -1,5 +1,7 @@
 package audio;
 
+import java.io.File;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,7 +21,7 @@ public class BGM
 	private int value;
 	private Clip clip;
 	public FloatControl volume;
-	public BooleanControl muteControl;
+	public BooleanControl muteControl;private String file = "../b4/Resources";
 
 	
 	/**
@@ -32,27 +34,32 @@ public class BGM
 		this.value = value;
 		
 		try {
-		      
-			AudioInputStream ais =
-				AudioSystem.getAudioInputStream(
-					getClass().getResourceAsStream(s)
-				);
-			AudioFormat baseFormat = ais.getFormat();
-			AudioFormat decodeFormat = new AudioFormat(
-				AudioFormat.Encoding.PCM_SIGNED,
-				baseFormat.getSampleRate(),
-				16,
-				baseFormat.getChannels(),
-				baseFormat.getChannels() * 2,
-				baseFormat.getSampleRate(),
-				false
-			);
-			AudioInputStream dais =
-				AudioSystem.getAudioInputStream(
-					decodeFormat, ais);
+//		      
+//			AudioInputStream ais =
+//				AudioSystem.getAudioInputStream(
+//					getClass().getResourceAsStream(s)
+//				);
+//			AudioFormat baseFormat = ais.getFormat();
+//			AudioFormat decodeFormat = new AudioFormat(
+//				AudioFormat.Encoding.PCM_SIGNED,
+//				baseFormat.getSampleRate(),
+//				16,
+//				baseFormat.getChannels(),
+//				baseFormat.getChannels() * 2,
+//				baseFormat.getSampleRate(),
+//				false
+//			);
+//			AudioInputStream dais =
+//				AudioSystem.getAudioInputStream(
+//					decodeFormat, ais);
+//			clip = AudioSystem.getClip();
+//			clip.open(dais);
+//			
+	
+			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(file + s));
 			clip = AudioSystem.getClip();
-			clip.open(dais);
 			
+			clip.open(ais);
 			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);			
 			muteControl = (BooleanControl)clip.getControl(BooleanControl.Type.MUTE);
 			

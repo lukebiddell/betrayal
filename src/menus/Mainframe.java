@@ -49,7 +49,7 @@ public class Mainframe extends JFrame
 		cardPanel.add(pause, "6");
 		this.setContentPane(cardPanel);
 		this.setVisible(true);
-		//this.bgm.play();
+		this.bgm.play();
 		this.revalidate();
 	}
 	
