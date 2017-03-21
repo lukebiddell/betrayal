@@ -100,4 +100,8 @@ public class Tile extends game.Entity {
 		//viewport.drawSprite(d, anim, g);
 		viewport.drawSprite(dest, anim, g);
 	}
+	
+	public game.Entity clone(){
+		return this;
+	}
 }

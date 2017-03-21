@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import levels.Level;
 import levels.TestLevel;
-import network.Listener;
+import network.ServerListener;
 import network.ClientListener;
 import network.Server;
 import network.MainServer;
@@ -50,7 +50,7 @@ public class Game{
 	
 	Animation arena;
 	
-	private Level level;
+	private Level level = new TestLevel(roomW, roomH);
 	
 	public Random rand;
 	
@@ -58,7 +58,7 @@ public class Game{
 	public double minSpawnTime;
 	public double timeUntilSpawn;
 	
-	public int score = 0;
+	int score = 0;
 	
 	public void spawnEntity(Entity e){
 		entitiesWaiting.add(e);
@@ -67,8 +67,40 @@ public class Game{
 		monstersWaiting.add(e);
 	}
 	
+	public void setScore(int s){
+		score = s;
+		
+		Iterator<Player> pit = players.iterator();
+		while(pit.hasNext()){
+			Player pl = pit.next();
+			int[] ints = new int[]{
+					-5,
+					0,
+					score,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+			};
+			pl.viewport.server.addToQueue(ints);
+//			pl.viewport.server.addToQueue(-5);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(score);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+//			pl.viewport.server.addToQueue(0);
+		}
+	}
+	
 	//private levels.Level level = new levels.TestLevel(this);
-	//java is dumb //lol
+	//java is dumb
 	
 	public Game(KeyboardInput keyboard, MouseInput mouse){
 		isRunning = true;
@@ -82,6 +114,7 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entitiesWaiting = new LinkedList<Entity>();
 		
+
 		roomW = 16.0;
 		roomH = 17.0;
 		
@@ -90,6 +123,7 @@ public class Game{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		/*Player p = new Player(this, keyboard, mouse);
 		p.viewport = new Viewport(this, p);
 		players.add(p);
@@ -108,8 +142,8 @@ public class Game{
 		arena = new Animation(SpritesheetEnum.ARENA,0,0,1,Animation.AnimationMode.LOOP);
 		
 		rand = new Random();
-		maxSpawnTime = 5.0;
-		minSpawnTime = 1.0;
+		maxSpawnTime = 4.3;
+		minSpawnTime = 1.1;
 	}
 	
 	public void update(double delta){
@@ -118,7 +152,6 @@ public class Game{
 		monstersWaiting = new LinkedList<Monster>();
 		entities.addAll(entitiesWaiting);
 		entitiesWaiting = new LinkedList<Entity>();
-		
 		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext()){Player p = pit.next(); p.update(delta, this); if(p.disposable()) pit.remove();}
@@ -149,8 +182,10 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
+		int ints[] = new int[10];
 		for(int i=0;i<ClientListener.inputSize;i++)
-			viewport.server.addToQueue(-1);
+			ints[i] = -1;
+			viewport.server.addToQueue(ints);
 	
 	
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);
@@ -162,11 +197,6 @@ public class Game{
 		
 		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
-		level.drawBackTiles(g, viewport);
-		level.drawMiddleTiles(g, viewport);
-		
-		
-		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext())pit.next().draw(g, viewport);
 		ListIterator<Monster> mit = monsters.listIterator(0);
@@ -175,10 +205,6 @@ public class Game{
 		while(eit.hasNext())eit.next().draw(g, viewport);
 		
 		level.drawFrontTiles(g, viewport);
-		
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
-		g.drawString(Integer.toString(score), 30, 30);
 		
 		viewport.drawRectAbsolute(new Point(30,60),100,10, Color.BLACK, g);
 		viewport.drawRectAbsolute(new Point(30,60),(int)(100 * viewport.p.hp / viewport.p.maxHp),10, Color.RED, g);

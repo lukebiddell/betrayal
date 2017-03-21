@@ -3,26 +3,31 @@ package menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import audio.BGM;
 import game.Main;
-import network.Client;
 
+
+/*
+ * @author Jack Marshman
+ */
 public class Find extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 	private BGM click;
-	public JButton btnBack;
 	public JButton btnJoinGame;
-	public JTextField textField;
+	public JButton btnBack;
+	public JTextField enterIP;
 
 	public Find(Mainframe m)
 	{
@@ -33,18 +38,37 @@ public class Find extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
+		/*
+		 * Join Game Button
+		 */
+		btnJoinGame = new JButton();
+		btnJoinGame.setBounds(694, 450, 180, 100);
+		ImageIcon btnJoinGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/join_game_button.png", 180, 100);
+		btnJoinGame.setIcon(btnJoinGameIcon);
+		btnJoinGame.setBorderPainted(false);
+		btnJoinGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				click.playOnce();
+				//TO BE IMPLEMENTED
+				
+				/*
+				 String[] args = new String[2];
+				args[0] = "localhost";
+				args[1] = "4444";
+				Client.main(args);
+				//m.setMenu(5);
+				 */
+			}
+		});
+		add(btnJoinGame);
 		
-		JLabel background = new JLabel();
-		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
-		add(background);
 		/*
 		 * Back button
 		 */
-		JButton btnBack = new JButton();
-		btnBack.setText("Back");
-		btnBack.setBounds(10, 200, 90, 50);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
+		btnBack = new JButton();
+		btnBack.setBounds(20, 450, 180, 100);
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -57,25 +81,7 @@ public class Find extends JPanel
 		});
 		add(btnBack);
 		
-		JButton btnJoinGame = new JButton();
-		ImageIcon btnJoinIcon = new ImageIcon(new ImageIcon("Resources/Images/join_game_button.png").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
-		btnJoinGame.setIcon(btnJoinIcon);
-		btnJoinGame.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				click.playOnce();
-				String[] args = new String[2];
-				args[0] = "localhost";
-				args[1] = "4444";
-				Client.main(args);
-				//m.setMenu(5);
-			}
-		});
-		btnJoinGame.setText("Join Game");
-		btnJoinGame.setBorderPainted(false);
-		btnJoinGame.setBounds(334, 200, 90, 50);
-		add(btnJoinGame);
+	
 		
 		JLabel lblGameIp = new JLabel("Game IP:");
 		lblGameIp.setForeground(Color.WHITE);
@@ -89,8 +95,14 @@ public class Find extends JPanel
 		textField.setColumns(10);
 		add(textField);
 		
-		
-		
+		/*
+		 * Background JLabel
+		 */
+		JLabel background = new JLabel();
+		background.setBounds(0, 0, 900, 600);
+		ImageIcon backgroundIcon = MenuButtonHandler.loadImageIcon("Resources/Images/betrayal_background.png", 900, 600);
+		background.setIcon(backgroundIcon);
+		add(background);
 	}
 
 }

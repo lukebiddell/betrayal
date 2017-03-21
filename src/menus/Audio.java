@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import audio.*;
 import menus.Mainframe;
 
+
 /*
  * @author Jack Marshman
  */
@@ -25,6 +26,7 @@ public class Audio extends JPanel
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 
@@ -52,7 +54,7 @@ public class Audio extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("Resources/Images/back_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -70,7 +72,7 @@ public class Audio extends JPanel
 		 */
 		btnExit = new JButton();
 		btnExit.setBounds(694, 450, 180, 100);
-		ImageIcon btnExitIcon = new ImageIcon(new ImageIcon("Resources/Images/exit_button.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
+		ImageIcon btnExitIcon = MenuButtonHandler.loadImageIcon("Resources/Images/exit_button.png", 180, 100);
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
@@ -105,7 +107,8 @@ public class Audio extends JPanel
 		 */
 		JLabel background = new JLabel();
 		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/audio_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		ImageIcon backgroundIcon = MenuButtonHandler.loadImageIcon("Resources/Images/audio_background.png", 900, 600);
+		background.setIcon(backgroundIcon);
 		add(background);
 	}
 }
