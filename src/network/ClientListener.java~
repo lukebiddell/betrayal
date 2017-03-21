@@ -45,7 +45,7 @@ public class ClientListener extends Thread {
 		this.socket = socket;
 		this.recievedData = new byte[inputSize * 4];
 		this.packet = new DatagramPacket(recievedData, recievedData.length);
-		//this.g = (Graphics2D)(panel.getGraphics());
+		this.g = (Graphics2D)(panel.getGraphics());
 	}
 
 	public void run() {
