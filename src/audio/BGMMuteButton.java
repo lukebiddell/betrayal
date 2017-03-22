@@ -2,8 +2,12 @@ package audio;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import menus.MenuButtonHandler;
 
 /*
  * @author Farrah Aina Mohd Zulkifli
@@ -22,8 +26,13 @@ public class BGMMuteButton extends JPanel{
 	public BGMMuteButton(BGMModel model){
 		
 		super();
+		//setLayout(null);
 		
 		mute = new JButton("Mute/Unmute");	
+		
+		
+		
+		
 		mute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(model.getMuteStatus()==true){

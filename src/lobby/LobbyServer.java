@@ -7,15 +7,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
-import menus.Lobby;
+import menus.LobbyOwner;
 
 public class LobbyServer extends Thread {
 
 	private int port;
-	private Lobby lobby;
+	private LobbyOwner lobby;
 	
 	//private Map<InetAddress,String> = new
-	public LobbyServer(int port, Lobby lobby){
+	public LobbyServer(int port, LobbyOwner lobby){
 		//this.connections = new LinkedList<Server>();
 		this.port = port;
 		this.lobby  = lobby;

@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,10 +22,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import audio.BGM;
+import game.Main;
 import lobby.LobbyServer;
+import network.TCPClient;
 
-public class Lobby extends JPanel {
+public class LobbyOwner extends JPanel {
 
+	
 	private JLabel lblNickname;
 	private static final long serialVersionUID = 1L;
 	private LobbyServer server;
@@ -34,8 +40,11 @@ public class Lobby extends JPanel {
 	private JTextField txtNickname;
 	private Font txtFont = new Font("Times New Roman", 30, 14);
 	
+	public ArrayList<InetAddress> ips;
+	public ArrayList<String> nicknames;
+	
 	private BGM click;
-	public Lobby(Mainframe m){
+	public LobbyOwner(Mainframe m){
 		
 		super();
 		this.mainframe = m;
@@ -49,7 +58,20 @@ public class Lobby extends JPanel {
 		tableModel = new DefaultTableModel(col, 0);
 		table = new JTable(tableModel);
 		
-			
+		this.ips = new ArrayList<InetAddress>();
+		this.nicknames = new ArrayList<String>();
+		InetAddress local;
+		try {
+			local = InetAddress.getByName("127.0.0.1");
+			ips.add(local);
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		nicknames.add("its you!");
+		
+		//ips.add(3)
 		
 		
 		
@@ -58,7 +80,7 @@ public class Lobby extends JPanel {
 		scrollPane.setBackground(new Color(139, 69, 19));
 		this.add(scrollPane, BorderLayout.CENTER);
 	
-		Object[] obs = {"127.0.0.1", "Its you!"};
+		Object[] obs = {ips.get(0), nicknames.get(0)};
 		tableModel.addRow(obs);
 	
 		
@@ -87,6 +109,7 @@ public class Lobby extends JPanel {
 		
 		
 		txtNickname = new JTextField();
+		txtNickname.setText("");
 		txtNickname.setBounds(199, 235, 149, 33);
 		txtNickname.setColumns(10);
 		txtNickname.setFont(txtFont);
@@ -111,8 +134,11 @@ public class Lobby extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				
 				click.playOnce();
+				Main.main(null);
+				
+				TCPClient c = new TCPClient(4444, "localhost");
 				
 			}
 		});
@@ -139,7 +165,12 @@ public class Lobby extends JPanel {
 	
 	public void updateOwnerNickname(){
 
-		tableModel.setValueAt(txtNickname.getText(), 0,1);
+		nicknames.remove(0);
+		nicknames.add(0, txtNickname.getText());
+		tableModel.setValueAt(nicknames.get(0),0,1);
+	}
+	public void removePlayer(InetAddress inetAddress){
+		//tableModel.set
 	}
 
 }
