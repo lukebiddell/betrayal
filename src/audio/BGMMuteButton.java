@@ -28,8 +28,12 @@ public class BGMMuteButton extends JPanel{
 		super();
 		//setLayout(null);
 		
-		mute = new JButton("Mute/Unmute");	
+		mute = new JButton();	
 		
+		ImageIcon btnMuteUnmuteIcon = MenuButtonHandler.loadImageIcon("Resources/Images/mute_unmute_button_2.png", 180, 100);
+		mute.setIcon(btnMuteUnmuteIcon);
+		mute.setOpaque(false);
+		mute.setBorderPainted(false);
 		
 		
 		

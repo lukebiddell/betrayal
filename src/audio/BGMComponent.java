@@ -47,7 +47,7 @@ public class BGMComponent extends JPanel
 		slider.setLabelTable(slider.createStandardLabels((max - min) / 4));
 		slider.setBackground(Color.BLACK);
 		slider.setForeground(Color.WHITE);
-		slider.setBounds(175, 250, 500, 50);
+		slider.setBounds(200, 250, 500, 50);
 		slider.setOpaque(false);
 		
 		
@@ -59,17 +59,14 @@ public class BGMComponent extends JPanel
 		
 		BGMMuteButton mute = new BGMMuteButton(model);
 		mute.setOpaque(false);
-		mute.setBounds(100, 100, 100, 100);
-		/*
-		ImageIcon btnMuteUnmuteIcon = MenuButtonHandler.loadImageIcon("Resources/Images/mute_unmute_button_2.png", 100, 100);
-		mute.setIcon(btnMuteUnmuteIcon);
-		mute.setBorderPainted(false);
-		*/
+		mute.setBounds(360, 320, 180, 100);
+	
 		
+		est.setOpaque(false);
+		est.setBounds(370, 100, 200, 200);
 		//place views and controls on panel
 		//Set locations
 		add(slider);
-		//slider.setLocation(0, 0);
 		add(est);
 		add(mute);
 	}
