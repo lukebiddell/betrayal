@@ -1,8 +1,12 @@
 package audio;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+
+import menus.MenuButtonHandler;
 
 /**
  * 
@@ -43,7 +47,7 @@ public class BGMComponent extends JPanel
 		slider.setLabelTable(slider.createStandardLabels((max - min) / 4));
 		slider.setBackground(Color.BLACK);
 		slider.setForeground(Color.WHITE);
-		slider.setBounds(50, 50, 100, 50);
+		slider.setBounds(175, 250, 500, 50);
 		slider.setOpaque(false);
 		
 		
@@ -55,6 +59,12 @@ public class BGMComponent extends JPanel
 		
 		BGMMuteButton mute = new BGMMuteButton(model);
 		mute.setOpaque(false);
+		mute.setBounds(100, 100, 100, 100);
+		/*
+		ImageIcon btnMuteUnmuteIcon = MenuButtonHandler.loadImageIcon("Resources/Images/mute_unmute_button_2.png", 100, 100);
+		mute.setIcon(btnMuteUnmuteIcon);
+		mute.setBorderPainted(false);
+		*/
 		
 		//place views and controls on panel
 		//Set locations
