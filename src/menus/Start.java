@@ -94,7 +94,7 @@ public class Start extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
-				new Game(new KeyboardInput(),new MouseInput());
+				
 				
 				m.setMenu(4);
 			}

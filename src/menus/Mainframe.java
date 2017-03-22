@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import audio.BGM;
+import lobby.LobbyServer;
 
 /*
  * @author Jack Marshman
@@ -23,10 +24,11 @@ public class Mainframe extends JFrame
 	private Start start;
 	private Control controls;
 	private Audio audio;
-	private Host host;
 	private Find find;
 	private Pause pause;
-	
+
+	private Lobby lobby;
+
 	public  Mainframe()
 	{
 		
@@ -34,7 +36,7 @@ public class Mainframe extends JFrame
 		this.start = new Start(this);
 		this.controls = new Control(this);
 		this.audio = new Audio(this, bgm);
-		this.host = new Host(this);
+		this.lobby = new Lobby(this);
 		this.find = new Find(this);
 		this.pause = new Pause(this);
 		this.setBounds(100, 100, 900, 600);
@@ -45,7 +47,7 @@ public class Mainframe extends JFrame
 		cardPanel.add(start, "1");
 		cardPanel.add(controls, "2");
 		cardPanel.add(audio, "3");
-		cardPanel.add(host, "4");
+		cardPanel.add(lobby, "4");
 		cardPanel.add(find, "5");
 		cardPanel.add(pause, "6");
 		this.setContentPane(cardPanel);
@@ -60,7 +62,7 @@ public class Mainframe extends JFrame
 	 * 1 = Start
 	 * 2 = Controls
 	 * 3 = Audio
-	 * 4 = Host
+	 * 4 = Lobby
 	 * 5 = Find
 	 * 6 = Pause
 	 */
@@ -98,7 +100,6 @@ public class Mainframe extends JFrame
 			//Host
 			case 4:
 			{
-				//System.out.println("got case 4");
 				cardLayout.show(cardPanel, "4");
 				this.revalidate();
 				break;
@@ -109,6 +110,7 @@ public class Mainframe extends JFrame
 			{
 				//System.out.println("got case 5");
 				cardLayout.show(cardPanel, "5");
+				
 				this.revalidate();
 				break;
 			}
