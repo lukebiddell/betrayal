@@ -26,6 +26,7 @@ public class Mainframe extends JFrame
 	private Host host;
 	private Find find;
 	private Pause pause;
+	
 	public  Mainframe()
 	{
 		
@@ -70,6 +71,7 @@ public class Mainframe extends JFrame
 	{
 		switch(menuNum)
 		{
+			//Start
 			case 1:
 			{
 				cardLayout.show(cardPanel, "1");
@@ -77,6 +79,7 @@ public class Mainframe extends JFrame
 				break;
 			}
 				
+			//Controls
 			case 2:
 			{
 				cardLayout.show(cardPanel, "2");
@@ -84,6 +87,7 @@ public class Mainframe extends JFrame
 				break;
 			}
 				
+			//Audio
 			case 3:
 			{
 				cardLayout.show(cardPanel, "3");
@@ -91,6 +95,7 @@ public class Mainframe extends JFrame
 				break;
 			}	
 			
+			//Host
 			case 4:
 			{
 				//System.out.println("got case 4");
@@ -99,6 +104,7 @@ public class Mainframe extends JFrame
 				break;
 			}
 			
+			//Find
 			case 5:
 			{
 				//System.out.println("got case 5");
@@ -107,6 +113,7 @@ public class Mainframe extends JFrame
 				break;
 			}
 			
+			//Pause
 			case 6:
 			{
 

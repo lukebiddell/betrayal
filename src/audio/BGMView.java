@@ -32,7 +32,9 @@ public class BGMView extends JLabel implements Observer
 		/*
 		 * Changes colour of "Volume"
 		 */
-		setForeground(Color.WHITE);
+		setForeground(Color.BLACK);
+		//Doesn't work
+		setSize(1000, 1000);
 
 	}
 	

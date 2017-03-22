@@ -1,7 +1,6 @@
 package audio;
 
 import java.awt.Color;
-
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -13,6 +12,8 @@ import javax.swing.JSlider;
 
 public class BGMComponent extends JPanel
 {
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 * @param bgm BGM object
@@ -23,11 +24,7 @@ public class BGMComponent extends JPanel
 	public BGMComponent(BGM bgm, int min, int max, int initial)
 	{
 		super();
-		
-		/*
-		 * Used to make the JPanel transparent 
-		 */
-		Color t = new Color(0, 0, 0, 1f);
+		setLayout(null);
 		
 		//model
 		BGMModel model = new BGMModel(bgm);
@@ -46,7 +43,9 @@ public class BGMComponent extends JPanel
 		slider.setLabelTable(slider.createStandardLabels((max - min) / 4));
 		slider.setBackground(Color.BLACK);
 		slider.setForeground(Color.WHITE);
-		slider.setBounds(50, 50, 50, 50);
+		slider.setBounds(50, 50, 100, 50);
+		slider.setOpaque(false);
+		
 		
 		//create listener
 		BGMSliderListener listen = new BGMSliderListener(model, slider);
@@ -55,16 +54,13 @@ public class BGMComponent extends JPanel
 		slider.addChangeListener(listen);
 		
 		BGMMuteButton mute = new BGMMuteButton(model);
+		mute.setOpaque(false);
 		
 		//place views and controls on panel
 		//Set locations
 		add(slider);
+		//slider.setLocation(0, 0);
 		add(est);
 		add(mute);
-		
-		/*
-		 * Makes the background transparent
-		 */
-		setBackground(t);
 	}
 }

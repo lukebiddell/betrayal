@@ -6,11 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /*
+ * @author Farrah Aina Mohd Zulkifli
  * @author Jack Marshman - Changes to the class are aesthetic 
  */
 
 public class BGMMuteButton extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
 	public JButton mute;
 	
 	/**
@@ -21,14 +23,7 @@ public class BGMMuteButton extends JPanel{
 		
 		super();
 		
-		mute = new JButton("Mute/Unmute");
-		/*
-		mute.setBounds(20, 450, 180, 100);
-		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("Resources/Images/controlsLogo1.png").getImage().getScaledInstance(180, 100, Image.SCALE_DEFAULT));
-		mute.setIcon(btnControlsIcon);
-		mute.setBorderPainted(false);
-		*/
-		
+		mute = new JButton("Mute/Unmute");	
 		mute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(model.getMuteStatus()==true){
