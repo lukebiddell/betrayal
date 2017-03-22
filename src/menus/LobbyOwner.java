@@ -62,7 +62,7 @@ public class LobbyOwner extends JPanel {
 		this.nicknames = new ArrayList<String>();
 		InetAddress local;
 		try {
-			local = InetAddress.getByName("127.0.0.1");
+			local = InetAddress.getLocalHost();
 			ips.add(local);
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
