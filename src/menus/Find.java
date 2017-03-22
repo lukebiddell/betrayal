@@ -85,17 +85,17 @@ public class Find extends JPanel
 		add(btnBack);
 	
 		lblNickname = new JLabel();
-		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label.jpg", 386, 176));
-		lblNickname.setBounds(10, 163, 386, 176);
+		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label_2.jpg", 436, 124));
+		lblNickname.setBounds(231, 153, 431, 118);
 		add(lblNickname);
 		
-		JLabel lblHostIP = new JLabel();
-		lblHostIP.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/host_ip_label.jpg", 386, 176));
-		lblHostIP.setBounds(488, 163, 386, 176);
+		lblHostIP = new JLabel();
+		lblHostIP.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/host_ip_label_2.jpg", 436, 124));
+		lblHostIP.setBounds(231, 309, 431, 124);
 		add(lblHostIP);
 		
 		txtNickname = new JTextField("Set Nickname");
-		txtNickname.setBounds(199, 235, 149, 33);
+		txtNickname.setBounds(471, 207, 170, 23);
 		txtNickname.setColumns(10);
 		txtNickname.setFont(txtFont);
 		txtNickname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -126,7 +126,7 @@ public class Find extends JPanel
 		add(txtNickname);
 		
 		txtHostIP = new JTextField("XXX.XXX.X.X");
-		txtHostIP.setBounds(677, 235, 149, 33);
+		txtHostIP.setBounds(471, 366, 170, 23);
 		txtHostIP.setColumns(10);
 		txtHostIP.setFont(txtFont);
 		txtHostIP.setBorder(javax.swing.BorderFactory.createEmptyBorder());

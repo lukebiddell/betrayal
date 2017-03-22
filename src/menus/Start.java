@@ -82,7 +82,7 @@ public class Start extends JPanel
 		/*
 		 * Host Game button
 		 */
-		btnHostGame = new JButton("Host Game");
+		btnHostGame = new JButton();
 		btnHostGame.setBounds(486, 176, 360, 100);
 		
 		ImageIcon btnHostGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/host_game_button_2.png", 360, 100);
