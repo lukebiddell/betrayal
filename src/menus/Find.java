@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import audio.BGM;
 import game.Main;
+import network.TCPClient;
 
 
 /*
@@ -53,6 +57,26 @@ public class Find extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
+				String n =  txtNickname.getText();
+				
+				
+				m.lobbym.ownsetNickname(n);
+						
+					
+						try {
+							new TCPClient(4444, txtHostIP.getText());
+							m.lobbym.setIP(txtHostIP.getText());
+						} catch (UnknownHostException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+					m.setMenu(7);
+				
+					txtNickname.setText("Couldnt find host");
+					txtHostIP.setText("Couldnt find host");
+				
+				
 				//TO BE IMPLEMENTED
 				
 				/*

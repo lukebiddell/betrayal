@@ -26,8 +26,9 @@ public class Mainframe extends JFrame
 	private Audio audio;
 	private Find find;
 	private Pause pause;
+	public LobbyMember lobbym;
 
-	private LobbyOwner lobby;
+	private LobbyOwner lobbyo;
 
 	public  Mainframe()
 	{
@@ -36,7 +37,8 @@ public class Mainframe extends JFrame
 		this.start = new Start(this);
 		this.controls = new Control(this);
 		this.audio = new Audio(this, bgm);
-		this.lobby = new LobbyOwner(this);
+		this.lobbyo = new LobbyOwner(this);
+		this.lobbym = new LobbyMember(this);
 		this.find = new Find(this);
 		this.pause = new Pause(this);
 		this.setBounds(100, 100, 900, 600);
@@ -47,9 +49,10 @@ public class Mainframe extends JFrame
 		cardPanel.add(start, "1");
 		cardPanel.add(controls, "2");
 		cardPanel.add(audio, "3");
-		cardPanel.add(lobby, "4");
+		cardPanel.add(lobbyo, "4");
 		cardPanel.add(find, "5");
 		cardPanel.add(pause, "6");
+		cardPanel.add(lobbym, "7");
 		this.setContentPane(cardPanel);
 		this.setVisible(true);
 		this.bgm.play();
@@ -122,6 +125,10 @@ public class Mainframe extends JFrame
 				cardLayout.show(cardPanel, "6");
 				this.revalidate();
 				break;
+			}
+			case 7:
+			{
+				cardLayout.show(cardPanel, "7");
 			}
 		}
 	}
