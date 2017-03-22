@@ -62,7 +62,7 @@ public class Find extends JPanel
 				
 				m.lobbym.ownsetNickname(n);
 						
-					
+				new TCPClient(4444, txtHostIP.getText());
 						try {
 							new TCPClient(4444, txtHostIP.getText());
 							m.lobbym.setIP(txtHostIP.getText());
