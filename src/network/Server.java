@@ -25,6 +25,8 @@ public class Server extends Thread{
 		
 		this.sender = new ServerSender(p, inetAddress, socket);
 		this.listener = new ServerListener(socket, player);
+		
+		player.game.getLevel().sendData(player);
 
 	}
 	public void run(){

@@ -7,6 +7,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -22,17 +26,21 @@ import java.io.*;
 
 import game.Animation;
 import game.Circle;
+import game.Player;
 import game.SpritesheetEnum;
 import game.Viewport;
 
 public class Level {
 
-	private static final double width = 0.25;
-	private static final boolean dodebug = true;
+	public static final double width = 0.25;
+	private static final boolean dodebug = false;
 	private int difficulty;
 
 	private double roomW; // in game units
 	private double roomH; // in game units
+
+	private int tileCol;
+	private int tileRow;
 
 	private static final String imageFolder = "Resources/Images/";
 	private String backgroundImageLocation;
@@ -66,8 +74,41 @@ public class Level {
 		this.roomH = roomH;
 	}
 
-	public Level(String xml) throws ParserConfigurationException {
+	public Level(String xml, game.Game game) throws ParserConfigurationException {
+
 		parseXML(xml);
+
+		broadcastData(game);
+	}
+
+	public void broadcastData(game.Game game) {
+		Iterator<game.Player> pit = game.players.iterator();
+		while (pit.hasNext()) {
+			Player pl = pit.next();
+			pl.viewport.server.addToQueue(new int[] { -6, 0, tileCol, 0, 0, 0, 0, 0, 0, 0 });
+			pl.viewport.server.addToQueue(new int[] { -6, 1, tileRow, 0, 0, 0, 0, 0, 0, 0 });
+
+			for (Tile t : backTiles) {
+				pl.viewport.server.addToQueue(new int[] { -6, 5, t.x, t.y, t.currentInt, 0, 0, 0, 0, 0 });
+				// System.out.println("t.x = " + t.x + " | t,y = " + t.y + " |
+				// t.currentInt = " + t.currentInt);
+			}
+		}
+	}
+
+	public void sendData(game.Player pl) {
+		pl.viewport.server.addToQueue(new int[] { -6, 0, tileCol, 0, 0, 0, 0, 0, 0, 0 });
+		pl.viewport.server.addToQueue(new int[] { -6, 1, tileRow, 0, 0, 0, 0, 0, 0, 0 });
+
+		int counter = 0;
+		for (Tile t : backTiles) {
+			//System.out.println("Hello------------------------------------------");
+			counter++;
+			pl.viewport.server.addToQueue(new int[] { -6, 5, t.x, t.y, t.currentInt, 0, 0, 0, 0, 0 });
+			System.out.println("t.x = " + t.x + " | t,y = " + t.y + " |");
+			// t.currentInt = " + t.currentInt);
+		}
+		System.out.println(counter);
 	}
 
 	private void debug(String s) {
@@ -89,50 +130,49 @@ public class Level {
 			Document doc = builder.parse(file);
 			doc.getDocumentElement().normalize();
 
-			/*NodeList tilesetNodes = doc.getElementsByTagName("tileset");
-
-			for (int i = 0; i < tilesetNodes.getLength(); i++) {
-				Node tilesetNode = tilesetNodes.item(i);
-				System.out.println("\nCurrent Element :" + tilesetNode.getNodeName());
-
-				Element tilesetElement = (Element) tilesetNode;
-				boolean collision = tilesetElement.getAttribute("collision").trim().contentEquals("1");
-				System.out.println("Collision = " + collision);
-				NodeList tileNodes = tilesetElement.getElementsByTagName("tile");
-
-				for (int j = 0; j < tileNodes.getLength(); j++) {
-					// System.out.println("\nCurrent Element :" +
-					// tilesetNode.getNodeName());
-					Node tileNode = tileNodes.item(j);
-					Element tileElement = (Element) tileNode;
-
-					debug(tileElement.getAttribute("name"));
-
-					int x = Integer.parseInt(tileElement.getAttribute("x").trim());
-					int y = Integer.parseInt(tileElement.getAttribute("y").trim());
-					Character c = tileElement.getAttribute("char").charAt(0);
-
-					debug("x = " + String.valueOf(x));
-					debug("y = " + String.valueOf(y));
-					debug("c = " + String.valueOf(c));
-					debug("");
-
-					charAnimationMap.put(c, new Animation(spritesheetVal, x, y, 0, Animation.AnimationMode.PLAYONCE));
-
-					if (collision) {
-						charCollisionList.add(c);
-					}
-				}
-
-			}
-
-			System.out.print(charAnimationMap.toString());*/
+			/*
+			 * NodeList tilesetNodes = doc.getElementsByTagName("tileset");
+			 * 
+			 * for (int i = 0; i < tilesetNodes.getLength(); i++) { Node
+			 * tilesetNode = tilesetNodes.item(i);
+			 * System.out.println("\nCurrent Element :" +
+			 * tilesetNode.getNodeName());
+			 * 
+			 * Element tilesetElement = (Element) tilesetNode; boolean collision
+			 * =
+			 * tilesetElement.getAttribute("collision").trim().contentEquals("1"
+			 * ); System.out.println("Collision = " + collision); NodeList
+			 * tileNodes = tilesetElement.getElementsByTagName("tile");
+			 * 
+			 * for (int j = 0; j < tileNodes.getLength(); j++) { //
+			 * System.out.println("\nCurrent Element :" + //
+			 * tilesetNode.getNodeName()); Node tileNode = tileNodes.item(j);
+			 * Element tileElement = (Element) tileNode;
+			 * 
+			 * debug(tileElement.getAttribute("name"));
+			 * 
+			 * int x = Integer.parseInt(tileElement.getAttribute("x").trim());
+			 * int y = Integer.parseInt(tileElement.getAttribute("y").trim());
+			 * Character c = tileElement.getAttribute("char").charAt(0);
+			 * 
+			 * debug("x = " + String.valueOf(x)); debug("y = " +
+			 * String.valueOf(y)); debug("c = " + String.valueOf(c)); debug("");
+			 * 
+			 * charAnimationMap.put(c, new Animation(spritesheetVal, x, y, 0,
+			 * Animation.AnimationMode.PLAYONCE));
+			 * 
+			 * if (collision) { charCollisionList.add(c); } }
+			 * 
+			 * }
+			 * 
+			 * System.out.print(charAnimationMap.toString());
+			 */
 
 			NodeList mapNodes = doc.getElementsByTagName("map");
 
 			for (int i = 0; i < mapNodes.getLength(); i++) {
 				Node mapNode = mapNodes.item(i);
-				System.out.println("\nCurrent Element :" + mapNode.getNodeName());
+				debug("\nCurrent Element :" + mapNode.getNodeName());
 
 				Element mapElement = (Element) mapNode;
 				int layer = Integer.parseInt(mapElement.getAttribute("layer").trim());
@@ -151,18 +191,21 @@ public class Level {
 				roomH = mapLines.length - 2;
 				roomW = mapLines[1].split(",").length;
 
+				tileCol = (int) roomW;
+				tileRow = (int) roomH;
+
 				for (int j = 1; j < roomH; j++) {
 					String[] rowItems = mapLines[j].split(",");
 
-					if (rowItems.length != roomW && j != roomH -1) {
-						for (int z = 0; z < rowItems.length; z++){
-							System.out.println(rowItems[z]);
+					if (rowItems.length != roomW && j != roomH - 1) {
+						for (int z = 0; z < rowItems.length; z++) {
+							debug(rowItems[z]);
 						}
-						System.out.println(mapLines[j].length());
-						System.out.println(rowItems.length);
-						System.out.println(roomW);
-						System.out.println(roomH);
-						System.out.println(j);
+						//debug(mapLines[j].length());
+						//System.out.println(rowItems.length);
+						//System.out.println(roomW);
+						//System.out.println(roomH);
+						//System.out.println(j);
 						throw new IllegalArgumentException("Widths are not consistent");
 					}
 					// debug(mapLines[j]);
@@ -176,19 +219,20 @@ public class Level {
 
 							int x = k;
 							int y = j - 1;
-							int spriteX = (currentInt -1) % 32;
-							int spriteY = (currentInt -1) / 32;
+							int spriteX = (currentInt - 1) % 32;
+							int spriteY = (currentInt - 1) / 32;
 							// int x = k;
 							// int y = j - 1;
 							Animation anim;
 							if (intAnimationMap.containsKey(currentInt)) {
 								anim = intAnimationMap.get(currentInt);
 							} else {
-								anim = new Animation(spritesheetVal, spriteX, spriteY, 1, Animation.AnimationMode.PLAYONCE);
+								anim = new Animation(spritesheetVal, spriteX, spriteY, 1,
+										Animation.AnimationMode.PLAYONCE);
 								intAnimationMap.put(currentInt, anim);
 							}
-							
-							Tile tile = new Tile(x, y, anim);
+
+							Tile tile = new Tile(x, y, anim, currentInt - 1);
 
 							switch (layer) {
 							case -1:
@@ -207,11 +251,13 @@ public class Level {
 								throw new IllegalArgumentException("Map layer must be in the range 0-2");
 							}
 
-							/*if (charCollisionList.contains(currentChar)) {
-								// TODO Add position to a list of collisions
-								collisionTiles.add(tile);
-
-							}*/
+							/*
+							 * if (charCollisionList.contains(currentChar)) { //
+							 * TODO Add position to a list of collisions
+							 * collisionTiles.add(tile);
+							 * 
+							 * }
+							 */
 						}
 
 					}

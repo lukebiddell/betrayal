@@ -37,11 +37,19 @@ public class Tile extends game.Entity {
 	private Animation anim;
 	private Point2D.Double pos;
 
+	public int x;
+	public int y;
+	
+	public int currentInt;
+	
 	public Tile() {
 		
 	}
 
-	public Tile(int x, int y, Animation anim) {
+	public Tile(int x, int y, Animation anim, int currentInt) {
+		this.currentInt = currentInt;
+		this.x = x;
+		this.y = y;
 		this.anim = anim;
 		pos = new Point2D.Double((double)x/4, (double)y/4);
 		//setDestination((double)x, (double)y);

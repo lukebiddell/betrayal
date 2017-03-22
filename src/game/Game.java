@@ -50,7 +50,7 @@ public class Game{
 	
 	Animation arena;
 	
-	private Level level = new TestLevel(roomW, roomH);
+	private Level level;
 	
 	public Random rand;
 	
@@ -119,7 +119,7 @@ public class Game{
 		roomH = 17.0;
 		
 		try {
-			level = new Level("Resources/LevelFiles/lavamap.xml");
+			level = new Level("Resources/LevelFiles/lavamap.xml", this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -182,20 +182,26 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
-		int ints[] = new int[10];
-		for(int i=0;i<ClientListener.inputSize;i++)
-			ints[i] = -1;
-			viewport.server.addToQueue(ints);
-	
-	
+
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);
+		
+		//viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
+		
+		Point pnt = viewport.toScreenCoord(new Point2D.Double());
+		
+		viewport.server.addToQueue(new int[]{-6,2,pnt.x,0,0,0,0,0,0,0});
+		viewport.server.addToQueue(new int[]{-6,3,pnt.y,0,0,0,0,0,0,0});
+		viewport.server.addToQueue(new int[]{-6,4,viewport.scaleToScreen(Level.width),0,0,0,0,0,0,0});
+		
+		
+		viewport.server.addToQueue(new int[]{-7,0,0,0,0,0,0,0,0,0});
+		
 		
 		
 		//g.setColor(Color.GREEN);
 		//Point roomCoord = viewport.toScreenCoord(new Point2D.Double(0,0));
 		//g.fillRect(roomCoord.x, roomCoord.y, (int)(roomW*viewport.ppu), (int)(roomH*viewport.ppu));
 		
-		viewport.drawSprite(new Rectangle.Double(0,0,roomW,roomH), arena, g);
 		
 		Iterator<Player> pit = players.iterator();
 		while(pit.hasNext())pit.next().draw(g, viewport);
@@ -208,5 +214,11 @@ public class Game{
 		
 		viewport.drawRectAbsolute(new Point(30,60),100,10, Color.BLACK, g);
 		viewport.drawRectAbsolute(new Point(30,60),(int)(100 * viewport.p.hp / viewport.p.maxHp),10, Color.RED, g);
+	
+
+		int ints[] = new int[10];
+		for(int i=0;i<ClientListener.inputSize;i++)
+			ints[i] = -1;
+		viewport.server.addToQueue(ints);
 	}
 }
