@@ -27,7 +27,7 @@ public class Mainframe extends JFrame
 	private Find find;
 	private Pause pause;
 
-	private Lobby lobby;
+	private LobbyOwner lobby;
 
 	public  Mainframe()
 	{
@@ -36,7 +36,7 @@ public class Mainframe extends JFrame
 		this.start = new Start(this);
 		this.controls = new Control(this);
 		this.audio = new Audio(this, bgm);
-		this.lobby = new Lobby(this);
+		this.lobby = new LobbyOwner(this);
 		this.find = new Find(this);
 		this.pause = new Pause(this);
 		this.setBounds(100, 100, 900, 600);
