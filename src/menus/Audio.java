@@ -44,7 +44,7 @@ public class Audio extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button_2.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -62,7 +62,7 @@ public class Audio extends JPanel
 		 */
 		btnExit = new JButton();
 		btnExit.setBounds(694, 450, 180, 100);
-		ImageIcon btnExitIcon = MenuButtonHandler.loadImageIcon("Resources/Images/exit_button.png", 180, 100);
+		ImageIcon btnExitIcon = MenuButtonHandler.loadImageIcon("Resources/Images/exit_button_2.png", 180, 100);
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {

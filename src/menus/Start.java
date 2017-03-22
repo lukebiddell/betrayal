@@ -65,7 +65,7 @@ public class Start extends JPanel
 		btnFindGame.setBounds(42, 176, 360, 100);
 		
 		
-		ImageIcon btnFindGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/find_game_button.png", 360, 100);
+		ImageIcon btnFindGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/find_game_button_2.png", 360, 100);
 		
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.setBorderPainted(false);
@@ -85,7 +85,7 @@ public class Start extends JPanel
 		btnHostGame = new JButton("Host Game");
 		btnHostGame.setBounds(486, 176, 360, 100);
 		
-		ImageIcon btnHostGameIcon = MenuButtonHandler.loadImageIcon("", 360, 100);
+		ImageIcon btnHostGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/host_game_button_2.png", 360, 100);
 		
 		
 		btnHostGame.setIcon(btnHostGameIcon);
@@ -105,7 +105,7 @@ public class Start extends JPanel
 		 * Controls button
 		 */
 		
-		ImageIcon btnControlsIcon  = MenuButtonHandler.loadImageIcon("Resources/Images/controls_button.png", 180, 100);
+		ImageIcon btnControlsIcon  = MenuButtonHandler.loadImageIcon("Resources/Images/controls_button_2.png", 180, 100);
 		
 		btnControls = new JButton();
 		btnControls.setBounds(20, 450, 180, 100);
@@ -128,7 +128,7 @@ public class Start extends JPanel
 		btnAudio = new JButton();
 		btnAudio.setBounds(351, 450, 180, 100);
 		
-		ImageIcon btnAudioIcon = MenuButtonHandler.loadImageIcon("Resources/Images/audio_button.png", 180, 100);
+		ImageIcon btnAudioIcon = MenuButtonHandler.loadImageIcon("Resources/Images/audio_button_2.png", 180, 100);
 		
 		
 		btnAudio.setIcon(btnAudioIcon);
@@ -148,7 +148,7 @@ public class Start extends JPanel
 		 */
 		btnExit = new JButton();
 		btnExit.setBounds(694, 450, 180, 100);
-		ImageIcon btnExitIcon = MenuButtonHandler.loadImageIcon("Resources/Images/exit_button.png", 180, 100);
+		ImageIcon btnExitIcon = MenuButtonHandler.loadImageIcon("Resources/Images/exit_button_2.png", 180, 100);
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
