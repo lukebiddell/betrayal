@@ -40,7 +40,7 @@ public class Host extends JPanel
 		 */
 		btnStartGame = new JButton("Start Game");
 		btnStartGame.setBounds(694, 450, 180, 100);
-		ImageIcon btnStartGameIcon = MenuButtonHandler.loadImageIcon("", 180, 100);
+		ImageIcon btnStartGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/start_game_button_2.png", 180, 100);
 		btnStartGame.setIcon(btnStartGameIcon);
 		btnStartGame.setBorderPainted(false);
 		btnStartGame.addActionListener(new ActionListener() {
@@ -57,7 +57,7 @@ public class Host extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button_2.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -95,7 +95,8 @@ public class Host extends JPanel
 		 */
 		background = new JLabel();
 		background.setBounds(0, 0, 900, 600);
-		background.setIcon(new ImageIcon(new ImageIcon("Resources/Images/betrayal_background.png").getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT)));
+		ImageIcon backgroundIcon = MenuButtonHandler.loadImageIcon("Resources/Images/controls_background.png", 900, 600);
+		background.setIcon(backgroundIcon);
 		add(background);
 	}
 

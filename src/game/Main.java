@@ -65,6 +65,15 @@ public class Main extends Thread {
 	public static void main(String args[]){
 		Main m = new Main();
 		m.gamePane = new GamePanel();
+
+		JFrame window = new JFrame("Test");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setSize(640,420);
+        window.add(m.gamePane);
+        
+        window.addKeyListener(m.gamePane.keyboard);
+		window.addMouseListener(m.gamePane.mouse);
+
 //		JFrame window = new JFrame("Test");
 //		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		window.setSize(640,420);
@@ -76,5 +85,158 @@ public class Main extends Thread {
 //        
 //        window.setVisible(true);
 		m.start();
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		window.addMouseMotionListener(m.gamePane.mouse);
+        
+        window.setVisible(true);
+		m.gameLoop();
+>>>>>>> 528ff5a5291aecea4dfb855fe991fbf3ff6ef7c1
 	}
 }
