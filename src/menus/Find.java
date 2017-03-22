@@ -91,12 +91,12 @@ public class Find extends JPanel
 		add(btnBack);
 		
 		lblNickname = new JLabel("New label");
-		lblNickname.setIcon(new ImageIcon("C:\\Users\\Owner\\Desktop\\TP Resources\\nickname_label.jpg"));
+		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label.jpg", 386, 176));
 		lblNickname.setBounds(10, 163, 386, 176);
 		add(lblNickname);
 		
 		JLabel lblHostIP = new JLabel("New label");
-		lblHostIP.setIcon(new ImageIcon("C:\\Users\\Owner\\Desktop\\TP Resources\\host_ip_label.jpg"));
+		lblHostIP.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/host_ip_label.jpg", 386, 176));
 		lblHostIP.setBounds(488, 163, 386, 176);
 		add(lblHostIP);
 		
