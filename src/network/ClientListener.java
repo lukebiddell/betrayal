@@ -9,8 +9,12 @@ import java.awt.*;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import game.KeyboardInput;
 import game.MouseInput;
@@ -39,8 +43,11 @@ public class ClientListener extends Thread {
 	int[] info;
 	int tilemapW = 0;
 	int tilemapH = 0;
+
 	@SuppressWarnings("unchecked")
 	LinkedList<Integer>[][] tilemap = new LinkedList[0][0];
+	private int input1is5counter = 0;
+
 	int mapX = 0;
 	int mapY = 0;
 	int tileSize = 10;
@@ -49,7 +56,29 @@ public class ClientListener extends Thread {
 	public static final int infoSize = 2;
 	int[] input;
 
+	Logger logger;
+	
 	public ClientListener(DatagramSocket socket, ClientWindow panel) {
+		logger = Logger.getLogger("MyLog");  
+	    FileHandler fh;  
+
+	    try {  
+
+	        // This block configure the logger with handler and formatter  
+	        fh = new FileHandler("LevelLog.log");  
+	        logger.addHandler(fh);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fh.setFormatter(formatter);  
+
+	        // the following statement is used to log any messages  
+	        logger.info("Logger for debugging levels");  
+
+	    } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    }  
+		
 		this.panel = panel;
 		this.input = new int[inputSize];
 		this.info = new int[infoSize];
@@ -59,18 +88,18 @@ public class ClientListener extends Thread {
 		// this.g = (Graphics2D)(panel.getGraphics());
 	}
 
-	//@SuppressWarnings("unchecked")
+	// @SuppressWarnings("unchecked")
 	public void run() {
 		while (true) {
 			try {
 				socket.receive(packet);
 				recievedData = packet.getData();
 				input = ByteConversion.toInts(recievedData);
-
-				/*for (int i = 0; i < input.length; i++) {
-					if(input[0] == -6)
-						System.err.println(input[i]);
-				}*/
+				logger.info(Arrays.toString(input));
+				/*
+				 * for (int i = 0; i < input.length; i++) { if(input[0] == -6)
+				 * System.err.println(input[i]); }
+				 */
 
 				if (input[0] >= 0) {
 
@@ -107,17 +136,21 @@ public class ClientListener extends Thread {
 					}
 					if (input[1] == 1) {
 						tilemapH = input[2];
-						System.out.println(tilemapW);
+						// System.out.println(tilemapW);
 
-						System.out.println(tilemapH);
-						
+						// System.out.println(tilemapH);
+
 						tilemap = new LinkedList[tilemapW][tilemapH];
 						System.err.println("tilemapW = " + tilemapW + " | tilemapH = " + tilemapH);
-						for (int i = 0; i < tilemapW; i++) {
-							for (int j = 0; j < tilemapH; j++) {
+						int debugCounter = 0;
+						for (int i = 0; i < tilemapW - 1; i++) {
+							for (int j = 0; j < tilemapH - 1; j++) {
 								tilemap[i][j] = new LinkedList<Integer>();
+								debugCounter++;
 							}
 						}
+
+						System.out.println("counter = " + debugCounter);
 					}
 					if (input[1] == 2) {
 						mapX = input[2];
@@ -129,32 +162,40 @@ public class ClientListener extends Thread {
 						tileSize = input[2];
 					}
 					if (input[1] == 5) {
-						System.out.println(input[2] + " | " + input[3] + " | " + input[4]);
+						System.out.println(Arrays.toString(input));
 						tilemap[input[2]][input[3]].add(input[4]);
+						// System.out.println(++input1is5counter + ": input2 = "
+						// + input[2] + " | input3 = " + input[3] + " | input4 =
+						// " + input[4]);
 					}
 				} else if (input[0] == -7) {// drawing started
+
+					for (int i = 0; i < tilemap.length; i++) {
+						// System.out.println("i = " + i);
+						for (int j = 0; j < tilemap[i].length; j++) {
+							// System.out.println("j = " + j);
+							for (Integer tileID : tilemap[i][j]) {
+								System.out.println(i + "," + j + ": " + tileID);
+							}
+						}
+					}
+
 					for (int i = 0; i < tilemapW; i++) {
 						for (int j = 0; j < tilemapH; j++) {
-							
+
 							Spritesheet ss = SpritesheetEnum.getSprite(SpritesheetEnum.TERRAIN);
 
 							ListIterator<Integer> li = tilemap[i][j].listIterator();
 							while (li.hasNext()) {
-								System.out.println("i = " + i + " j = " + j + " hasNext = " + li.hasNext());
+								// System.out.println("i = " + i + " j = " + j +
+								// " hasNext = " + li.hasNext());
 								// System.out.println("------------asaghuisdfhgiusdfhguisfg------------------");
 								int ac = li.next();
-								g.drawImage(
-										ss.img, 
-										mapX + i * tileSize, 
-										mapY + j * tileSize, 
-										mapX + (i + 1) * tileSize,
-										mapY + (j + 1) * tileSize, 
-										ss.offsetW + (ac % ss.spriteCol) * ss.spriteW,
+								g.drawImage(ss.img, mapX + i * tileSize, mapY + j * tileSize, mapX + (i + 1) * tileSize,
+										mapY + (j + 1) * tileSize, ss.offsetW + (ac % ss.spriteCol) * ss.spriteW,
 										ss.offsetH + (ac / ss.spriteCol) * ss.spriteH,
 										ss.offsetW + (ac % ss.spriteCol + 1) * ss.spriteW,
-										ss.offsetH + (ac / ss.spriteCol + 1) * ss.spriteH, 
-										null
-										);
+										ss.offsetH + (ac / ss.spriteCol + 1) * ss.spriteH, null);
 							}
 						}
 					}

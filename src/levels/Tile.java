@@ -37,10 +37,10 @@ public class Tile extends game.Entity {
 	private Animation anim;
 	private Point2D.Double pos;
 
-	public int x;
-	public int y;
+	private int x;
+	private int y;
 	
-	public int currentInt;
+	private int currentInt;
 	
 	public Tile() {
 		
@@ -59,6 +59,18 @@ public class Tile extends game.Entity {
 		//width = (double)1 + (double) (1/32);
 		//System.out.println("Width: " + width);
 		dest = new Rectangle2D.Double(pos.getX(), pos.getY(), width, width);
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+
+	public int getCurrentInt() {
+		return currentInt;
 	}
 
 	public String toString() {

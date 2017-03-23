@@ -21,7 +21,7 @@ public class Main{
 //		bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();
-	   final int TARGET_FPS = 60;
+	   final int TARGET_FPS = 10;
 	   final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 	   
 	   long lastFpsTime = 0;

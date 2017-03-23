@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.io.*;
 
 import game.Animation;
 import game.Circle;
+import game.Game;
 import game.Player;
 import game.SpritesheetEnum;
 import game.Viewport;
@@ -81,34 +83,48 @@ public class Level {
 		broadcastData(game);
 	}
 
-	public void broadcastData(game.Game game) {
-		Iterator<game.Player> pit = game.players.iterator();
+	public void broadcastData(Game game) {
+		Iterator<Player> pit = game.players.iterator();
 		while (pit.hasNext()) {
 			Player pl = pit.next();
 			pl.viewport.server.addToQueue(new int[] { -6, 0, tileCol, 0, 0, 0, 0, 0, 0, 0 });
 			pl.viewport.server.addToQueue(new int[] { -6, 1, tileRow, 0, 0, 0, 0, 0, 0, 0 });
 
 			for (Tile t : backTiles) {
-				pl.viewport.server.addToQueue(new int[] { -6, 5, t.x, t.y, t.currentInt, 0, 0, 0, 0, 0 });
+				pl.viewport.server.addToQueue(new int[] { -6, 5, t.getX(), t.getY(), t.getCurrentInt(), 0, 0, 0, 0, 0 });
 				// System.out.println("t.x = " + t.x + " | t,y = " + t.y + " |
 				// t.currentInt = " + t.currentInt);
 			}
 		}
 	}
 
-	public void sendData(game.Player pl) {
+	public void sendData(Player pl) {
 		pl.viewport.server.addToQueue(new int[] { -6, 0, tileCol, 0, 0, 0, 0, 0, 0, 0 });
 		pl.viewport.server.addToQueue(new int[] { -6, 1, tileRow, 0, 0, 0, 0, 0, 0, 0 });
 
+		int maxX = backTiles.get(0).getX();
+		int maxY = backTiles.get(0).getY();
+		
 		int counter = 0;
+		
+		int[][] inputs = new int[backTiles.size()][10];
 		for (Tile t : backTiles) {
 			//System.out.println("Hello------------------------------------------");
+			inputs[counter] = new int[] { -6, 5, t.getX(), t.getY(), t.getCurrentInt(), 0, 0, 0, 0, 0 };
+
 			counter++;
-			pl.viewport.server.addToQueue(new int[] { -6, 5, t.x, t.y, t.currentInt, 0, 0, 0, 0, 0 });
-			System.out.println("t.x = " + t.x + " | t,y = " + t.y + " |");
+			
+			//pl.viewport.server.addToQueue(new int[] { -6, 5, t.getX(), t.getY(), t.getCurrentInt(), 0, 0, 0, 0, 0 });
+			//System.out.println("t.x = " + t.getX() + " | t,y = " + t.getY() + " |");
 			// t.currentInt = " + t.currentInt);
+			maxX = Integer.max(maxX, t.getX());
+			maxY = Integer.max(maxY, t.getY());
+			if(t.getY() <= 10) System.out.println(Arrays.toString(new int[] { -6, 5, t.getX(), t.getY(), t.getCurrentInt(), 0, 0, 0, 0, 0 }));
 		}
-		System.out.println(counter);
+		pl.viewport.server.addToQueue(inputs);
+		System.out.println("Tiles sent from Levels to client listener = " + counter);
+		System.out.println("max X = " + maxX);
+		System.out.println("max Y = " + maxY);
 	}
 
 	private void debug(String s) {

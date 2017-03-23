@@ -40,6 +40,13 @@ public class Server extends Thread{
 		
 		sender.addToQueue(ints);
 	}
+	
+public void addToQueue(int[][] ints) {
+		for(int i = 0; i < ints.length; i++){
+			sender.addToQueue(ints[i]);
+		}
+		
+	}
 }
 
 //public class Server{
