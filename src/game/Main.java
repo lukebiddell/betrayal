@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class Main extends Thread {
 	public GamePanel gamePane;
-	public BGM bgm = new BGM(50,"Music/BGM_Asian_Gravedrum.wav");
+	public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
 	
 	public void run()
 	{
