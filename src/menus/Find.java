@@ -1,20 +1,22 @@
 package menus;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import audio.BGM;
 import game.Main;
+import network.TCPClient;
 
 
 /*
@@ -27,7 +29,12 @@ public class Find extends JPanel
 	private BGM click;
 	public JButton btnJoinGame;
 	public JButton btnBack;
-	public JTextField enterIP;
+	public JLabel lblNickname;
+	public JLabel lblHostIP;
+	public JTextField txtNickname;
+	public JTextField txtHostIP;
+	public Font txtFont = new Font("Calibri", 24, 24);
+	
 
 	public Find(Mainframe m)
 	{
@@ -43,13 +50,33 @@ public class Find extends JPanel
 		 */
 		btnJoinGame = new JButton();
 		btnJoinGame.setBounds(694, 450, 180, 100);
-		ImageIcon btnJoinGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/join_game_button.png", 180, 100);
+		ImageIcon btnJoinGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/join_game_button_2.png", 180, 100);
 		btnJoinGame.setIcon(btnJoinGameIcon);
 		btnJoinGame.setBorderPainted(false);
 		btnJoinGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
+				String n =  txtNickname.getText();
+				
+				
+				m.lobbym.ownsetNickname(n);
+						
+				new TCPClient(4444, txtHostIP.getText());
+						try {
+							new TCPClient(4444, txtHostIP.getText());
+							m.lobbym.setIP(txtHostIP.getText());
+						} catch (UnknownHostException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+					m.setMenu(7);
+				
+					txtNickname.setText("Couldnt find host");
+					txtHostIP.setText("Couldnt find host");
+				
+				
 				//TO BE IMPLEMENTED
 				
 				/*
@@ -68,7 +95,7 @@ public class Find extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button_2.png", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -80,20 +107,78 @@ public class Find extends JPanel
 			}
 		});
 		add(btnBack);
-		
 	
+		lblNickname = new JLabel();
+		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label_2.jpg", 436, 124));
+		lblNickname.setBounds(231, 153, 431, 118);
+		add(lblNickname);
 		
-		JLabel lblGameIp = new JLabel("Game IP:");
-		lblGameIp.setForeground(Color.WHITE);
-		lblGameIp.setFont(new Font("Calibri", Font.BOLD, 20));
-		lblGameIp.setBackground(Color.BLACK);
-		lblGameIp.setBounds(130, 82, 90, 39);
-		add(lblGameIp);
+		lblHostIP = new JLabel();
+		lblHostIP.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/host_ip_label_2.jpg", 436, 124));
+		lblHostIP.setBounds(231, 309, 431, 124);
+		add(lblHostIP);
 		
-		JTextField textField = new JTextField();
-		textField.setBounds(222, 92, 86, 20);
-		textField.setColumns(10);
-		add(textField);
+		txtNickname = new JTextField("Set Nickname");
+		txtNickname.setBounds(471, 207, 170, 23);
+		txtNickname.setColumns(10);
+		txtNickname.setFont(txtFont);
+		txtNickname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		txtNickname.addFocusListener(new FocusListener(){
+			public void focusLost(FocusEvent args0)
+			{
+		        if(txtNickname.getText().trim().equals(""))
+		        {
+		        	txtNickname.setText("Set Nickname");
+		        }
+		        
+		        else
+		        {}
+		    }
+			
+			public void focusGained(FocusEvent args0)
+			{
+		        if(txtNickname.getText().trim().equals("Set Nickname"))
+		        {
+		        	txtNickname.setText("");
+		        }
+		        
+		        else
+		        {}
+		    }
+			});
+		
+		add(txtNickname);
+		
+		txtHostIP = new JTextField("XXX.XXX.X.X");
+		txtHostIP.setBounds(471, 366, 170, 23);
+		txtHostIP.setColumns(10);
+		txtHostIP.setFont(txtFont);
+		txtHostIP.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		txtHostIP.addFocusListener(new FocusListener(){
+		public void focusLost(FocusEvent args0)
+		{
+	        if(txtHostIP.getText().trim().equals(""))
+	        {
+	        	txtHostIP.setText("XXX.XXX.X.X");
+	        }
+	        
+	        else
+	        {}
+	    }
+		
+		public void focusGained(FocusEvent args0)
+		{
+	        if(txtHostIP.getText().trim().equals("XXX.XXX.X.X"))
+	        {
+	        	txtHostIP.setText("");
+	        }
+	        
+	        else
+	        {}
+	    }
+		});
+		
+		add(txtHostIP);
 		
 		/*
 		 * Background JLabel
