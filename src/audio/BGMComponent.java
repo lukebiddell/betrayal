@@ -2,6 +2,7 @@ package audio;
 
 import java.awt.Color;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
