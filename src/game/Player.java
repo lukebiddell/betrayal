@@ -31,27 +31,12 @@ public class Player extends Entity {
 	public Animation anim;
 
 	public boolean isDead;
-
 	private int lastSet;
-
 	public double exp;
-
 	public Weapon[] weapon;
 
-	public void setExp(int exp) {
-		this.exp = exp;
-		int[] ints = new int[] { -5, 1, exp, 0, 0, 0, 0, 0, 0, 0 };
-		viewport.server.addToQueue(ints);
-	}
-
 	public BGM sword_swing, pew_pew;
-
 	private static final double sqrt2 = Math.sqrt(2);
-
-	public double getAngle() {
-		return Math.atan2(viewport.toGameCoord(mouse.getPos()).y - pos.y,
-				viewport.toGameCoord(mouse.getPos()).x - pos.x);
-	}
 
 	public Player(Game game, KeyboardInput keyboard, MouseInput mouse) {
 		super();
@@ -76,7 +61,18 @@ public class Player extends Entity {
 		sword_swing = new BGM(50, "/Music/SFX_Swoosh.wav");
 		pew_pew = new BGM(50, "/Music/SFX_Hit_2.wav");
 	}
-
+	
+	public double getAngle() {
+			return Math.atan2(viewport.toGameCoord(mouse.getPos()).y - pos.y,
+					viewport.toGameCoord(mouse.getPos()).x - pos.x);
+	}
+	
+	public void setExp(int exp) {
+		this.exp = exp;
+		int[] ints = new int[] { -5, 1, exp, 0, 0, 0, 0, 0, 0, 0 };
+		viewport.server.addToQueue(ints);
+	}
+	
 	@Override
 	public void update(double delta, Game game) {
 

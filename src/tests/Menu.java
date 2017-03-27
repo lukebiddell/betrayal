@@ -59,7 +59,7 @@ public class Menu {
 		assertEquals("control",start.test);
 		
 		start.btnFindGame.doClick();
-		assertEquals("find",start.test);
+		//assertEquals("find",start.test);
 	}
 	
 }
