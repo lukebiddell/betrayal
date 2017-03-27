@@ -1,18 +1,12 @@
 package network;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 //user Sender
 //sends to server
@@ -42,6 +36,7 @@ public class ServerSender extends Thread {
 		this.inetAddress = inetAddress;
 	}
 
+	@Override
 	public void run() {
 		
 		while (true) {

@@ -105,6 +105,7 @@ public class CircleSector implements Shape{
 	/**
 	 * @return The intersection value of a shape and circle sector
 	 */
+	@Override
 	public boolean intersects(Shape s){
 		if(s instanceof Circle){
 			Circle c = (Circle)s;
@@ -137,6 +138,7 @@ public class CircleSector implements Shape{
 		else return false;
 	}
 	
+	@Override
 	public Shape clone(){
 		return new CircleSector(radius, (Point2D.Double)(center.clone()), arcStart, arcLen);
 	}

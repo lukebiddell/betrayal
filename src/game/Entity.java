@@ -1,7 +1,6 @@
 package game;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.LinkedList;
 
@@ -39,6 +38,7 @@ public abstract class Entity implements Comparable<Entity>{
 	}
 	
 	
+	@Override
 	public abstract Entity clone();
 	
 	public void cloneBehaviour(Entity e){

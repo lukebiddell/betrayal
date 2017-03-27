@@ -1,13 +1,9 @@
 package game;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import audio.BGM;
-import network.*;
 
 //import audio.BGM;
 
-import java.awt.*;
 
 public class Main extends Thread {
 	public GamePanel gamePane;
@@ -18,6 +14,7 @@ public class Main extends Thread {
 		
 	}
 	
+	@Override
 	public void run()
 	{
 		this.gamePane = new GamePanel();
@@ -68,7 +65,7 @@ public class Main extends Thread {
 		  }
 		  
 		  // update the game logic
-		  gamePane.game.update((double)updateLength / 1000000000.0);
+		  gamePane.game.update(updateLength / 1000000000.0);
 		  
 		  // draw everything
 		  gamePane.paintImmediately(gamePane.getBounds());

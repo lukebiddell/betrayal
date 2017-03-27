@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import network.TCPClient;
-import network.UDPClient;
-
 import javax.swing.JLabel;
 public class StartMenu 
 {

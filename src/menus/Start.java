@@ -1,12 +1,7 @@
 package menus;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,11 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.BGM;
-import game.Game;
-import game.KeyboardInput;
-import game.Main;
-import game.MouseInput;
-import network.MainServer;
 
 
 /*
@@ -70,6 +60,7 @@ public class Start extends JPanel
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.setBorderPainted(false);
 		btnFindGame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
 				click.playOnce();
@@ -91,6 +82,7 @@ public class Start extends JPanel
 		btnHostGame.setIcon(btnHostGameIcon);
 		btnHostGame.setBorderPainted(false);
 		btnHostGame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -112,6 +104,7 @@ public class Start extends JPanel
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.setBorderPainted(false);
 		btnControls.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{	
 				click.playOnce();
@@ -133,6 +126,7 @@ public class Start extends JPanel
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.setBorderPainted(false);
 		btnAudio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -151,6 +145,7 @@ public class Start extends JPanel
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();

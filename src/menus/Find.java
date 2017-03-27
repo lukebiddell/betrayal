@@ -7,9 +7,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,8 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import audio.BGM;
-import game.Main;
-import network.TCPClient;
 
 
 /*
@@ -86,6 +81,7 @@ public class Find extends JPanel
 	btnJoinGame.setIcon(btnJoinGameIcon);
 	btnJoinGame.setBorderPainted(false);
 	btnJoinGame.addActionListener(new ActionListener() {
+		@Override
 		public void actionPerformed(ActionEvent e)
 		{
 			click.playOnce();
@@ -106,6 +102,7 @@ public class Find extends JPanel
 	btnBack.setIcon(btnBackIcon);
 	btnBack.setBorderPainted(false);
 	btnBack.addActionListener(new ActionListener() {
+		@Override
 		public void actionPerformed(ActionEvent e)
 		{
 			click.playOnce();
@@ -130,6 +127,7 @@ public class Find extends JPanel
 		txtNickname.setFont(txtFont);
 		txtNickname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtNickname.addFocusListener(new FocusListener(){
+			@Override
 			public void focusLost(FocusEvent args0)
 			{
 		        if(txtNickname.getText().trim().equals(""))
@@ -141,6 +139,7 @@ public class Find extends JPanel
 		        {}
 		    }
 			
+			@Override
 			public void focusGained(FocusEvent args0)
 			{
 		        if(txtNickname.getText().trim().equals("Set Nickname"))

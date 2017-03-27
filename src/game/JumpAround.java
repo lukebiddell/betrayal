@@ -27,9 +27,11 @@ public class JumpAround implements Behaviour{
 		random = new Random();
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		switch(state){
 			case waiting:
@@ -55,6 +57,7 @@ public class JumpAround implements Behaviour{
 		}
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new JumpAround(waitingTime, movingTime);
 	}

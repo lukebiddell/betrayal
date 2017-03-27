@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public final class SpritesheetEnum {
@@ -108,7 +107,7 @@ public final class SpritesheetEnum {
 					i = ImageIO.read(new File("../" + path));
 				}
 				System.out.print("Image width: " + i.getWidth());
-				System.out.println(" | Image width: " + (int)i.getWidth()/32);
+				System.out.println(" | Image width: " + i.getWidth()/32);
 				return new Spritesheet(i, 32, 32, colsInRow);
 			} catch (IOException e) {
 				System.err.println(e.getStackTrace());

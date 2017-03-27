@@ -1,24 +1,12 @@
 package network;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 
-import game.KeyboardInput;
-import game.MouseInput;
 import game.Player;
 
 
-import java.io.DataInputStream;
-import java.io.IOException;
-
-import game.KeyboardInput;
-import game.MouseInput;
-import game.Player;
-
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.nio.ByteBuffer;
 
 public class ServerListener extends Thread {
 	private DatagramSocket socket;
@@ -33,6 +21,7 @@ public class ServerListener extends Thread {
 		this.p = p;
 	}
 
+	@Override
 	public void run() {
 		while (true) {
 			try {

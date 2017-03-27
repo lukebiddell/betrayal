@@ -7,12 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import javax.sql.ConnectionPoolDataSource;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -177,6 +175,7 @@ public class HostLobby extends JPanel {
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -220,6 +219,7 @@ public class HostLobby extends JPanel {
 	txtNickname.setFont(txtFont);
 	txtNickname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 	txtNickname.addFocusListener(new FocusListener(){
+		@Override
 		public void focusLost(FocusEvent args0)
 		{
 			if(txtNickname.getText().trim().equals(""))
@@ -229,6 +229,7 @@ public class HostLobby extends JPanel {
 	        
 	    }
 		
+		@Override
 		public void focusGained(FocusEvent args0)
 		{
 	        if(txtNickname.getText().trim().equals("Set Nickname"))

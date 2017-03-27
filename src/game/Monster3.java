@@ -1,6 +1,5 @@
 package game;
 import java.awt.geom.Point2D;
-import java.util.NoSuchElementException;
 
 public class Monster3 extends Monster{
 	public Monster3(Game game, Point2D.Double pos){

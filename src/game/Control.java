@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import audio.BGM;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +38,7 @@ public class Control extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
+			@Override
 			public void run() 
 			{
 				try
@@ -81,6 +80,7 @@ public class Control extends JFrame
 		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 

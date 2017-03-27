@@ -16,16 +16,19 @@ public class LinearMotion implements Behaviour{
 		dir = new Point2D.Double((towards.x-pos.x)*speed/r, (towards.y-pos.y)*speed/r);
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		pos.x += dir.x*delta;
 		pos.y += dir.y*delta;
 	}
 	
 	
+	@Override
 	public Behaviour clone(){
 		LinearMotion lm = new LinearMotion(3, new Point2D.Double(1,1), new Point2D.Double(2,2));
 		lm.dir = dir;

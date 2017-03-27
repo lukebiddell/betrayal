@@ -19,10 +19,12 @@ public class Knockback implements Behaviour{
 	}
 
 	
+	@Override
 	public boolean disposable(){
 		return timer >= time;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		timer += delta;
 		
@@ -30,6 +32,7 @@ public class Knockback implements Behaviour{
 		pos.y += (delta/time) * displacement.y;
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new Knockback((Point2D.Double)(displacement.clone()), time);
 	}

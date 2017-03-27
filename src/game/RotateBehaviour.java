@@ -18,10 +18,12 @@ public class RotateBehaviour extends LinearHome{
 		towards.x += r;
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		
 		super.update(game, pos, delta);
@@ -32,6 +34,7 @@ public class RotateBehaviour extends LinearHome{
 		towards.y = around.y + r*Math.sin(angle);
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new RotateBehaviour(speed, r, (Point2D.Double)(around.clone()));
 	}

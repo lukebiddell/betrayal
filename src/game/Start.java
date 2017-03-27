@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import audio.BGM;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Image;
@@ -41,6 +39,7 @@ public class Start extends JFrame
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() 
 			{
 				try
@@ -82,6 +81,7 @@ public class Start extends JFrame
 		ImageIcon btnFindGameIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
 
@@ -97,6 +97,7 @@ public class Start extends JFrame
 		ImageIcon btnControlsIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
 
@@ -112,6 +113,7 @@ public class Start extends JFrame
 		ImageIcon btnAudioIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 

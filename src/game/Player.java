@@ -4,13 +4,7 @@ import weapons.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.event.KeyEvent;
-import java.util.List;
 import java.util.ListIterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-
-import game.Animation.AnimationMode;
-
 import audio.BGM;
 
 public class Player extends Entity {
@@ -205,6 +199,7 @@ public class Player extends Entity {
 		}
 	}
 
+	@Override
 	public Entity clone() {
 		return this;
 	}

@@ -4,9 +4,6 @@ import weapons.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.event.KeyEvent;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.LinkedList;
 
 public class WeaponDrop extends Entity{
 
@@ -35,10 +32,12 @@ public class WeaponDrop extends Entity{
 	/**
 	 * Get the position of weapon dropped
 	 */
+	@Override
 	public Point2D.Double getPos(){
 		return hitbox.center;
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
@@ -46,6 +45,7 @@ public class WeaponDrop extends Entity{
 	/**
 	 * Draw object on viewport
 	 */
+	@Override
 	public void draw(Graphics2D g, Viewport viewport){
 			if(weapon.getDropColor()==Color.ORANGE){
 			viewport.drawCircleSprite(hitbox.center, size, anim, g);}
@@ -59,6 +59,7 @@ public class WeaponDrop extends Entity{
 	/**
 	 * Change weapon
 	 */
+	@Override
 	public void playerInteracted(Player p, int event){
 		if(event == KeyEvent.VK_Q && p.hitbox.intersects(hitbox)){
 			weapon.player = p;

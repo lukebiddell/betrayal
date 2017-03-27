@@ -11,8 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import audio.BGM;
-
 import javax.swing.JToggleButton;
 import java.awt.Color;
 import javax.swing.JSlider;
@@ -42,6 +40,7 @@ public class Audio extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
+			@Override
 			public void run() 
 			{
 				try
@@ -83,6 +82,7 @@ public class Audio extends JFrame
 		ImageIcon btnBackIcon = new ImageIcon(new ImageIcon("").getImage().getScaledInstance(90, 50, Image.SCALE_DEFAULT));
 		btnBack.setIcon(btnBackIcon);
 		btnBack.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 
@@ -107,6 +107,7 @@ public class Audio extends JFrame
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("Mute/Unmute");
 		tglbtnNewToggleButton.setBounds(148, 36, 121, 23);
 		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 
