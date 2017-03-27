@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Game{
 	
-	
+	public boolean newLevel = true;
 	public boolean isRunning;
 	public KeyboardInput keyboard;
 	public MouseInput mouse;
@@ -147,6 +147,8 @@ public class Game{
 	}
 	
 	public void update(double delta){
+		
+		
 		
 		monsters.addAll(monstersWaiting);
 		monstersWaiting = new LinkedList<Monster>();

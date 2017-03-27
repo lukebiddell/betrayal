@@ -103,6 +103,7 @@ public class MainServer extends Thread {
 											// Server object
 											// while adding
 											// it to
+				
 			} // connections
 		} catch (IOException e) {
 			System.out.println("There seems to be a problem");

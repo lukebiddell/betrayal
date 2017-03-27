@@ -170,7 +170,7 @@ public class ClientListener extends Thread {
 					}
 				} else if (input[0] == -7) {// drawing started
 
-					for (int i = 0; i < tilemap.length; i++) {
+					/*for (int i = 0; i < tilemap.length; i++) {
 						// System.out.println("i = " + i);
 						for (int j = 0; j < tilemap[i].length; j++) {
 							// System.out.println("j = " + j);
@@ -178,7 +178,7 @@ public class ClientListener extends Thread {
 								System.out.println(i + "," + j + ": " + tileID);
 							}
 						}
-					}
+					}*/
 
 					for (int i = 0; i < tilemapW; i++) {
 						for (int j = 0; j < tilemapH; j++) {
