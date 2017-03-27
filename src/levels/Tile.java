@@ -7,9 +7,8 @@ import game.Animation;
 import game.Entity;
 import game.Viewport;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Tile.
+ * The Tile class. A tile is made for each square on the screen to draw.
  */
 public class Tile extends Entity {
 

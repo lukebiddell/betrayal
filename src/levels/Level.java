@@ -23,7 +23,7 @@ import game.SpritesheetEnum;
 import game.Viewport;
 
 /**
- * The Class Level.
+ * The Level class. This handles the parsing of levels from XML files, and drawing the produced tiles.
  */
 public class Level {
 
