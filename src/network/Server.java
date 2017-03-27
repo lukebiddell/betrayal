@@ -1,11 +1,6 @@
 package network;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.net.*;
-import java.util.Scanner;
-
 import game.Player;
 
 public class Server extends Thread{
@@ -27,6 +22,7 @@ public class Server extends Thread{
 		this.listener = new ServerListener(socket, player);
 
 	}
+	@Override
 	public void run(){
 
 		listener.start();

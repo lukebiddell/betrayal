@@ -2,11 +2,6 @@ package game;
 import weapons.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.event.KeyEvent;
-import java.util.Random;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class Fairy extends Projectile{
 	

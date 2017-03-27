@@ -1,8 +1,5 @@
 package game;
 import java.awt.geom.Point2D;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.Iterator;
 
 public class GreedyFollowBehaviour extends LinearHome{
@@ -11,6 +8,7 @@ public class GreedyFollowBehaviour extends LinearHome{
 		super(speed, new Point2D.Double());
 	}
 
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		double minr = Double.MAX_VALUE;
 	

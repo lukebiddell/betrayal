@@ -17,10 +17,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
-
 import game.*;
 
 
@@ -37,6 +34,7 @@ public class MainServer extends Thread {
 
 	}
 
+	@Override
 	public void run() {
 		ServerSocket serverSocket;
 		try {

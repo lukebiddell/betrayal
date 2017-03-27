@@ -2,9 +2,6 @@ package lobby;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import menus.HostLobby;
 import menus.LobbyMember;
 
@@ -30,6 +27,7 @@ public class LobbyListener extends Thread {
 		this.owner = owner;
 	}
 
+	@Override
 	public void run() {
 		try {
 			while (running) {

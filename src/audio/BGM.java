@@ -1,9 +1,6 @@
 package audio;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.BooleanControl;
@@ -185,6 +182,7 @@ public class BGM
 		}else return false;
 	}
 	
+		@Override
 		public String toString()
 	{
 		return "Volume : " + this.value + "%";

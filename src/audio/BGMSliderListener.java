@@ -29,6 +29,7 @@ public class BGMSliderListener implements ChangeListener
 	/**
 	 * Respond to the user moving a slider.
 	 */
+	@Override
 	public void stateChanged(ChangeEvent e)
 	{
 		int value = slider.getValue();

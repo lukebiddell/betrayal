@@ -3,11 +3,7 @@ package game;
 import weapons.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.event.KeyEvent;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.util.Random;
-import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,7 +11,6 @@ import java.util.TreeMap;
 import audio.BGM;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class Monster extends Projectile{
 	public double maxHp;
@@ -70,10 +65,12 @@ public class Monster extends Projectile{
 		lastHitBy = p;
 	}
 	
+	@Override
 	public boolean disposable(){
 		return dead;
 	}
 	
+	@Override
 	public void update(double delta, Game game){
 		if(hp<=0){
 			BGM deathSound = new BGM(100, "/Music/SFX_Monster_3.wav");

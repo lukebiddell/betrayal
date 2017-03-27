@@ -4,9 +4,6 @@ import java.awt.event.*;
 
 import network.ClientSender;
 
-
-import java.awt.Point;
-
 public class ClientInputListener implements MouseMotionListener, MouseListener, KeyListener, ComponentListener {
 
 	private static final int KEY_COUNT = 256;
@@ -18,6 +15,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 		this.sender = sender;
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 		case MouseEvent.BUTTON1:
@@ -39,6 +37,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 		}
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		switch (e.getButton()) {
 		case MouseEvent.BUTTON1:
@@ -60,6 +59,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 		}
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent e) {
 		int[] ints = new int[]{
 				6,
@@ -69,15 +69,19 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 		sender.addToQueue(ints);
 	}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		int[] ints = new int[]{
 				6,
@@ -87,6 +91,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 		sender.addToQueue(ints);
 		}
 
+	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 
 		int keyCode = e.getKeyCode();
@@ -105,6 +110,7 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 	}
 
+	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 
 		int keyCode = e.getKeyCode();
@@ -121,12 +127,14 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 
 		// Not needed
 
 	}
 	
+	@Override
 	public void componentResized(ComponentEvent e) {
 	
 			int[] ints = new int[]{
@@ -138,7 +146,10 @@ public class ClientInputListener implements MouseMotionListener, MouseListener, 
 	}
 	
 	
+	@Override
 	public void componentHidden(ComponentEvent e){}
+	@Override
 	public void componentMoved(ComponentEvent e){}
+	@Override
 	public void componentShown(ComponentEvent e){}
 }

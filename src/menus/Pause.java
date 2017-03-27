@@ -1,6 +1,5 @@
 package menus;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -41,6 +40,7 @@ public class Pause extends JPanel
 		btnReturnGame.setIcon(btnReturnGameIcon);
 		btnReturnGame.setBorderPainted(false);
 		btnReturnGame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -59,6 +59,7 @@ public class Pause extends JPanel
 		btnDisconnect.setIcon(btnDisconnectIcon);
 		btnDisconnect.setBorderPainted(false);
 		btnDisconnect.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();

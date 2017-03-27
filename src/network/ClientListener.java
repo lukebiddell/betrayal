@@ -1,18 +1,9 @@
 package network;
 
-import java.io.DataInputStream;
-
 import java.io.IOException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JOptionPane;
 
-import game.KeyboardInput;
-import game.MouseInput;
-import game.Player;
 import game.Spritesheet;
 import game.SpritesheetEnum;
 import game.ClientWindow;
@@ -21,14 +12,8 @@ import game.ClientWindow;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.nio.ByteBuffer;
-
-import game.ClientWindow;
-import game.Spritesheet;
-import game.SpritesheetEnum;
 
 public class ClientListener extends Thread {
 	private DatagramSocket socket;
@@ -52,6 +37,7 @@ public class ClientListener extends Thread {
 		//this.g = (Graphics2D)(panel.getGraphics());
 	}
 
+	@Override
 	public void run() {
 		while (true) {
 			try {
@@ -73,7 +59,7 @@ public class ClientListener extends Thread {
 						//BufferedImage src = sprs.img.getSubimage(sprs.offsetW + sprs.spriteW * input[5], sprs.offsetH + sprs.spriteH * input[6], sprs.spriteW, sprs.spriteH);
 						
 						AffineTransform t = g.getTransform();
-						double ang = ((double)input[7])/100000000.0;
+						double ang = (input[7])/100000000.0;
 						ang/=Math.PI/2;
 						g.rotate((Math.round(ang))*Math.PI/2,(input[1]+input[3])/2,(input[2]+input[4])/2);
 						

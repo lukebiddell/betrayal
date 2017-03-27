@@ -2,9 +2,7 @@ package game;
 
 import weapons.*;
 import java.awt.geom.Point2D;
-import java.util.NoSuchElementException;
 import java.awt.Color;
-import java.util.List;
 import java.util.LinkedList;
 
 public class DefaultMonster extends Monster{

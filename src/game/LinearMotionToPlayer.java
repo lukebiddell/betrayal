@@ -12,6 +12,7 @@ public class LinearMotionToPlayer extends LinearMotion{
 		this.speed = speed;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		if(!live){
 			
@@ -28,6 +29,7 @@ public class LinearMotionToPlayer extends LinearMotion{
 		pos.y += dir.y*delta;
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new LinearMotionToPlayer(speed, new Point2D.Double(), new Point2D.Double());
 	}

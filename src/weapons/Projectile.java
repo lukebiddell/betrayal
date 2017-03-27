@@ -3,10 +3,8 @@ package weapons;
 import game.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.lang.Cloneable;
 
 public class Projectile extends Entity implements Cloneable{

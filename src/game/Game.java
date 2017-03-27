@@ -1,30 +1,13 @@
 package game;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.xml.parsers.ParserConfigurationException;
-
 import levels.Level;
-import network.ServerListener;
-import network.ClientListener;
 import network.Server;
 import network.MainServer;
-import weapons.*;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.event.KeyEvent;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.util.Random;
-import java.util.List;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 

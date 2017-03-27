@@ -16,10 +16,12 @@ public class LinearHome implements Behaviour{
 		this.towards = towards;
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		
 		final double r = Math.sqrt((pos.x - towards.x)*(pos.x - towards.x) + (pos.y - towards.y)*(pos.y - towards.y));
@@ -27,6 +29,7 @@ public class LinearHome implements Behaviour{
 		pos.y += (towards.y-pos.y)*speed*delta/r;
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new LinearHome(speed, (Point2D.Double)(towards.clone()));
 	}

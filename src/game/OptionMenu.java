@@ -1,9 +1,7 @@
 package game;
 import java.awt.Color;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 
 public class OptionMenu 
 {

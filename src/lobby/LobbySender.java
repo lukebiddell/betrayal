@@ -2,7 +2,6 @@ package lobby;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -17,6 +16,7 @@ public class LobbySender extends Thread {
 			this.running = true;
 		}
 
+		@Override
 		public void run() {
 
 			try {

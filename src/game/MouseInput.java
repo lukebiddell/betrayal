@@ -24,7 +24,8 @@ public class MouseInput implements MouseMotionListener, MouseListener {
 		pos = new Point(0,0);
 	}
 	
-    public void mousePressed(MouseEvent e) {
+    @Override
+	public void mousePressed(MouseEvent e) {
     	switch(e.getButton()){
     		case MouseEvent.BUTTON1:
     			leftPressed = true;
@@ -35,7 +36,8 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     	}
     }
 
-    public void mouseReleased(MouseEvent e) {
+    @Override
+	public void mouseReleased(MouseEvent e) {
     	switch(e.getButton()){
     		case MouseEvent.BUTTON1:
     			leftPressed = false;
@@ -68,7 +70,8 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     	}
     }
     
-    public void mouseMoved(MouseEvent e) {
+    @Override
+	public void mouseMoved(MouseEvent e) {
     	pos = e.getPoint();
     }
     
@@ -129,16 +132,20 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     	}
     }
 
-    public void mouseEntered(MouseEvent e) {
+    @Override
+	public void mouseEntered(MouseEvent e) {
     }
 
-    public void mouseExited(MouseEvent e) {
+    @Override
+	public void mouseExited(MouseEvent e) {
     }
 
-    public void mouseClicked(MouseEvent e) {
+    @Override
+	public void mouseClicked(MouseEvent e) {
     }
     
-    public void mouseDragged(MouseEvent e) {
+    @Override
+	public void mouseDragged(MouseEvent e) {
     	pos = e.getPoint();
     }
 }

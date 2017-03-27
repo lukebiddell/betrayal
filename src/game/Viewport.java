@@ -2,11 +2,7 @@ package game;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-
 import network.Server;
-import levels.Tile;
 
 public class Viewport{
 	private Point2D.Double pos;
@@ -36,8 +32,8 @@ public class Viewport{
 	}
 	
 	public void update(double delta){
-		final double W = (double) screenW;
-		final double H = (double) screenH;
+		final double W = screenW;
+		final double H = screenH;
 		if(W<=game.roomW*ppu) pos.x = Math.min(Math.max(p.pos.x - W/(2*ppu), 0), game.roomW - W/ppu);
 		else pos.x = (game.roomW - W/ppu)/2;
 		if(H<=game.roomH*ppu) pos.y = Math.min(Math.max(p.pos.y - H/(2*ppu), 0), game.roomH - H/ppu);

@@ -26,10 +26,12 @@ public class Gravitate implements Behaviour{
 		v = new Point2D.Double(0,0);
 	}
 	
+	@Override
 	public boolean disposable(){
 		return false;
 	}
 
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		acc0.x = acc.x;
 		acc0.y = acc.y;
@@ -46,6 +48,7 @@ public class Gravitate implements Behaviour{
 		pos.y += (v.y + v0.y)*delta/2;
 	}
 	
+	@Override
 	public Behaviour clone(){
 		return new Gravitate((Point2D.Double)(towards.clone()), accfactor);
 	}

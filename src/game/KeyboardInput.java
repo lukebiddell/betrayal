@@ -105,7 +105,8 @@ public class KeyboardInput implements KeyListener {
 
         
 
-  public synchronized void keyPressed( KeyEvent e ) {
+  @Override
+public synchronized void keyPressed( KeyEvent e ) {
 
     int keyCode = e.getKeyCode();
 
@@ -128,7 +129,8 @@ public class KeyboardInput implements KeyListener {
 	  }
 
 
-  public synchronized void keyReleased( KeyEvent e ) {
+  @Override
+public synchronized void keyReleased( KeyEvent e ) {
 
 	    int keyCode = e.getKeyCode();
 
@@ -152,7 +154,8 @@ public class KeyboardInput implements KeyListener {
 
 
 
-  public void keyTyped( KeyEvent e ) {
+  @Override
+public void keyTyped( KeyEvent e ) {
 
     // Not needed
 

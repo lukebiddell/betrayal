@@ -1,9 +1,7 @@
 package game;
 import java.awt.geom.Point2D;
 import java.util.Random;
-import java.util.List;
 import java.util.ListIterator;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PeriodicalSpawnBehaviour implements Behaviour{
@@ -24,10 +22,12 @@ public class PeriodicalSpawnBehaviour implements Behaviour{
 		this.random = new Random();
 	}
 
+	@Override
 	public boolean disposable(){
 		return false;
 	}
 	
+	@Override
 	public void update(Game game, Point2D.Double pos, double delta){
 		
 		timeLeft -= delta;
@@ -64,6 +64,7 @@ public class PeriodicalSpawnBehaviour implements Behaviour{
 	}
 	
 	
+	@Override
 	public Behaviour clone(){
 		return this;
 	}

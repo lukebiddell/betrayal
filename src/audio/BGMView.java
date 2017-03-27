@@ -44,6 +44,7 @@ public class BGMView extends JLabel implements Observer
 
 	}
 	
+	@Override
 	public void update(Observable obs, Object obj)
 	{
 		boolean mute = model.getMuteStatus();
