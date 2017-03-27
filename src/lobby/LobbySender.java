@@ -9,18 +9,21 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class LobbySender extends Thread {
 		private DataOutputStream out;
 		private BlockingQueue<String> queue;
+		private boolean running;
 
 		public LobbySender(DataOutputStream out) {
 			this.out = out;
 			this.queue = new LinkedBlockingQueue<String>();
-
+			this.running = true;
 		}
 
 		public void run() {
 
 			try {
-				while (true) {
-					out.writeUTF(queue.take());
+				while (running) {
+					String message = queue.take();
+					System.out.println("writing message : " + message);
+					out.writeUTF(message);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -28,6 +31,7 @@ public class LobbySender extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println("sender is stopping");
 		}
 
 		public void addToQueue(String input) {
@@ -38,5 +42,11 @@ public class LobbySender extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+		public void reset() {
+			this.running = false;
+			this.interrupt();
+			
 		}
 }

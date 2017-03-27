@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import menus.LobbyMember;
+
 
 public class LobbyClient {
 
@@ -12,11 +14,13 @@ public class LobbyClient {
 	private LobbySender sender;
 	private LobbyListener listener;
 	private boolean connected;
+	private LobbyMember member;
 
-	public LobbyClient() {
+	public LobbyClient(LobbyMember member) {
 		this.sender = null;
 		this.listener = null;
 		this.connected = false;
+		this.member = member;
 	}
 
 	public boolean connect(int port, String name) {
@@ -24,13 +28,12 @@ public class LobbyClient {
 
 			Socket server = new Socket(name, port);
 			sender = new LobbySender(new DataOutputStream(server.getOutputStream()));
-			listener = new LobbyListener(new DataInputStream(server.getInputStream()));
+			listener = new LobbyListener(new DataInputStream(server.getInputStream()), member);
 			sender.start();
 			listener.start();
 			return true;
 		} catch (IOException e) {
 			System.out.println("couldnt connect to specified host, connection refused.");
-			e.printStackTrace();
 			return false;
 		}
 	}

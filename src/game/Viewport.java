@@ -224,7 +224,7 @@ server.addToQueue(message);
 				coord.y + scaleToScreen(2*r),
 				a.frame,
 				a.set,
-				0,
+				((int)(angle*100000000.0)),
 				0,
 				0
 		};

@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import audio.BGM;
 import game.Main;
 import lobby.LobbyClient;
-import lobby.LobbyServer;
+import lobby.LobbyMServer;
 import network.TCPClient;
 
 public class LobbyMember extends JPanel {
@@ -41,6 +41,7 @@ public class LobbyMember extends JPanel {
 	private DefaultTableModel tableModel;
 	private JTextField txtNickname;
 	private Font txtFont = new Font("Times New Roman", 30, 14);
+	private String hostIP;
 	
 	public ArrayList<InetAddress> ips;
 	public ArrayList<String> nicknames;
@@ -51,7 +52,8 @@ public class LobbyMember extends JPanel {
 		super();
 		this.mainframe = m;
 		this.click = new BGM(10, "/Music/SFX_Click.wav");
-		this.client = new LobbyClient();
+		this.client = new LobbyClient(this);
+		this.hostIP = null;
 //		this.setSize(640,420);
 
 		
@@ -89,7 +91,7 @@ public class LobbyMember extends JPanel {
 		
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png", 180, 100);
+		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button.png_2", 180, 100);
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
@@ -105,33 +107,17 @@ public class LobbyMember extends JPanel {
 		add(btnBack);
 	
 		lblNickname = new JLabel("New label");
-		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label.jpg", 386, 176));
-		lblNickname.setBounds(10, 163, 386, 176);
+		lblNickname.setIcon(MenuButtonHandler.loadImageIcon("Resources/Images/nickname_label_2.jpg", 436, 124));
+		lblNickname.setBounds(10, 193, 436, 124);
 		add(lblNickname);
 		
 		
 		txtNickname = new JTextField();
-		txtNickname.setBounds(199, 235, 149, 33);
+		txtNickname.setBounds(252, 250, 130, 23);
 		txtNickname.setColumns(10);
 		txtNickname.setFont(txtFont);
 		txtNickname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		txtNickname.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				txtNickname.setText(nicknames.get(0));
-				
-			}
 
-			@Override
-			public void focusGained(FocusEvent e) {
-				txtNickname.setText(nicknames.get(0));
-				
-			}
-			
-				
-		
-		});
 		add(txtNickname);
 		
 	
@@ -188,6 +174,36 @@ public class LobbyMember extends JPanel {
 //		nicknames.add(0, txtNickname.getText());
 //		tableModel.setValueAt(nicknames.get(0),0,1);
 //	}
+
+	public boolean joinLobby(String nickname, String host) {
+		if(this.client.connect(4444, host) == true){
+			this.txtNickname.setText(nickname);
+			this.client.addToQueue(nickname);
+			this.hostIP = host;
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public void startGame() {
+		System.out.println("starting game");
+		String[] args = new String[]{"4445", hostIP};
+		TCPClient.main(args);
+		
+		
+	}
+
+	public void leave() {
+		this.mainframe.setMenu(5);
+		this.ips.clear();
+		this.nicknames.clear();
+		this.table.clearSelection();
+		while(this.tableModel.getRowCount() > 0)
+		this.tableModel.removeRow(0);
+		
+		
+	}
 }
 
 

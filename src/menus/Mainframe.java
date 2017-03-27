@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import audio.BGM;
-import lobby.LobbyServer;
+
 
 /*
  * @author Jack Marshman
@@ -26,9 +26,9 @@ public class Mainframe extends JFrame
 	private Audio audio;
 	private Find find;
 	private Pause pause;
-	public LobbyMember lobbym;
+	private LobbyMember lobbym;
 
-	private LobbyOwner lobbyo;
+	private HostLobby lobbyo;
 
 	public  Mainframe()
 	{
@@ -37,7 +37,7 @@ public class Mainframe extends JFrame
 		this.start = new Start(this);
 		this.controls = new Control(this);
 		this.audio = new Audio(this, bgm);
-		this.lobbyo = new LobbyOwner(this);
+		this.lobbyo = new HostLobby(this);
 		this.lobbym = new LobbyMember(this);
 		this.find = new Find(this);
 		this.pause = new Pause(this);
@@ -100,10 +100,11 @@ public class Mainframe extends JFrame
 				break;
 			}	
 			
-			//Host
+			//Lobby Host
 			case 4:
 			{
 				cardLayout.show(cardPanel, "4");
+				this.lobbyo.newLobby();
 				this.revalidate();
 				break;
 			}
@@ -126,9 +127,15 @@ public class Mainframe extends JFrame
 				this.revalidate();
 				break;
 			}
+			//Lobby Member
 			case 7:
 			{
-				cardLayout.show(cardPanel, "7");
+				System.out.println("trying to connect to : " + this.find.IP);
+				if(this.lobbym.joinLobby(this.find.txtNickname.getText(), this.find.txtHostIP.getText()) == true){
+					cardLayout.show(cardPanel, "7");
+				} else {
+					this.find.couldntFind();
+				}
 			}
 		}
 	}

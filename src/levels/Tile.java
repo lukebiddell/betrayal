@@ -1,104 +1,106 @@
 package levels;
 
-import java.awt.Color;
-
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
 import game.Animation;
-import game.Circle;
-import game.Game;
-import game.Spritesheet;
+import game.Entity;
 import game.Viewport;
-import game.SpritesheetEnum;
 
-public class Tile extends game.Entity {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Tile.
+ */
+public class Tile extends Entity {
 
-	private boolean collision;
-	// private double width; //internal width not number of pixels
-	// private double height;
-	// private boolean circleHitbox;
-	// private double hitboxTop, hitboxBottom, hitboxLeft, hitboxRight;
-	// private Circle hitboxCircle;
-	// private Point2D.Double coordinates;
+	/** The Constant width of every tile. */
+	public final static double WIDTH = 0.5;
 
-	private Rectangle2D.Double dest;
-	private Spritesheet ss;
+	/** The animation of the tile storing it's image. */
 	private Animation anim;
-	private Point2D pos;
 
-	public Tile() {
-		
-	}
+	/**
+	 * The rectangle storing the location and size of where to draw on screen in
+	 * game units.
+	 */
+	private Rectangle2D.Double dest;
 
+	/** The top-left position of the tile in game units. */
+	private Point2D.Double pos;
+
+	/**
+	 * Instantiates a new tile at the position specified on screen with the
+	 * specified animation.
+	 *
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 * @param anim
+	 *            the anim
+	 */
 	public Tile(int x, int y, Animation anim) {
 		this.anim = anim;
-		pos = new Point2D.Double((double)x/4, (double)y/4);
-		//setDestination((double)x, (double)y);
-		double width = (1 + (double) 1 / (double) 32) / (double) 4;
-		width = (double) 1/ (double) 4;
-		//width += (double) 1 / (double) 32;
-		//width = (double)1 + (double) (1/32);
-		//System.out.println("Width: " + width);
-		dest = new Rectangle2D.Double(pos.getX(), pos.getY(), width, width);
+		pos = new Point2D.Double(x * WIDTH, y * WIDTH);
+		dest = new Rectangle2D.Double(pos.getX(), pos.getY(), WIDTH, WIDTH);
 	}
 
-	public String toString() {
-		return pos.toString();
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see game.Entity#clone()
+	 */
 	@Override
-	public Point2D.Double getPos() {
-		// TODO Auto-generated method stub
-		return null;
+	public Entity clone() {
+		return this;
 	}
 
-	protected Rectangle2D.Double getDestination() {
-		return dest;
-	}
-
-	protected Spritesheet getSpritesheet() {
-		return ss;
-	}
-
-	protected void setSpritesheet(Spritesheet ss) {
-		this.ss = ss;
-	}
-
-	protected Animation getAnimation() {
-		return anim;
-	}
-
-	protected void setAnimation(Animation anim) {
-		this.anim = anim;
-	}
-
-	public Spritesheet getSprite() {
-		return ss;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see game.Entity#disposable()
+	 */
 	@Override
 	public boolean disposable() {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see game.Entity#draw(java.awt.Graphics2D, game.Viewport)
+	 */
 	@Override
 	public void draw(Graphics2D g, Viewport viewport) {
-		//double height = viewport.game.roomH;
 		viewport.drawSprite(dest, anim, g);
 	}
-	
-	public game.Entity clone(){
-		return this;
+
+	/**
+	 * Gets the animation.
+	 *
+	 * @return the animation
+	 */
+	public Animation getAnimation() {
+		return anim;
 	}
+
+	/**
+	 * Gets the destination.
+	 *
+	 * @return the destination
+	 */
+	public Rectangle2D.Double getDestination() {
+		return dest;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see game.Entity#getPos()
+	 */
+	@Override
+	public Point2D.Double getPos() {
+		return pos;
+	}
+
 }

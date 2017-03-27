@@ -13,15 +13,32 @@ public class Main extends Thread {
 	public GamePanel gamePane;
 	public BGM bgm = new BGM(50,"/Music/BGM_Asian_Gravedrum.wav");
 	
+	public Main(){
+		super();
+		
+	}
+	
 	public void run()
 	{
+		this.gamePane = new GamePanel();
 		
+		JFrame window = new JFrame("Test");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setSize(1,1);
+        window.add(this.gamePane);
+        
+        window.addKeyListener(this.gamePane.keyboard);
+		window.addMouseListener(this.gamePane.mouse);
+		window.addMouseMotionListener(this.gamePane.mouse);
+        
+        window.setVisible(true);
+        
 		
 	//	bgm.play();
-//		bgm.update();
+        //	bgm.update();
 		
 	   long lastLoopTime = System.nanoTime();
-	   final int TARGET_FPS = 30;
+	   final int TARGET_FPS = 60;
 	   final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 	   
 	   long lastFpsTime = 0;
@@ -53,13 +70,14 @@ public class Main extends Thread {
 		  // update the game logic
 		  gamePane.game.update((double)updateLength / 1000000000.0);
 		  
-		  // draw everyting
+		  // draw everything
 		  gamePane.paintImmediately(gamePane.getBounds());
 		  
 		  //this is in ms, whereas our lastLoopTime etc. vars are in ns.
 		  try{Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );}
 		  catch(Exception e){System.out.println(e.getMessage());}
 	   }
+	   window.dispose();
 	}
 	
 	public static void main(String args[]){
@@ -73,7 +91,8 @@ public class Main extends Thread {
         
         window.addKeyListener(m.gamePane.keyboard);
 		window.addMouseListener(m.gamePane.mouse);
-
+		
+		window.setVisible(true);
 //		JFrame window = new JFrame("Test");
 //		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		window.setSize(640,420);
@@ -84,13 +103,13 @@ public class Main extends Thread {
 //		window.addMouseMotionListener(m.gamePane.mouse);
 //        
 //        window.setVisible(true);
-		m.start();
+//		m.start();
 
-		
-
-        
-        window.setVisible(true);
-
+//		
+//
+//        
+//        window.setVisible(true);
+//
 
 	}
 }

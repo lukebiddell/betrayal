@@ -6,6 +6,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JOptionPane;
 
 import game.KeyboardInput;
 import game.MouseInput;
@@ -17,6 +20,7 @@ import game.ClientWindow;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -54,20 +58,32 @@ public class ClientListener extends Thread {
 				socket.receive(packet);
 				recievedData = packet.getData();
 				input = ByteConversion.toInts(recievedData);
-				System.out.println("testing");
-				for (int i = 0; i < input.length; i++) {
-					System.out.println(input[i]);
+				if(false){
+				    System.out.println("testing");
+				    for (int i = 0; i < input.length; i++) {
+					    System.out.println(input[i]);
+				    }
 				}
 				
 				
 				if(input[0]>=0){
 					
 						Spritesheet sprs = SpritesheetEnum.getSprite(input[0]);
-					
+						
+						//BufferedImage src = sprs.img.getSubimage(sprs.offsetW + sprs.spriteW * input[5], sprs.offsetH + sprs.spriteH * input[6], sprs.spriteW, sprs.spriteH);
+						
+						AffineTransform t = g.getTransform();
+						double ang = ((double)input[7])/100000000.0;
+						ang/=Math.PI/2;
+						g.rotate((Math.round(ang))*Math.PI/2,(input[1]+input[3])/2,(input[2]+input[4])/2);
+						
 						g.drawImage(sprs.img,
 							input[1], input[2], input[3], input[4],
-							sprs.offsetW + sprs.spriteW * input[5], sprs.offsetH + sprs.spriteH * input[6], sprs.offsetW + sprs.spriteW * (input[5] + 1) - 1, sprs.offsetH + sprs.spriteH * (input[6] + 1) - 1,
+							sprs.offsetW + sprs.spriteW * input[5], sprs.offsetH + sprs.spriteH * input[6], sprs.offsetW + sprs.spriteW * (input[5] + 1), sprs.offsetH + sprs.spriteH * (input[6] + 1),
+							//0, 0, sprs.spriteW, sprs.spriteH,
 							null);
+							
+						g.setTransform(t);
 					}
 						
 					else if(input[0]==-1){
@@ -93,6 +109,10 @@ public class ClientListener extends Thread {
 					}
 					else if(input[0]==-5){
 						info[input[1]]=input[2];
+					}
+					else if(input[0]==-420){
+						JOptionPane.showMessageDialog(null, "You died! You scored: " + info[1] + (info[1]==0?". You loser!":"."));
+						panel.dispose();
 					}
 				
 			

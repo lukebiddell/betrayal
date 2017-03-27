@@ -1,44 +1,52 @@
 package lobby;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.LinkedList;
-
-import menus.LobbyOwner;
+import java.net.SocketException;
+import menus.HostLobby;
 
 public class LobbyServer extends Thread {
 
-	private int port;
-	private LobbyOwner lobby;
+	private Socket socket;
+	private LobbySender sender;
+	private LobbyListener listener;
+	private HostLobby owner;
+	public LobbyServer(Socket socket, HostLobby owner){
+		this.socket = socket;
+		this.sender = null;
+		this.listener = null;
+		this.owner = owner;
+	}
 	
-	//private Map<InetAddress,String> = new
-	public LobbyServer(int port, LobbyOwner lobby){
-		//this.connections = new LinkedList<Server>();
-		this.port = port;
-		this.lobby  = lobby;
-		}
-
-	public void run() { 
+	public void run(){
 		try {
-			ServerSocket socket = new ServerSocket(port);
-		
-			while (true){
+
+			this.sender = new LobbySender(new DataOutputStream(socket.getOutputStream()));
+			this.listener = new LobbyListener(new DataInputStream(socket.getInputStream()), owner);
+			sender.start();
+			listener.start();
+		} catch (SocketException e1){
 			
-		
-			Socket clientSocket = socket.accept();
-			LobbyServerClient s = new LobbyServerClient(clientSocket);
-			this.lobby.updatePlayers(clientSocket.getInetAddress(), new DataInputStream(clientSocket.getInputStream()).readUTF());
-			s.start();
-			
-			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
 	}
+
+	public void addToQueue(String input){
+		this.sender.addToQueue(input);
+	}
+
+	public void reset() {
+		sender.addToQueue("**RESET**");
+		sender.interrupt();
+		listener.interrupt();
+		try {
+			this.socket.close();
+		} catch (IOException e) {
+		}
+	}
+	
 }
