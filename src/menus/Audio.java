@@ -10,15 +10,9 @@ import javax.swing.border.EmptyBorder;
 import audio.*;
 import menus.Mainframe;
 
-
 /*
  * @author Jack Marshman
  */
-
-//TODO
-//Finish general menu layout
-//Create and add graphics to new JButtons w/ Miruna
-//Add graphics to resources
 public class Audio extends JPanel
 {
 	private static final long serialVersionUID = 1L;
@@ -48,7 +42,6 @@ public class Audio extends JPanel
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -67,7 +60,6 @@ public class Audio extends JPanel
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();

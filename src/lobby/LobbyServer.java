@@ -7,6 +7,9 @@ import java.net.Socket;
 import java.net.SocketException;
 import menus.HostLobby;
 
+/*
+ * @author Sam Dowell
+ */
 public class LobbyServer extends Thread {
 
 	private Socket socket;

@@ -25,6 +25,10 @@ import game.Main;
 import lobby.LobbyMServer;
 import network.TCPClient;
 
+/*
+ * @author Jack Marshman
+ * @author Sam Dowell
+ */
 public class HostLobby extends JPanel {
 
 	private static final long serialVersionUID = 1L;

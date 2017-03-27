@@ -1,19 +1,13 @@
 package menus;
 
 import java.awt.CardLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import audio.BGM;
-
 
 /*
  * @author Jack Marshman
  */
-
-//TODO
-//Comment correctly
 public class Mainframe extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -68,9 +62,7 @@ public class Mainframe extends JFrame
 	 * 4 = Lobby
 	 * 5 = Find
 	 * 6 = Pause
-	 */
-	/*
-	 * Not sure about the System.out.println's so I've just commented them out for now - JM
+	 * 7 = LobbyMenu
 	 */
 	public void setMenu(int menuNum)
 	{
@@ -112,9 +104,7 @@ public class Mainframe extends JFrame
 			//Find
 			case 5:
 			{
-				//System.out.println("got case 5");
 				cardLayout.show(cardPanel, "5");
-				
 				this.revalidate();
 				break;
 			}
@@ -127,6 +117,7 @@ public class Mainframe extends JFrame
 				this.revalidate();
 				break;
 			}
+			
 			//Lobby Member
 			case 7:
 			{

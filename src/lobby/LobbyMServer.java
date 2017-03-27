@@ -10,6 +10,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import menus.HostLobby;
 
+/*
+ * @author Sam Dowell
+ */
 public class LobbyMServer extends Thread {
 
 	private int port;

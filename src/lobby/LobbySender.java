@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/*
+ * @author Sam Dowell
+ */
 public class LobbySender extends Thread {
 		private DataOutputStream out;
 		private BlockingQueue<String> queue;

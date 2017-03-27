@@ -5,6 +5,9 @@ import java.io.IOException;
 import menus.HostLobby;
 import menus.LobbyMember;
 
+/*
+ * @author Sam Dowell
+ */
 public class LobbyListener extends Thread {
 
 	private DataInputStream in;

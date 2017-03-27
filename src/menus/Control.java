@@ -7,15 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import audio.BGM;
 import menus.Mainframe;
 
 /*
  * @author Jack Marshman
  */
-
-
 public class Control extends JPanel
 {
 	private static final long serialVersionUID = 1L;
@@ -42,13 +39,10 @@ public class Control extends JPanel
 		 */
 		btnBack = new JButton();
 		btnBack.setBounds(20, 450, 180, 100);
-		
 		ImageIcon btnBackIcon = MenuButtonHandler.loadImageIcon("Resources/Images/back_button_2.png", 180, 100);
-		
 		btnBack.setIcon(btnBackIcon);
 		btnBack.setBorderPainted(false);
 		btnBack.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -67,7 +61,6 @@ public class Control extends JPanel
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();

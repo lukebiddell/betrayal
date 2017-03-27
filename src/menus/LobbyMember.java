@@ -22,6 +22,9 @@ import audio.BGM;
 import lobby.LobbyClient;
 import network.TCPClient;
 
+/*
+ * @author Sam Dowell
+ */
 public class LobbyMember extends JPanel {
 
 	

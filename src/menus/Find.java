@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import audio.BGM;
 
-
 /*
  * @author Jack Marshman
  * @author Sam Dowell

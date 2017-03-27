@@ -7,25 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import audio.BGM;
-
 
 /*
  * @author Jack Marshman
  */
-
-
-//TODO
-//Create and add graphics to new JButtons w/ Miruna
-//Comment Start.java correctly
-//Add graphics to resources
 public class Start extends JPanel
 {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Mainframe m;
 	public JButton btnFindGame;
@@ -46,21 +34,15 @@ public class Start extends JPanel
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		
-		
 		/*
 		 * Find Game button
 		 */
 		btnFindGame = new JButton();
 		btnFindGame.setBounds(42, 176, 360, 100);
-		
-		
 		ImageIcon btnFindGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/find_game_button_2.png", 360, 100);
-		
 		btnFindGame.setIcon(btnFindGameIcon);
 		btnFindGame.setBorderPainted(false);
 		btnFindGame.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
 				click.playOnce();
@@ -75,14 +57,10 @@ public class Start extends JPanel
 		 */
 		btnHostGame = new JButton();
 		btnHostGame.setBounds(486, 176, 360, 100);
-		
 		ImageIcon btnHostGameIcon = MenuButtonHandler.loadImageIcon("Resources/Images/host_game_button_2.png", 360, 100);
-		
-		
 		btnHostGame.setIcon(btnHostGameIcon);
 		btnHostGame.setBorderPainted(false);
 		btnHostGame.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -95,16 +73,12 @@ public class Start extends JPanel
 		/*
 		 * Controls button
 		 */
-		
-		ImageIcon btnControlsIcon  = MenuButtonHandler.loadImageIcon("Resources/Images/controls_button_2.png", 180, 100);
-		
 		btnControls = new JButton();
 		btnControls.setBounds(20, 450, 180, 100);
-		
+		ImageIcon btnControlsIcon  = MenuButtonHandler.loadImageIcon("Resources/Images/controls_button_2.png", 180, 100);
 		btnControls.setIcon(btnControlsIcon);
 		btnControls.setBorderPainted(false);
 		btnControls.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{	
 				click.playOnce();
@@ -119,14 +93,10 @@ public class Start extends JPanel
 		 */
 		btnAudio = new JButton();
 		btnAudio.setBounds(351, 450, 180, 100);
-		
 		ImageIcon btnAudioIcon = MenuButtonHandler.loadImageIcon("Resources/Images/audio_button_2.png", 180, 100);
-		
-		
 		btnAudio.setIcon(btnAudioIcon);
 		btnAudio.setBorderPainted(false);
 		btnAudio.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -145,7 +115,6 @@ public class Start extends JPanel
 		btnExit.setIcon(btnExitIcon);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				click.playOnce();
@@ -163,7 +132,5 @@ public class Start extends JPanel
 		ImageIcon backgroundIcon  = MenuButtonHandler.loadImageIcon("Resources/Images/betrayal_background.png", 900,600);
 		background.setIcon(backgroundIcon);
 		add(background);
-		
-		
 	}
 }

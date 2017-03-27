@@ -4,7 +4,9 @@ import java.awt.Image;
 import java.io.File;
 
 import javax.swing.ImageIcon;
-
+/*
+ * @author Sam Dowell
+ */
 public class MenuButtonHandler {
 
 	public static ImageIcon loadImageIcon(String p, int s1, int s2) {
